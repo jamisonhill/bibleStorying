@@ -1,0 +1,110 @@
+# Content auto-update pipeline.
+#
+# Every day at 03:15 UTC (06:15 Nairobi) this crawls biblestoryingkenya.com's
+# sitemap, re-parses any page whose <lastmod> changed, and republishes the
+# content bundle to GitHub Pages. The mobile app polls the published
+# manifest.json and silently downloads only what changed.
+#
+# On the 1st of each month the crawl ignores lastmod and re-parses everything,
+# in case the site stops updating its sitemap dates.
+#
+# If the site's markup drifts and parsing fails, the build fails loudly and a
+# GitHub issue is opened instead of publishing a broken bundle.
+
+name: Update content bundle
+
+on:
+  schedule:
+    - cron: '15 3 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Force full re-crawl (ignore lastmod)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content-update
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: pipeline/package-lock.json
+
+      - name: Install pipeline dependencies
+        working-directory: pipeline
+        run: npm ci
+
+      - name: Run tests
+        working-directory: pipeline
+        run: npm test
+
+      - name: Crawl and build content bundle
+        working-directory: pipeline
+        run: |
+          # Full re-crawl on the 1st of the month or when requested manually.
+          if [ "$(date -u +%d)" = "01" ] || [ "${{ inputs.full }}" = "true" ]; then
+            node src/build.ts --full
+          else
+            node src/build.ts
+          fi
+
+      - name: Commit updated bundle
+        id: commit
+        run: |
+          git config user.name "content-bot"
+          git config user.email "actions@github.com"
+          git add content
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No content changes."
+          else
+            version=$(node -p "JSON.parse(require('fs').readFileSync('content/manifest.json')).contentVersion")
+            git commit -m "content: update bundle to v${version}"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Content crawl failed $(date -u +%F)" \
+            --body "The scheduled crawl of biblestoryingkenya.com failed — the site's markup may have changed. See the run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            || true
+
+  publish:
+    needs: crawl
+    if: needs.crawl.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: content
+      - id: deployment
+        uses: actions/deploy-pages@v4
