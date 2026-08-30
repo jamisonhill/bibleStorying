@@ -1,0 +1,42 @@
+# CI: pipeline parser tests + app typecheck on every push/PR.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['content/**']
+  pull_request:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: pipeline/package-lock.json
+      - run: npm ci
+        working-directory: pipeline
+      - run: npm run check
+        working-directory: pipeline
+      - run: npm test
+        working-directory: pipeline
+
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+        working-directory: app
+      - run: npm run seed
+        working-directory: app
+      - run: npx tsc --noEmit
+        working-directory: app
