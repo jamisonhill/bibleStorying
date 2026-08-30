@@ -16,10 +16,9 @@ import type { Manifest, StoryBody } from './types';
  * Where the published content bundle lives. GitHub Pages for the content
  * repo; can be changed by publishing a new app build, or remotely via the
  * "contentBaseUrl" meta override (set from a future manifest field).
- * TODO(publishing): replace with the real Pages URL once the repo is on GitHub.
  */
 export const DEFAULT_CONTENT_BASE_URL =
-  'https://REPLACE-WITH-GITHUB-USER.github.io/bibleStorying/';
+  'https://jamisonhill.github.io/bibleStorying/';
 
 const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
