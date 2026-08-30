@@ -42,7 +42,7 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: theme.background },
         }}
       >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false, title: 'Home' }} />
         <Stack.Screen name="collection/[id]" options={{ title: '' }} />
         <Stack.Screen name="story/[...id]" options={{ title: '' }} />
         <Stack.Screen name="settings" options={{ title: 'Settings' }} />

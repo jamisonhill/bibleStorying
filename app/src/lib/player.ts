@@ -93,7 +93,7 @@ export async function playStory(story: Story, uri: string, artworkUrl?: string):
   });
 
   p.loop = state.loop;
-  p.playbackRate = state.rate;
+  p.setPlaybackRate(state.rate, 'high'); // pitch-corrected so voices stay natural
 
   const resumeAt = getProgress(story.id);
   if (resumeAt > 2) p.seekTo(resumeAt);
@@ -122,7 +122,7 @@ export function seekBy(deltaSeconds: number): void {
 export function cycleRate(): number {
   const order = [1, 1.25, 1.5, 0.75];
   const next = order[(order.indexOf(state.rate) + 1) % order.length];
-  if (player) player.playbackRate = next;
+  if (player) player.setPlaybackRate(next, 'high');
   emit({ rate: next });
   return next;
 }

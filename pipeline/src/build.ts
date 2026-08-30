@@ -177,6 +177,20 @@ async function main() {
       }
     }
 
+    // crossKey links translations of the same story, but a few stories share
+    // one cloth artwork (e.g. bsk_3 covers both "Creation of Man & Woman"
+    // and "Woman and Serpent"). Disambiguate repeats by occurrence order,
+    // which the site keeps consistent across languages: bsk_3, bsk_3#1, …
+    const keyCounts = new Map<string, number>();
+    for (const id of storyIds) {
+      const st = stories.get(id)!;
+      const base = st.crossKey.split('#')[0];
+      const n = keyCounts.get(base) ?? 0;
+      keyCounts.set(base, n + 1);
+      const unique = n === 0 ? base : `${base}#${n}`;
+      if (st.crossKey !== unique) stories.set(id, { ...st, crossKey: unique });
+    }
+
     const col = collections.get(idx.collectionId) ?? {
       id: idx.collectionId,
       title: idx.collectionTitle,

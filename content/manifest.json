@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
- "contentVersion": 1,
- "generatedAt": "2026-08-30T19:07:14.568Z",
+ "contentVersion": 2,
+ "generatedAt": "2026-08-30T19:51:10.876Z",
  "collections": [
   {
    "id": "cbs",
@@ -376,13 +376,13 @@
    "collection": "cbs",
    "lang": "en",
    "order": 3,
-   "crossKey": "bsk_3",
+   "crossKey": "bsk_3#1",
    "title": "Woman and Serpent",
    "scriptureRef": "Genesis 3",
    "text": {
     "path": "stories/cbs__en__woman-and-serpent.json",
-    "sha256": "649fb3404bcda61ef33ae9128f621d2cc57f29e89f799f86d46cfa5a470323b8",
-    "bytes": 3606
+    "sha256": "c74fe3796a7f65cec8d1c6db9b45e880f6816e66df0dcdf1a3917008d693a143",
+    "bytes": 3608
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -480,13 +480,13 @@
    "collection": "cbs",
    "lang": "en",
    "order": 7,
-   "crossKey": "bsk_6",
+   "crossKey": "bsk_6#1",
    "title": "Abram with Lot, Cutting Covenant with God",
    "scriptureRef": "Genesis 13, 15",
    "text": {
     "path": "stories/cbs__en__abram-with-lot-cutting-covenant-with-god.json",
-    "sha256": "8bf34836333b2ded83b5124f93c98d0599028a844bb293e928ab6a38e42d6f6e",
-    "bytes": 2046
+    "sha256": "2a828a4e37b8745d59c097567adc763c0ee7914e15a241b17d739359974e633f",
+    "bytes": 2048
    },
    "image": {
     "path": "images/a729f961326f8742.webp",
@@ -1060,13 +1060,13 @@
    "collection": "cbs",
    "lang": "en",
    "order": 30,
-   "crossKey": "bsk_28",
+   "crossKey": "bsk_28#1",
    "title": "Satan Tests Jesus",
    "scriptureRef": "Matthew 4:1-11, Luke 4:1-13",
    "text": {
     "path": "stories/cbs__en__satan-tests-jesus.json",
-    "sha256": "89ef14de9dbed2cfe0924eb04070f0d917260a7ba166cdb24193b17c94e563c6",
-    "bytes": 2454
+    "sha256": "e88bccc73d76c8ec08dcc200804ad77068934ff303e26c0c0de22ce5c7416f5b",
+    "bytes": 2456
    },
    "image": {
     "path": "images/aee7d3aaee664d7e.webp",
@@ -1542,13 +1542,13 @@
    "collection": "cbs",
    "lang": "sw",
    "order": 3,
-   "crossKey": "bsk_3",
+   "crossKey": "bsk_3#1",
    "title": "Mwanamke na Nyoka",
    "scriptureRef": "Mwanzo 3",
    "text": {
     "path": "stories/cbs__sw__mwanamke-na-nyoka.json",
-    "sha256": "f9ee1c3932061b699e4163d64b55db658d8e61af35f3d04502eaec69f98174e8",
-    "bytes": 3347
+    "sha256": "c47f7d9a9cf81a29edd98245494cb1b45b170d15c1605d7fd15e029da3dfd855",
+    "bytes": 3349
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -2403,13 +2403,13 @@
    "collection": "cbs",
    "lang": "sw",
    "order": 36,
-   "crossKey": "bsk_35",
+   "crossKey": "bsk_35#1",
    "title": "Nikodemo",
    "scriptureRef": "Yohana 3:1-21",
    "text": {
     "path": "stories/cbs__sw__nikodemo.json",
-    "sha256": "43322327d4757f33b9dfd6735de2d38745fa64741366f6084399469a2bb0daa6",
-    "bytes": 2786
+    "sha256": "dfee5e5a00b0220ac293c222fa7c39e88c8c4c0b634cfba262c1d018932ee727",
+    "bytes": 2788
    },
    "image": {
     "path": "images/171941df315ba8d5.webp",
@@ -2698,13 +2698,13 @@
    "collection": "cbs",
    "lang": "ma",
    "order": 3,
-   "crossKey": "bsk_3",
+   "crossKey": "bsk_3#1",
    "title": "B. ENKITOK o LASURAI",
    "scriptureRef": "Enkiterunoto 3",
    "text": {
     "path": "stories/cbs__ma__b.-enkitok-o-lasurai.json",
-    "sha256": "37550c9bfedeef8b12ba9bcc3e7c279d4634fb721b18bec82da594e0a6c37396",
-    "bytes": 3900
+    "sha256": "1b43c50d42cb11608bb1ab44a14eb26fd893a806b6844fa87bb4cf291fbc58d2",
+    "bytes": 3902
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -3103,13 +3103,13 @@
    "collection": "cbs",
    "lang": "ma",
    "order": 20,
-   "crossKey": "bsk_19",
+   "crossKey": "bsk_19#1",
    "title": "OLNG’OBOR LO LAITORIANI o ENKOLONG’ ENKITUTUMOTO",
    "scriptureRef": "Enaidurra 25-29, 34-40; Ilawi 1-10, 16, 17",
    "text": {
     "path": "stories/cbs__ma__olngobor-lo-laitoriani-o-enkolong-enkitutumoto.json",
-    "sha256": "359a551b77533a2e27f857ce25af69a8a88c34a4d8143ef7f3991a5f222bbb1e",
-    "bytes": 3293
+    "sha256": "e4eb800b834fbd77e8d58474c40b4a31a34b821cae4741edcabf09c9e4447310",
+    "bytes": 3295
    },
    "image": {
     "path": "images/3b66e16ccee7c687.webp",
@@ -3320,13 +3320,13 @@
    "collection": "cbs",
    "lang": "ma",
    "order": 29,
-   "crossKey": "bsk_28",
+   "crossKey": "bsk_28#1",
    "title": "B. ETETEMA SHETANI YESU (*METII EMPISHA)",
    "scriptureRef": "Matayo 4:1-11, Luka 4:1-13",
    "text": {
     "path": "stories/cbs__ma__b.-etetema-shetani-yesu-metii-empisha.json",
-    "sha256": "ae09ceb2464efdb9f0b20c56cf02b6a83407c5222cbdd1f37e1f7da8682be0c0",
-    "bytes": 2334
+    "sha256": "5e630abc454948d5053e3af464051c77ce9af4152fa68e2211de6ec3c35a8b6c",
+    "bytes": 2336
    },
    "image": {
     "path": "images/aee7d3aaee664d7e.webp",
@@ -3520,13 +3520,13 @@
    "collection": "cbs",
    "lang": "ma",
    "order": 37,
-   "crossKey": "bsk_35",
+   "crossKey": "bsk_35#1",
    "title": "B. NIKODEMO",
    "scriptureRef": "Yohana 3:1-21 (o Numbers 21:4-9)",
    "text": {
     "path": "stories/cbs__ma__b.-nikodemo.json",
-    "sha256": "afc4a1a37a7c08ce725ada89d8789f5ab12c1c3dcd76de4e0fe22c1f67e405e4",
-    "bytes": 3058
+    "sha256": "fa7713a10481949502d349c84a80be7e11cf0343e0bf98b865f078b3431e36f5",
+    "bytes": 3060
    },
    "image": {
     "path": "images/171941df315ba8d5.webp",
@@ -3800,13 +3800,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 3,
-   "crossKey": "bsk_3",
+   "crossKey": "bsk_3#1",
    "title": "B. UWWITII FI BOFA",
    "scriptureRef": "Uumama 3",
    "text": {
     "path": "stories/cbs__br__b.-uwwitii-fi-bofa.json",
-    "sha256": "0e551d6856632b0da1cb0e9150e0f4d765eabe58febeb4b2a9f7178438c0faa0",
-    "bytes": 3670
+    "sha256": "df51dead0608ddc71b8214f12d7bb4f56e7c03fa3b2a83e7c76c5b4dc7a923fd",
+    "bytes": 3672
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -3912,13 +3912,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 7,
-   "crossKey": "bsk_6",
+   "crossKey": "bsk_6#1",
    "title": "B. QOOMMI DIRAAMATI FI FAARUU",
    "scriptureRef": "Kara Faaruutifi Diraamatini Oduu Kitaaba Barsiisu Faaru:",
    "text": {
     "path": "stories/cbs__br__b.-qoommi-diraamati-fi-faaruu.json",
-    "sha256": "2619a0787e9db1bffc4abdfabec33e0c5e33bfb2357933967ecd39e5f9d36f59",
-    "bytes": 1167
+    "sha256": "d400113e6fa13a30c6690994bf5d59beddacf51a73f270f0057d13ec96a30921",
+    "bytes": 1169
    },
    "image": {
     "path": "images/a729f961326f8742.webp",
@@ -4307,13 +4307,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 22,
-   "crossKey": "bsk_20",
+   "crossKey": "bsk_20#1",
    "title": "B. AKKA ODUU BIBILIAA KAROORSAN BARSIISU.",
    "scriptureRef": "AKKA ODUU BIBILIAA KAROORSAN BARSIISU",
    "text": {
     "path": "stories/cbs__br__b.-akka-oduu-bibiliaa-karoorsan-barsiisu.json",
-    "sha256": "5c45a1a09d958baafbe639549a2dbc280c6bb26421920df63e2ddeca3966aa5a",
-    "bytes": 1045
+    "sha256": "760f9e7e8ee2819ac3cc1dd8119f2cbeb494ef77f503f8bf5aa664214d462e88",
+    "bytes": 1047
    },
    "image": {
     "path": "images/62d325fa1a7292d3.webp",
@@ -4536,13 +4536,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 31,
-   "crossKey": "bsk_28",
+   "crossKey": "bsk_28#1",
    "title": "B. SHEET’ANI YESO ILAALATA (*pichaan hinjirtu )",
    "scriptureRef": "Matayo 4:1-11, Luka 4:1-13",
    "text": {
     "path": "stories/cbs__br__b.-sheetani-yeso-ilaalata-pichaan-hinjirtu.json",
-    "sha256": "5ce19cf04fb15c7aa7e150f7ee3da509408a7e99a75ad690c1b37c83b7b0f031",
-    "bytes": 2604
+    "sha256": "9620b3e3b5c30467ed5e78a34abb7d837a4fcab9bc4cfecca9340ee7342c4e64",
+    "bytes": 2606
    },
    "image": {
     "path": "images/aee7d3aaee664d7e.webp",
@@ -4729,13 +4729,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 38,
-   "crossKey": "bsk_34",
+   "crossKey": "bsk_34#1",
    "title": "B. Barnoota CBS - Faaru fi Diraama #2",
    "scriptureRef": "",
    "text": {
     "path": "stories/cbs__br__b.-barnoota-cbs-faaru-fi-diraama-2.json",
-    "sha256": "1435be0cf262990add4ee74c2db4ace412112a49e6dd4761241e159a9447d4f9",
-    "bytes": 1223
+    "sha256": "277951113e24082376991b1e7702cb1d98a69fa008c230d313aafb9ccc30476d",
+    "bytes": 1225
    },
    "image": {
     "path": "images/226b8e39d837069f.webp",
@@ -4782,13 +4782,13 @@
    "collection": "cbs",
    "lang": "br",
    "order": 40,
-   "crossKey": "bsk_35",
+   "crossKey": "bsk_35#1",
    "title": "B. NIKODEMO",
    "scriptureRef": "Yohana 3:1-21 (ammalle Henna 21:4-9)",
    "text": {
     "path": "stories/cbs__br__b.-nikodemo1.json",
-    "sha256": "a9491eb32c824aff3d0f870ee15bbad792ecb2cb9017250d7dd6c6d73615b894",
-    "bytes": 2813
+    "sha256": "536a52cc243e7a8833618fa26605da3dd2e2cc640d3f9aa78af9ac84d18030b2",
+    "bytes": 2815
    },
    "image": {
     "path": "images/171941df315ba8d5.webp",
@@ -6144,5 +6144,5 @@
    }
   }
  },
- "fingerprint": "107e0e6d31a25cc27f665c6111f782e148659c752a76d8eaa8d994f4c906cb23"
+ "fingerprint": "e8b4ca47e4a19185de36917b0025dea28393a81f8b14b614f09966d4b4582055"
 }
