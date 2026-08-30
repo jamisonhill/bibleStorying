@@ -9,6 +9,7 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "com.biblestoryingkenya.app",
+      "appleTeamId": "HFAWAP3F3Z",
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": ["audio"]

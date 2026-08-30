@@ -1,5 +1,7 @@
 # Bible Storying Kenya — Offline App
 
+> ⚠️ If you are taking this project over, read RUNBOOK.md first.
+
 A fully-offline iOS + Android app for [biblestoryingkenya.com](https://biblestoryingkenya.com):
 228 Chronological Bible Storying stories across 3 collections (CBS, Sonship,
 Book of Acts) and 4 languages (English, Kiswahili, Maa, Borana) — text, cloth
