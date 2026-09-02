@@ -42,9 +42,12 @@ const run = promisify(execFile);
  * These are explicit rather than inferred: if a future revision renames one,
  * extraction should fail loudly instead of silently truncating a story.
  */
-const MARKERS: Record<string, { story: RegExp; memory: RegExp; stop: RegExp; breakBefore: RegExp }> = {
+const MARKERS: Record<string, { story: RegExp; storyInline: RegExp; memory: RegExp; stop: RegExp; breakBefore: RegExp }> = {
   en: {
     story: /^\s*THE\s+THE\s+STORY:|^\s*THE\s+STORY:/i,
+    // Some lessons put the divider at the end of the concepts line rather than
+    // on its own, so it also has to be stripped from inside a paragraph.
+    storyInline: /\s*\bTHE\s+(THE\s+)?STORY:\s*/gi,
     memory: /^\s*MEMORY\s+VERSE\s*\(optional\)\s*:?/i,
     stop: /^\s*(INTRODUCTION\s+QUESTION|TEACHER.S\s+TRANSITION|LEARN\s+STORY\s+TOGETHER|LISTENING\s+TASKS?|BASIC\s+OUTLINE|DISCUSSION\s+QUESTIONS?|GENERAL\s+APPLICATION|PERSONAL\s+APPLICATION|POST-STORY\s+DISCUSSION|EXTRA\s+READING|STORYING\s+QUESTIONS)/i,
     breakBefore: /^\s*(Key\s+Themes?\s*:|\[Core\s+Gospel\s+Concepts|Context\s*:|Introduction\s*:)/i,
@@ -54,7 +57,10 @@ const MARKERS: Record<string, { story: RegExp; memory: RegExp; stop: RegExp; bre
   // opens the lesson prose — so CBS will need its own marker set.
   sw: {
     story: /^\s*HADITHI\s*:/i,
-    memory: /^\s*AYA\s+ya\s+KUKUMBUSHA/i,
+    storyInline: /\s*\bHADITHI\s*:\s*/gi,
+    // Two spellings are used interchangeably across the document: 20 lessons
+    // say MSTARI WA KUMBUKUMBU and 10 say AYA ya KUKUMBUSHA.
+    memory: /^\s*(AYA\s+ya\s+KUKUMBUSHA|MSTARI\s+WA\s+KUMBUKUMBU)/i,
     stop: /^\s*(SWALI\s+LA\s+UTANGULIZI|TAARIFA\s+YA\s+MPITO|KAULI\s+YA\s+MPITO|JIFUNZE\s+HADITHI\s+PAMOJA|MUHTASARI\s+WA\s+MSINGI|MASWALI\s+YA\s+UTEKELEZAJI|MASWALI\s+YA\s+HADITHI|MASWALI\s+KWA\s+DARASA|KUJIFUNZA\s+HADITHI)/i,
     breakBefore: /^\s*(Mada\s+(Kuu|Muhimu)\s*:|\[Dhana\s+(Kuu|Muhimu)|Muktadha\s*:|Utangulizi\s*:)/i,
   },
@@ -191,7 +197,11 @@ function toParagraphs(lines: string[], breakBefore?: RegExp, indentBreaks = fals
     // The curriculum separates story paragraphs by indenting the FIRST line
     // rather than by a blank line: continuation lines sit at the left margin,
     // so an indented line always begins a new paragraph.
-    else if (indentBreaks && /^\s{3,}\S/.test(line) && buf.length) flush();
+    // An indented line starts a new paragraph only if the text so far actually
+    // finished a sentence. Block quotes and verse are indented too, and their
+    // wrapped lines break mid-sentence — joining those keeps them whole.
+    else if (indentBreaks && /^\s{3,}\S/.test(line) && buf.length
+             && /[.!?:;”"’')\]]\s*$/.test(buf[buf.length - 1]!)) flush();
     buf.push(line.trim());
   }
   flush();
@@ -248,10 +258,14 @@ function parseLesson(
   if (head.length === 0) return fail('no content between the heading and the next section');
 
   // A wrapped title continues on the next centred line and carries no chapter
-  // or verse number; the scripture reference always does. Split on that.
-  const titleExtra = preLines.filter((l) => !/\d/.test(l));
+  // or verse number; the scripture reference always does. Only lines BEFORE
+  // the first reference can be title — a stray line after it is loose content
+  // (one lesson has an orphaned fragment of its concepts list there).
+  const firstRef = preLines.findIndex((l) => /\d/.test(l));
+  const titleExtra = firstRef < 0 ? preLines : preLines.slice(0, firstRef);
   const scriptureRef = preLines.filter((l) => /\d/.test(l)).join('; ');
-  const body = head;
+  const strays = firstRef < 0 ? [] : preLines.slice(firstRef + 1).filter((l) => !/\d/.test(l));
+  const body = [...strays, ...head];
   if (body.length === 0) return fail('lesson has a reference but no body text');
 
   // Memory verse, when present, runs to the next facilitator section.
@@ -268,7 +282,9 @@ function parseLesson(
     memory = joined ? [joined] : [];
   }
 
-  const paragraphs = [...body, ...memory.map((m) => `Optional Memory Verse: ${m}`)];
+  const paragraphs = [...body, ...memory.map((m) => `Optional Memory Verse: ${m}`)]
+    .map((t) => clean(t.replace(marks.storyInline, ' ')))
+    .filter(Boolean);
 
   // Everything after the publishable part, kept for the client to decide on.
   const notesStart = memoryAt >= 0 ? memoryAt : end;
