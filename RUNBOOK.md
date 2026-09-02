@@ -90,6 +90,53 @@ app/ (Expo) ──────────────────────�
 
 ---
 
+## §6 — The website CMS (Evolution CMS)
+
+The site is not hand-written HTML: it runs **Evolution CMS 1.4.37** at
+`https://www.biblestoryingkenya.com/manager/`. The client's rep (Ben, Serge)
+holds the login — we do not own it.
+
+- `/manager/` returns **404 to anyone not logged in**. That is deliberate
+  obscurity, not a broken URL. Don't go hunting for a renamed admin path.
+- Story pages use template **`story_tpl (7)`**. Parent folders: Sonship
+  English **195**, Sonship Swahili **208**, Maasai 290 and Borana 291 (both
+  empty placeholders). CBS and Acts have their own folders — check the tree.
+- Template variables on a story page:
+  `tv12` cloth_art · `tv13` bible_verse · `tv14` downloadfile · `tv15` downloadaudio.
+  The pipeline reads `tv13` as `scriptureRef`, and the index page renders
+  `tv12` as the card's background image.
+- **Cloth art is shared across languages.** Every language of a story points at
+  the same file: `assets/images/cloth_art/bsk_<n>.jpg` for CBS,
+  `assets/images/sonship_art/sonship_<n>.jpg` for Sonship, keyed to the story's
+  number. Verified against all 66 English/Swahili pairs — identical every time.
+  Sonship art exists for stories **1-30 only**; `sonship_31.jpg` is a 404.
+
+### Staging content safely
+
+Uncheck **Published** and the page becomes a draft. Verified behaviour: an
+unpublished page is **absent from `sitemap.xml` and returns 404 publicly**, so
+the daily crawler cannot pick it up and the app never receives it. That is the
+safe way to stage content for the client to review — nothing reaches a phone in
+Kenya until Ben ticks Published himself.
+
+### Gotchas that cost real time
+
+- A save posted with the action in BOTH the query string and the form body is
+  rejected with *"Double action (GET & POST) posted!"* — returned as **HTTP
+  200**, so it looks like it worked and silently changes nothing. Post to the
+  bare `index.php` and let `a` come from the form body.
+- Editing a resource re-posts the WHOLE form. To change one field, load that
+  page's own form, copy every field back, and change the one. A partial post
+  blanks the body.
+- The manager keeps one iframe per open editor tab. A "New Resource" screen can
+  sit alongside stale iframes still holding another resource's edit form
+  (`mode=27` with its id). Select the form by `mode`/`id`, never by position —
+  posting the wrong one overwrites a different page.
+- Opening a resource takes an edit lock. Hit **Cancel** (or close the tab) when
+  you are only looking, or the client hits "locked by another user".
+
+---
+
 ## §7 — Deployment
 
 **Content** deploys itself (§8), or manually: Actions → "Update content bundle" → Run
@@ -157,6 +204,13 @@ workflow. **App code:**
 
 ## §14 — ⚠️ NEEDS HUMAN INPUT
 
+- [ ] Whether Sonship stories 13-31 should go live. They are staged UNPUBLISHED
+      in the CMS (English 297-315, Swahili 316-334), extracted from the 2026
+      curriculum PDFs. Publishing them puts 19 stories online for the first
+      time — Ben's decision, not ours.
+- [ ] Story 25 (Paul, Philemon, Onesimus) has no scripture reference in either
+      language; the PDF has none either.
+- [ ] Story 31 has no cloth art — `sonship_31.jpg` does not exist on the server.
 - [ ] Client's name/contact for §3 escalation and eventual account ownership
 - [ ] 1Password Emergency Kit location (shared across projects)
 
