@@ -87,6 +87,19 @@ async function mirrorImage(
   return entry;
 }
 
+/**
+ * True for a file this pipeline generated in content/images.
+ *
+ * Mirrored art is named after the first 16 hex characters of its content hash
+ * (see mirrorImage above), so the name itself identifies our own output. The
+ * garbage collector below uses this to delete ONLY what it created: anything
+ * else in that directory belongs to a human and must be left alone, even
+ * though content/ is a generated directory.
+ */
+export function isMirroredImage(file: string): boolean {
+  return /^[0-9a-f]{16}\.webp$/.test(file);
+}
+
 /** Write a story/page JSON file and return its bundle reference. */
 async function writeJson(relPath: string, data: unknown) {
   const buf = Buffer.from(JSON.stringify(data), 'utf8');
@@ -270,12 +283,18 @@ async function main() {
   );
   await fs.writeFile(STATE_FILE, JSON.stringify(StateSchema.parse(state), null, 1));
 
-  // 7. Garbage-collect images no longer referenced by any story.
+  // 7. Garbage-collect mirrored images no longer referenced by any story.
+  //    Image names are content hashes, so replacing a cloth on the website
+  //    leaves the previous file orphaned; without this the bundle would grow
+  //    forever, and it ships both inside the app and to GitHub Pages.
   const referenced = new Set(
     [...stories.values()].flatMap((s) => (s.image ? [path.basename(s.image.path)] : [])),
   );
   try {
     for (const file of await fs.readdir(path.join(CONTENT_DIR, 'images'))) {
+      // Only ever delete our own output. A file someone put here by hand is
+      // not ours to remove, however unreferenced it looks.
+      if (!isMirroredImage(file)) continue;
       if (!referenced.has(file)) await fs.rm(path.join(CONTENT_DIR, 'images', file));
     }
   } catch { /* no images dir yet */ }
@@ -286,7 +305,12 @@ async function main() {
   console.log(`Remote audio total: ${(totalAudio / 1e6).toFixed(0)} MB (stays on the website)`);
 }
 
-main().catch((err) => {
-  console.error('BUILD FAILED:', err);
-  process.exit(1);
-});
+// Only crawl when invoked directly (`node src/build.ts`). Without this guard,
+// importing anything from this file — a test, for instance — would kick off a
+// full crawl of the live website as a side effect of the import.
+if (import.meta.main) {
+  main().catch((err) => {
+    console.error('BUILD FAILED:', err);
+    process.exit(1);
+  });
+}
