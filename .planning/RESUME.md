@@ -29,5 +29,13 @@
 - After `npm run seed` + content changes, bump happens automatically; app DB
   re-imports only when bundled contentVersion > stored one.
 - content/ and app/src/content/ + app/assets/content/ are generated — never hand-edit.
+- Adding a new tester iPhone: the phone must have Developer Mode ON
+  (Settings > Privacy & Security > Developer Mode > restart > confirm), and
+  it must be UNLOCKED when you check — a locked phone reports
+  `developerModeStatus: disabled` and shows as `unavailable`, which looks
+  identical to Developer Mode actually being off. Unlock before debugging it.
+- Paid team (HFAWAP3F3Z): dev certs are trusted automatically on registered
+  devices, so testers do NOT need the VPN & Device Management trust step.
+  Profile is good for a year; 6 devices registered as of 2026-09-02 (100/yr cap).
 - Simulator taps via cliclick were flaky (missed Pressables); prefer deep links
   (exp://…/--/story/cbs/en/<slug>) when driving the app in the simulator.

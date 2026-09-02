@@ -8,6 +8,8 @@
 
 ## Phase 6 — Beta testing ← PAUSED HERE
 - [x] Release build installed on tester iPhone (Duski's iPhone 17, direct xcodebuild)
+- [x] Release build installed on 2nd tester iPhone (Ben's iPhone 16 Pro Max,
+      iOS 26.6.1, udid 00008140-00166D460C38801C) — 2026-09-02
 - [ ] Collect beta feedback from Jamison / testers
 - [ ] Verify on the tester's phone: airplane-mode offline, lock-screen audio,
       background playback, audio download + delete, language switching
