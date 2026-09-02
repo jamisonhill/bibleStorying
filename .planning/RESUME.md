@@ -1,41 +1,34 @@
 # Resume — Bible Storying Kenya app
 
-**Paused:** 2026-08-30 · **Reason:** Jamison is beta testing on-device; will return with feedback
-**Phase/Task:** Phase 6 — beta testing (build delivered, awaiting feedback)
-**Tree:** clean at pause commit · **Last commit:** see `git log -1` (pause commit)
+**Paused:** 2026-09-03 · **Reason:** Sonship 13-31 staged as CMS drafts; awaiting Ben's publish decision
+**Phase/Task:** Phase 7 — website content completion (staging done, nothing published)
+**Tree:** clean · **Last commit:** a153ce3 docs: record how the website CMS actually works
 
 ## State
-- Everything works end-to-end and is verified: 228 stories offline, audio
-  streaming + per-story/collection downloads, lock-screen playback, in-place
-  language switching, Settings/About, dark mode.
-- Content auto-update is LIVE: daily GitHub Action crawls the site → publishes
-  to https://jamisonhill.github.io/bibleStorying/manifest.json (contentVersion 2).
-- Release build signed on Jamison's Apple team (HFAWAP3F3Z) and installed on
-  the tester's iPhone 17 via direct xcodebuild (expo run:ios lacked
-  -allowProvisioningUpdates / -allowProvisioningDeviceRegistration).
+- The website publishes Sonship stories 1-12 only. Stories **13-31 now exist as
+  UNPUBLISHED drafts** in the CMS: English ids 297-315, Swahili 316-334. They were
+  created this session from the 2026 curriculum PDFs in `documents/` — they were
+  never live, and no existing page was modified (196-207 untouched, last edited April).
+- Verified: all 38 render identically to `drafts/`, are absent from `sitemap.xml`,
+  and 404 publicly. Cloth art set for lessons 13-30 in both languages.
+- Extractor validated against the 12 live pages: lowest similarity 0.991, eight at 1.000.
+- Two new pipeline commands: `npm run report` (coverage + crossKey audit) and
+  `npm run extract` (PDF → drafts). `drafts/` and `documents/` are gitignored.
+- Audio remains the biggest content gap: Maasai 0/45, Sonship 0/24, Acts 0/22.
 
 ## Next action
-1. Read Jamison's beta feedback; fix in app/src/ (screens in app/src/app/,
-   services in app/src/lib/).
-2. Rebuild to device: cd app/ios && xcodebuild -workspace
-   BibleStoryingKenya.xcworkspace -scheme BibleStoryingKenya -configuration
-   Release -destination id=<UDID> -derivedDataPath ./build
-   -allowProvisioningUpdates -allowProvisioningDeviceRegistration build,
-   then xcrun devicectl device install app --device <id> <path.app>.
+1. Get Ben's decision on publishing Sonship 13-31 — it would be their **first**
+   public appearance, not a re-publish. Do not publish without it.
+2. If yes: tick Published in the CMS, English first, then confirm `sitemap.xml`
+   grows and the daily crawl picks them up before doing Swahili.
+3. Get the actual error text for Jamison's local `npm run build` (Node 25.6.1 and
+   sharp both load fine, so it is not the install).
 
 ## Gotchas
-- Expo Go on the iOS App Store is stuck at SDK 54 (Apple review backlog); this
-  app is SDK 57 — physical-device testing REQUIRES a native build, not Expo Go.
-- After `npm run seed` + content changes, bump happens automatically; app DB
-  re-imports only when bundled contentVersion > stored one.
-- content/ and app/src/content/ + app/assets/content/ are generated — never hand-edit.
-- Adding a new tester iPhone: the phone must have Developer Mode ON
-  (Settings > Privacy & Security > Developer Mode > restart > confirm), and
-  it must be UNLOCKED when you check — a locked phone reports
-  `developerModeStatus: disabled` and shows as `unavailable`, which looks
-  identical to Developer Mode actually being off. Unlock before debugging it.
-- Paid team (HFAWAP3F3Z): dev certs are trusted automatically on registered
-  devices, so testers do NOT need the VPN & Device Management trust step.
-  Profile is good for a year; 6 devices registered as of 2026-09-02 (100/yr cap).
-- Simulator taps via cliclick were flaky (missed Pressables); prefer deep links
-  (exp://…/--/story/cbs/en/<slug>) when driving the app in the simulator.
+- CMS specifics — template ids, the draft workflow, the "Double action (GET & POST)"
+  silent no-op, stale editor iframes — are documented in **RUNBOOK.md §6**. Read it
+  before touching the CMS again.
+- `content/` is generated; the build now only garbage-collects its own hashed
+  `.webp` files, so stray files there survive (`build.ts`, `isMirroredImage`).
+- Physical-device testing needs a native build — Expo Go is stuck at SDK 54.
+- A locked iPhone reports `developerModeStatus: disabled`; unlock before debugging.
