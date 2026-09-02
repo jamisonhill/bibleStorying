@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test src/*.test.ts",
     "build": "node src/build.ts",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "report": "node src/report.ts"
   },
   "keywords": [],
   "author": "",
