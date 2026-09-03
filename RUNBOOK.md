@@ -259,3 +259,42 @@ copies in `content/videos/delivery/`.
 
 ---
 
+## §14 — ⚠️ NEEDS HUMAN INPUT
+
+- [x] ~~Whether Sonship stories 13-31 should go live.~~ **RESOLVED 2026-09-03:**
+      Ben published them. The crawl now returns 31 Sonship stories in each of
+      English and Swahili (was 12), taking the bundle from 228 to 266 stories.
+- [x] ~~Where the four videos are hosted.~~ **RESOLVED 2026-09-03:** GitHub
+      release `videos-v1` on this repo (140MB across 4 assets). The website host
+      caps uploads at 10MB, which the smallest film (17.6MB) already exceeds.
+      Verified anonymously downloadable. Note video URLs live inside
+      `manifest.json` and are republished every build, so unlike
+      `DEFAULT_CONTENT_BASE_URL` they are cheap to change if the repo ever moves
+      to the client's GitHub organisation.
+- [ ] A master for "Chronological Bible Storying 2025". The only copy is a 360p
+      YouTube rip (unlisted, Ben's channel); the other three come from 1080p/540p
+      masters. Ben can export the original from YouTube Studio — drop it in and
+      re-run the §7 transcode.
+- [ ] Story 25 (Paul, Philemon, Onesimus) has no scripture reference in either
+      language; the PDF has none either.
+- [ ] Story 31 has no cloth art — `sonship_31.jpg` does not exist on the server.
+- [ ] Client's name/contact for §3 escalation and eventual account ownership
+- [ ] 1Password Emergency Kit location (shared across projects)
+
+---
+
+## §15 — If something goes wrong / who to call
+
+You are not expected to fix this. The app is deliberately built so that doing nothing
+is safe: phones keep every story they already have, forever, offline. If the ministry
+needs changes and I'm not available, any React Native developer can take this repo and
+the README and carry it. This is not worth losing sleep over.
+
+---
+
+## Revision history
+
+| Date | Change | By |
+|---|---|---|
+| 2026-08-30 | Created at first pause: pipeline live, app in beta | Claude (with Jamison) |
+| 2026-09-03 | Videos tab + bottom tabs; films hosted as GitHub release `videos-v1`; Sonship 13-31 confirmed live; §13 publish-timing gotcha | Claude (with Jamison) |
