@@ -1,16 +1,29 @@
 // Root layout: opens the database (importing bundled content on first
 // launch), kicks off the daily content update check, and hosts the
-// navigation stack plus the floating mini-player.
+// navigation stack, the floating mini-player, and the branded launch stage.
 
 import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { useColorScheme } from 'react-native';
 import { MiniPlayer } from '@/components/mini-player';
+import { NATIVE_FADE_MS, SplashOverlay } from '@/components/splash-overlay';
 import { Colors } from '@/constants/theme';
 import { initDatabase } from '@/lib/db';
 import { LanguageProvider } from '@/lib/language-context';
 import { checkForUpdatesIfDue } from '@/lib/updater';
+
+// Hold the native launch screen until SplashOverlay has painted its own,
+// identically-coloured stage; without this the OS splash tears down on the
+// first frame and shows a white flash underneath. SplashOverlay always mounts,
+// so the matching hideAsync() cannot be missed.
+void SplashScreen.preventAutoHideAsync().catch(() => {
+  // Racing an already-hidden splash is harmless — the app still launches.
+});
+// Dissolve rather than cut, so the launch icon and the wordmark cross on the
+// same slate field instead of one snapping to the other.
+SplashScreen.setOptions({ fade: true, duration: NATIVE_FADE_MS });
 
 export default function RootLayout() {
   const scheme = useColorScheme();
@@ -49,6 +62,7 @@ export default function RootLayout() {
         <Stack.Screen name="about" options={{ title: 'About CBS' }} />
       </Stack>
       <MiniPlayer />
+      <SplashOverlay />
     </LanguageProvider>
   );
 }
