@@ -19,8 +19,14 @@
 ## Next action
 1. Get Ben's decision on publishing Sonship 13-31 — it would be their **first**
    public appearance, not a re-publish. Do not publish without it.
-2. If yes: tick Published in the CMS, English first, then confirm `sitemap.xml`
-   grows and the daily crawl picks them up before doing Swahili.
+2. If yes: tick Published in the CMS, English first. The check that matters is
+   the **index grid** — `sonship-stories/english-stories2.html` must show 13+
+   cards — because the crawler discovers stories from the nav → index pages,
+   not from `sitemap.xml` (`build.ts` step 3). Confirm the next daily crawl
+   commits them before doing Swahili.
+   Delivery is automatic from there: crawl 03:15 UTC → GitHub Pages → the app's
+   once-a-day launch check. Roughly 24-48h to reach a phone. New installs still
+   need `npm run seed` + a build to carry the stories offline out of the box.
 3. Get the actual error text for Jamison's local `npm run build` (Node 25.6.1 and
    sharp both load fine, so it is not the install).
 
