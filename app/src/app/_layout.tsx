@@ -1,6 +1,11 @@
 // Root layout: opens the database (importing bundled content on first
 // launch), kicks off the daily content update check, and hosts the
 // navigation stack, the floating mini-player, and the branded launch stage.
+//
+// The stack's first screen is the (tabs) group — Stories, Videos, More.
+// Everything else (a collection, a story, a video) is pushed ABOVE the tabs,
+// which is why the mini-player lives out here rather than inside the tab
+// navigator: it has to survive both.
 
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -55,9 +60,10 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: theme.background },
         }}
       >
-        <Stack.Screen name="index" options={{ headerShown: false, title: 'Home' }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="collection/[id]" options={{ title: '' }} />
         <Stack.Screen name="story/[...id]" options={{ title: '' }} />
+        <Stack.Screen name="video/[id]" options={{ title: '' }} />
         <Stack.Screen name="settings" options={{ title: 'Settings' }} />
         <Stack.Screen name="about" options={{ title: 'About CBS' }} />
       </Stack>

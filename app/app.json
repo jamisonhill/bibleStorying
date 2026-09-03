@@ -12,7 +12,9 @@
       "appleTeamId": "HFAWAP3F3Z",
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
@@ -50,7 +52,8 @@
             "deploymentTarget": "16.4"
           }
         }
-      ]
+      ],
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -7,7 +7,8 @@
 import { Directory, File } from 'expo-file-system';
 import * as Network from 'expo-network';
 import {
-  db, deletePage, getMeta, getMetaNumber, pageShaKey, setMeta, upsertPage, upsertStory,
+  db, deletePage, deleteVideoRow, getMeta, getMetaNumber, pageShaKey, setMeta,
+  upsertPage, upsertStory, upsertVideo,
 } from './db';
 import { imagesDir } from './downloads';
 import type { InfoPage, Manifest, StoryBody } from './types';
@@ -107,6 +108,11 @@ async function applyManifest(manifest: Manifest): Promise<void> {
   for (const meta of Object.values(manifest.stories)) {
     if (meta.image) wantedImages.add(meta.image.path);
   }
+  // Video posters are mirrored into content/images too; without this they
+  // would never arrive over the air and the Videos tab would show blanks.
+  for (const meta of Object.values(manifest.videos ?? {})) {
+    if (meta.poster) wantedImages.add(meta.poster.path);
+  }
   imagesDir.create({ intermediates: true, idempotent: true });
   for (const relPath of wantedImages) {
     const file = new File(imagesDir, relPath.replace(/^images\//, ''));
@@ -163,6 +169,27 @@ async function applyManifest(manifest: Manifest): Promise<void> {
           col.id, l.lang, col.title, JSON.stringify(l.storyIds),
         );
       }
+    }
+
+    // Videos carry no separate body file, so there is nothing to fetch or
+    // hash-compare — write them straight from the manifest.
+    const manifestVideos = manifest.videos ?? {};
+    for (const meta of Object.values(manifestVideos)) upsertVideo(meta);
+
+    // Drop videos the pipeline no longer publishes, taking any downloaded
+    // file with them so storage does not leak.
+    const manifestVideoIds = new Set(Object.keys(manifestVideos));
+    for (const row of db.getAllSync<{ id: string }>('SELECT id FROM videos')) {
+      if (manifestVideoIds.has(row.id)) continue;
+      const dl = db.getFirstSync<{ localUri: string }>(
+        'SELECT localUri FROM video_downloads WHERE videoId = ?', row.id,
+      );
+      if (dl) {
+        const f = new File(dl.localUri);
+        if (f.exists) f.delete();
+        db.runSync('DELETE FROM video_downloads WHERE videoId = ?', row.id);
+      }
+      deleteVideoRow(row.id);
     }
   });
 }

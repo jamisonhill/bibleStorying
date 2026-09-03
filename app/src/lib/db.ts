@@ -5,7 +5,7 @@
 import { openDatabaseSync, type SQLiteDatabase } from 'expo-sqlite';
 import seed from '../content/seed.json';
 import type {
-  CollectionId, CollectionLang, InfoPage, LangCode, Manifest, Story, StoryBody,
+  CollectionId, CollectionLang, InfoPage, LangCode, Manifest, Story, StoryBody, Video,
 } from './types';
 
 export const db: SQLiteDatabase = openDatabaseSync('content.db');
@@ -53,6 +53,23 @@ export function initDatabase(): void {
       localUri TEXT NOT NULL,
       downloadedAt TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS videos(
+      id TEXT PRIMARY KEY,
+      ord INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      durationSec INTEGER NOT NULL,
+      posterPath TEXT,
+      posterSha TEXT,
+      url TEXT NOT NULL,
+      bytes INTEGER NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS video_downloads(
+      videoId TEXT PRIMARY KEY,
+      url TEXT NOT NULL,
+      bytes INTEGER NOT NULL,
+      localUri TEXT NOT NULL,
+      downloadedAt TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS progress(
       storyId TEXT PRIMARY KEY,
       positionSec REAL NOT NULL,
@@ -87,6 +104,8 @@ function importSeed(): void {
         );
       }
     }
+    // `videos` is absent from bundles published before the Videos tab existed.
+    for (const v of Object.values(manifest.videos ?? {})) upsertVideo(v);
     setMeta('contentVersion', String(manifest.contentVersion));
   });
 }
@@ -201,6 +220,53 @@ export function getPage(id: string): InfoPage | null {
     'SELECT * FROM pages WHERE id = ?', id,
   );
   return row ? { id: row.id, title: row.title, paragraphs: JSON.parse(row.paragraphs) } : null;
+}
+
+// --- videos ---
+
+/** Insert or update one video row (used by both seeding and OTA updates). */
+export function upsertVideo(entry: NonNullable<Manifest['videos']>[string]): void {
+  db.runSync(
+    `INSERT OR REPLACE INTO videos(
+      id, ord, title, durationSec, posterPath, posterSha, url, bytes
+    ) VALUES(?,?,?,?,?,?,?,?)`,
+    entry.id, entry.order, entry.title, entry.durationSec,
+    entry.poster?.path ?? null, entry.poster?.sha256 ?? null,
+    entry.file.url, entry.file.bytes,
+  );
+}
+
+/** Remove a video that has disappeared from the published manifest. */
+export function deleteVideoRow(id: string): void {
+  db.runSync('DELETE FROM videos WHERE id = ?', id);
+}
+
+interface VideoRow {
+  id: string; ord: number; title: string; durationSec: number;
+  posterPath: string | null; posterSha: string | null;
+  url: string; bytes: number;
+}
+
+function rowToVideo(row: VideoRow): Video {
+  return {
+    id: row.id,
+    title: row.title,
+    order: row.ord,
+    durationSec: row.durationSec,
+    posterPath: row.posterPath,
+    posterSha: row.posterSha,
+    file: { url: row.url, bytes: row.bytes },
+  };
+}
+
+/** Every video, in the order set by videos.json. Drives the Videos tab. */
+export function getVideos(): Video[] {
+  return db.getAllSync<VideoRow>('SELECT * FROM videos ORDER BY ord').map(rowToVideo);
+}
+
+export function getVideo(id: string): Video | null {
+  const row = db.getFirstSync<VideoRow>('SELECT * FROM videos WHERE id = ?', id);
+  return row ? rowToVideo(row) : null;
 }
 
 // --- meta key/value helpers (settings, versions, timestamps) ---

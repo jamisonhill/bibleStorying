@@ -37,6 +37,16 @@ export const LANGUAGES: Record<string, { code: string; name: string; localName: 
   borana: { code: 'br', name: 'Borana', localName: 'Borana' },
 };
 
+/**
+ * Videos are not on the website, so they are declared by hand here rather than
+ * crawled. The masters live in ../content/videos (gitignored, ~869MB); only the
+ * transcoded delivery copies are hosted and referenced by videos.json.
+ */
+export const VIDEOS_CONFIG = path.resolve(here, '../videos.json');
+
+/** Poster frames for the videos, mirrored into the bundle like cloth artwork. */
+export const VIDEO_POSTERS_DIR = path.resolve(here, '../video-posters');
+
 /** Standalone informational pages bundled for the app's About section. */
 export const STATIC_PAGES = [
   { id: 'about-cbs', url: 'about-cbs.html', title: 'About CBS' },

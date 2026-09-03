@@ -1,0 +1,40 @@
+{
+  "videos": [
+    {
+      "slug": "cbs-and-sbs-overview",
+      "title": "CBS and SBS Overview",
+      "order": 1,
+      "durationSec": 354,
+      "bytes": 43788616,
+      "poster": "cbs-and-sbs-overview.webp",
+      "url": "https://www.biblestoryingkenya.com/assets/files/video/cbs-and-sbs-overview.mp4"
+    },
+    {
+      "slug": "chronological-bible-storying-2025",
+      "title": "Chronological Bible Storying 2025",
+      "order": 2,
+      "durationSec": 365,
+      "bytes": 17603381,
+      "poster": "chronological-bible-storying-2025.webp",
+      "url": "https://www.biblestoryingkenya.com/assets/files/video/chronological-bible-storying-2025.mp4"
+    },
+    {
+      "slug": "storying-shorter-version",
+      "title": "Storying — Shorter Version",
+      "order": 3,
+      "durationSec": 281,
+      "bytes": 40930962,
+      "poster": "storying-shorter-version.webp",
+      "url": "https://www.biblestoryingkenya.com/assets/files/video/storying-shorter-version.mp4"
+    },
+    {
+      "slug": "impact-of-cbs-and-sonship",
+      "title": "The Impact of CBS and Sonship",
+      "order": 4,
+      "durationSec": 325,
+      "bytes": 44777230,
+      "poster": "impact-of-cbs-and-sonship.webp",
+      "url": "https://www.biblestoryingkenya.com/assets/files/video/impact-of-cbs-and-sonship.mp4"
+    }
+  ]
+}

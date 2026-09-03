@@ -113,6 +113,25 @@ export function DocIcon(p: IconProps) {
   );
 }
 
+export function VideoIcon(p: IconProps) {
+  return (
+    <Svg {...base(p)}>
+      <Rect x="3" y="6" width="12.5" height="12" rx="2.5" {...strokeProps(p.color, p.strokeWidth)} />
+      <Path d="M15.5 10.5 21 7.5v9l-5.5-3v-3Z" {...strokeProps(p.color, p.strokeWidth)} />
+    </Svg>
+  );
+}
+
+export function EllipsisIcon(p: IconProps) {
+  return (
+    <Svg {...base(p)}>
+      <Circle cx="5.5" cy="12" r="1.6" fill={p.color} />
+      <Circle cx="12" cy="12" r="1.6" fill={p.color} />
+      <Circle cx="18.5" cy="12" r="1.6" fill={p.color} />
+    </Svg>
+  );
+}
+
 export function InfoCircleIcon(p: IconProps) {
   return (
     <Svg {...base(p)}>

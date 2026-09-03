@@ -76,6 +76,33 @@ export const CollectionSchema = z.object({
   languages: z.array(CollectionLangSchema).min(1),
 });
 
+/**
+ * One entry in the hand-maintained videos.json.
+ *
+ * Videos are NOT crawled: they are teaching films that never appeared on the
+ * website, so the pipeline reads this config instead of parsing markup.
+ * `bytes` is declared here rather than discovered by a HEAD request, because
+ * the files may not be hosted yet — an unreachable URL would otherwise make
+ * remoteFile() return null and silently drop the video from the bundle.
+ */
+export const VideoConfigSchema = z.object({
+  /** Stable id and filename stem, e.g. "cbs-and-sbs-overview". */
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  /** Position in the app's Videos tab. */
+  order: z.number().int().nonnegative(),
+  durationSec: z.number().int().positive(),
+  /** Size of the delivery file, read off the transcoded mp4. */
+  bytes: z.number().int().positive(),
+  /** Poster filename inside pipeline/video-posters/. */
+  poster: z.string().min(1),
+  /** Absolute URL the app downloads from. */
+  url: z.string().url(),
+});
+export type VideoConfig = z.infer<typeof VideoConfigSchema>;
+
+export const VideosConfigSchema = z.object({ videos: z.array(VideoConfigSchema) });
+
 /** The top-level manifest the app polls for updates. */
 export const ManifestSchema = z.object({
   schemaVersion: z.literal(1),
@@ -101,6 +128,21 @@ export const ManifestSchema = z.object({
     }),
   ),
   pages: z.record(z.string(), z.object({ id: z.string(), title: z.string(), text: BundledFileSchema })),
+  /** Videos, keyed by slug. Optional so a bundle built before videos existed
+   *  still parses (zod strips unknown keys, so this MUST be declared here). */
+  videos: z
+    .record(
+      z.string(),
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        order: z.number().int(),
+        durationSec: z.number().int(),
+        poster: BundledFileSchema.nullable(),
+        file: RemoteFileSchema,
+      }),
+    )
+    .default({}),
 });
 export type Manifest = z.infer<typeof ManifestSchema>;
 

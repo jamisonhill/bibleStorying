@@ -54,4 +54,7 @@ ${lines.join('\n')}
 `,
 );
 
-console.log(`Seed: ${Object.keys(stories).length} stories, ${files.length} images, contentVersion ${manifest.contentVersion}`);
+console.log(
+  `Seed: ${Object.keys(stories).length} stories, ${Object.keys(manifest.videos ?? {}).length} videos, ` +
+  `${files.length} images, contentVersion ${manifest.contentVersion}`,
+);

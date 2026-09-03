@@ -40,6 +40,21 @@ export interface Story {
   textSha: string;
 }
 
+/**
+ * A teaching video. Unlike stories these are not per-language and not crawled
+ * from the website — they are declared in pipeline/videos.json. The file itself
+ * is downloaded on demand, like audio; the poster ships with the bundle.
+ */
+export interface Video {
+  id: string;
+  title: string;
+  order: number;
+  durationSec: number;
+  posterPath: string | null;
+  posterSha: string | null;
+  file: RemoteFile;
+}
+
 export interface CollectionLang {
   id: CollectionId;
   lang: LangCode;
@@ -80,6 +95,18 @@ export interface Manifest {
     }
   >;
   pages: Record<string, { id: string; title: string; text: BundledFile }>;
+  /** Optional: bundles published before videos existed simply omit this. */
+  videos?: Record<
+    string,
+    {
+      id: string;
+      title: string;
+      order: number;
+      durationSec: number;
+      poster: BundledFile | null;
+      file: RemoteFile;
+    }
+  >;
 }
 
 /** Full story body as published in stories/*.json and inlined in the seed. */

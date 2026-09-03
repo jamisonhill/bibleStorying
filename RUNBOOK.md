@@ -150,7 +150,34 @@ workflow. **App code:**
    accounts — README checklist).
 - **Rollback (content):** `git revert` the offending `content:` commit and re-run the
   workflow; phones reconcile to whatever the manifest says.
-- _Last verified: 2026-08-30_
+
+### Adding or replacing a video
+
+Videos are the one content type that is NOT crawled — they never appeared on the
+website. Masters live in `content/videos/` (gitignored, ~869MB) and the app-sized
+copies in `content/videos/delivery/`.
+
+1. Transcode the master to a delivery copy and a poster frame:
+   ```bash
+   ffmpeg -i "MASTER.mp4" -map 0:v:0 -map 0:a:0 \
+     -vf "scale=-2:540:flags=lanczos" \
+     -c:v libx264 -profile:v main -level 3.1 -preset slow -crf 24 \
+     -maxrate 1200k -bufsize 2400k -pix_fmt yuv420p -g 60 \
+     -c:a aac -b:a 96k -ac 2 -ar 44100 -movflags +faststart \
+     content/videos/delivery/<slug>.mp4
+   ffmpeg -ss 35 -i "MASTER.mp4" -frames:v 1 -vf "scale=-2:540" \
+     -c:v libwebp -quality 82 pipeline/video-posters/<slug>.webp
+   ```
+   `-movflags +faststart` is required (playback must start before the whole file
+   lands). Never upscale: a source already below 540p should be stream-copied
+   (`-c copy`) instead — upscaling one 360p film more than doubled its size for
+   no added detail.
+2. Add the entry to `pipeline/videos.json`. `bytes` must be the real size of the
+   delivery file (`stat -f %z`) and `durationSec` its real duration — they are
+   declared, not discovered, because the files may not be hosted yet.
+3. Upload the mp4 to the host so `url` resolves. **Not yet decided — see §14.**
+4. `cd pipeline && npm test && node src/build.ts`, then `cd app && npm run seed`.
+- _Last verified: 2026-09-03_
 
 ---
 
@@ -204,10 +231,18 @@ workflow. **App code:**
 
 ## §14 — ⚠️ NEEDS HUMAN INPUT
 
-- [ ] Whether Sonship stories 13-31 should go live. They are staged UNPUBLISHED
-      in the CMS (English 297-315, Swahili 316-334), extracted from the 2026
-      curriculum PDFs. Publishing them puts 19 stories online for the first
-      time — Ben's decision, not ours.
+- [x] ~~Whether Sonship stories 13-31 should go live.~~ **RESOLVED 2026-09-03:**
+      Ben published them. The crawl now returns 31 Sonship stories in each of
+      English and Swahili (was 12), taking the bundle from 228 to 266 stories.
+- [ ] Where the four videos are hosted. `pipeline/videos.json` currently points at
+      `biblestoryingkenya.com/assets/files/video/<slug>.mp4`, which does not exist
+      yet — the delivery files (~142MB, in gitignored `content/videos/delivery/`)
+      still need uploading, or the URLs changing. Until then the Videos tab lists
+      all four with posters, but a download fails.
+- [ ] A master for "Chronological Bible Storying 2025". The only copy is a 360p
+      YouTube rip (unlisted, Ben's channel); the other three come from 1080p/540p
+      masters. Ben can export the original from YouTube Studio — drop it in and
+      re-run the §7 transcode.
 - [ ] Story 25 (Paul, Philemon, Onesimus) has no scripture reference in either
       language; the PDF has none either.
 - [ ] Story 31 has no cloth art — `sonship_31.jpg` does not exist on the server.
@@ -230,3 +265,4 @@ the README and carry it. This is not worth losing sleep over.
 | Date | Change | By |
 |---|---|---|
 | 2026-08-30 | Created at first pause: pipeline live, app in beta | Claude (with Jamison) |
+| 2026-09-03 | Videos tab + bottom tab navigation; Sonship 13-31 confirmed live | Claude (with Jamison) |

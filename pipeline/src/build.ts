@@ -14,6 +14,7 @@ import sharp from 'sharp';
 import {
   SITE_BASE, CONTENT_DIR, STATE_FILE, STATIC_PAGES,
   IMAGE_MAX_WIDTH, IMAGE_WEBP_QUALITY, COLLECTIONS,
+  VIDEOS_CONFIG, VIDEO_POSTERS_DIR,
 } from './config.ts';
 import { fetchText, fetchBytes, headBytes } from './fetch.ts';
 import {
@@ -23,6 +24,7 @@ import {
   StorySchema, PageSchema, ManifestSchema, StateSchema,
   type Story, type Page, type Manifest, type State,
 } from './schema.ts';
+import { loadVideosConfig } from './videos.ts';
 
 const FULL_CRAWL = process.argv.includes('--full');
 
@@ -74,6 +76,18 @@ async function mirrorImage(
     console.warn(`  ! image fetch failed, story continues without it: ${url} (${String(err)})`);
     return null;
   }
+  const entry = await storeImage(source);
+  cache.set(url, entry);
+  return entry;
+}
+
+/**
+ * Re-encode an image to WebP and save it under its content hash. Shared by
+ * mirrorImage (art fetched from the website) and mirrorPoster (video posters
+ * generated locally), so both end up named the same way and are recognised
+ * by isMirroredImage below.
+ */
+async function storeImage(source: Buffer): Promise<{ path: string; sha256: string; bytes: number }> {
   const webp = await sharp(source)
     .resize({ width: IMAGE_MAX_WIDTH, withoutEnlargement: true })
     .webp({ quality: IMAGE_WEBP_QUALITY })
@@ -82,9 +96,12 @@ async function mirrorImage(
   const rel = path.join('images', `${hash.slice(0, 16)}.webp`);
   await fs.mkdir(path.join(CONTENT_DIR, 'images'), { recursive: true });
   await fs.writeFile(path.join(CONTENT_DIR, rel), webp);
-  const entry = { path: rel.replaceAll(path.sep, '/'), sha256: hash, bytes: webp.length };
-  cache.set(url, entry);
-  return entry;
+  return { path: rel.replaceAll(path.sep, '/'), sha256: hash, bytes: webp.length };
+}
+
+/** Mirror a video poster frame from local disk into the bundle. */
+async function mirrorPoster(fileName: string) {
+  return storeImage(await fs.readFile(path.join(VIDEO_POSTERS_DIR, fileName)));
 }
 
 /**
@@ -232,6 +249,30 @@ async function main() {
     pages.push(PageSchema.parse({ id: sp.id, title: sp.title, paragraphs: parsed.paragraphs, sourceUrl: url }));
   }
 
+  // 4b. Videos. Declared by hand (see videos.ts) rather than crawled, because
+  //     these films were never published on the website. A malformed config or
+  //     a missing poster throws, consistent with the never-publish-partial rule.
+  const videoConfigs = await loadVideosConfig(VIDEOS_CONFIG);
+  const manifestVideos: NonNullable<Manifest['videos']> = {};
+  for (const video of videoConfigs) {
+    let poster: { path: string; sha256: string; bytes: number } | null = null;
+    try {
+      poster = await mirrorPoster(video.poster);
+    } catch (err) {
+      throw new Error(`videos.json: poster "${video.poster}" for "${video.slug}" unreadable (${String(err)})`);
+    }
+    manifestVideos[video.slug] = {
+      id: video.slug,
+      title: video.title,
+      order: video.order,
+      durationSec: video.durationSec,
+      poster,
+      // Size comes from the config, not a HEAD request: the files may not be
+      // hosted yet, and a null here would silently drop the video.
+      file: { url: video.url, bytes: video.bytes },
+    };
+  }
+
   // 5. Write story/page JSONs and assemble the manifest.
   const manifestStories: Manifest['stories'] = {};
   for (const story of stories.values()) {
@@ -257,7 +298,7 @@ async function main() {
   }
 
   // 6. Version bump only when the published content actually changed.
-  const fingerprintInput = JSON.stringify({ stories: manifestStories, pages: manifestPages, collections: [...collections.values()] });
+  const fingerprintInput = JSON.stringify({ stories: manifestStories, pages: manifestPages, videos: manifestVideos, collections: [...collections.values()] });
   const fingerprint = sha256(fingerprintInput);
   let previousFingerprint = '';
   try {
@@ -276,6 +317,7 @@ async function main() {
     collections: [...collections.values()],
     stories: manifestStories,
     pages: manifestPages,
+    videos: manifestVideos,
   });
   await fs.writeFile(
     path.join(CONTENT_DIR, 'manifest.json'),
@@ -287,9 +329,12 @@ async function main() {
   //    Image names are content hashes, so replacing a cloth on the website
   //    leaves the previous file orphaned; without this the bundle would grow
   //    forever, and it ships both inside the app and to GitHub Pages.
-  const referenced = new Set(
-    [...stories.values()].flatMap((s) => (s.image ? [path.basename(s.image.path)] : [])),
-  );
+  //    Video posters live in the same directory and are referenced only by the
+  //    manifest, so they must be counted here or the next run would delete them.
+  const referenced = new Set([
+    ...[...stories.values()].flatMap((s) => (s.image ? [path.basename(s.image.path)] : [])),
+    ...Object.values(manifestVideos).flatMap((v) => (v.poster ? [path.basename(v.poster.path)] : [])),
+  ]);
   try {
     for (const file of await fs.readdir(path.join(CONTENT_DIR, 'images'))) {
       // Only ever delete our own output. A file someone put here by hand is
@@ -301,7 +346,7 @@ async function main() {
 
   const totalAudio = [...stories.values()].reduce((sum, s) => sum + (s.audio?.bytes ?? 0), 0);
   console.log(`\nDone. contentVersion=${contentVersion} (${changed ? 'CHANGED' : 'unchanged'})`);
-  console.log(`Stories: ${stories.size}  Pages: ${pages.length}  Images: ${imageCache.size} mirrored`);
+  console.log(`Stories: ${stories.size}  Pages: ${pages.length}  Videos: ${videoConfigs.length}  Images: ${imageCache.size} mirrored`);
   console.log(`Remote audio total: ${(totalAudio / 1e6).toFixed(0)} MB (stays on the website)`);
 }
 

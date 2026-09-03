@@ -1,14 +1,17 @@
-// Home: choose a language, then a collection. Collections are large image
-// cards (image-first navigation for oral learners); the cover is the first
-// story's cloth artwork in the chosen language.
+// Stories tab: choose a language, then a collection. Collections are large
+// image cards (image-first navigation for oral learners); the cover is the
+// first story's cloth artwork in the chosen language.
+//
+// About and Settings used to hang off this screen's footer and header; they
+// now live in the More tab, so this screen is only about picking a story.
 
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { GearIcon, InfoCircleIcon } from '@/components/icons';
 import { LanguageChips } from '@/components/language-chips';
+import { MINI_PLAYER_SPACE, TAB_BAR_HEIGHT } from '@/constants/layout';
 import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { getCollections, getStoriesFor } from '@/lib/db';
@@ -58,23 +61,13 @@ export default function HomeScreen() {
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 96 },
+        {
+          paddingTop: insets.top + 24,
+          paddingBottom: TAB_BAR_HEIGHT + insets.bottom + MINI_PLAYER_SPACE,
+        },
       ]}
     >
-      <View style={styles.headerRow}>
-        <View style={{ flex: 1 }}>
-          <Text style={[styles.appTitle, { color: theme.text }]}>Bible Storying{'\n'}Kenya</Text>
-        </View>
-        <Pressable
-          onPress={() => router.push('/settings')}
-          hitSlop={8}
-          accessibilityRole="button"
-          accessibilityLabel="Settings"
-          style={[styles.iconBtn, { backgroundColor: theme.surfaceAlt }]}
-        >
-          <GearIcon size={22} color={theme.text} />
-        </Pressable>
-      </View>
+      <Text style={[styles.appTitle, { color: theme.text }]}>Bible Storying{'\n'}Kenya</Text>
       <Text style={[styles.tagline, { color: theme.textSecondary }]}>
         Sharing God’s redemption story, one chronological step at a time.
       </Text>
@@ -116,32 +109,13 @@ export default function HomeScreen() {
           );
         })}
       </View>
-
-      <Pressable
-        onPress={() => router.push('/about')}
-        accessibilityRole="button"
-        style={({ pressed }) => [styles.aboutRow, { opacity: pressed ? 0.7 : 1 }]}
-      >
-        <InfoCircleIcon size={18} color={theme.textSecondary} />
-        <Text style={[styles.aboutText, { color: theme.textSecondary }]}>
-          What is Chronological Bible Storying?
-        </Text>
-      </Pressable>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   content: { paddingHorizontal: 20 },
-  headerRow: { flexDirection: 'row', alignItems: 'flex-start' },
   appTitle: { fontSize: 32, fontWeight: '700', lineHeight: 38, letterSpacing: -0.5 },
-  iconBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: radius.pill,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   tagline: { fontSize: 15, lineHeight: 21, marginTop: 10 },
   chips: { marginTop: 20 },
   cards: { marginTop: 24, gap: 16 },
@@ -154,13 +128,4 @@ const styles = StyleSheet.create({
   cardBody: { paddingHorizontal: 16, paddingVertical: 14 },
   cardTitle: { fontSize: 19, fontWeight: '700' },
   cardCount: { fontSize: 13, marginTop: 3 },
-  aboutRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 28,
-    paddingVertical: 8,
-    alignSelf: 'center',
-  },
-  aboutText: { fontSize: 14 },
 });

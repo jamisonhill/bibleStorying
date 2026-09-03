@@ -8,6 +8,10 @@ Full architecture in README.md. Key facts:
   `pipeline/test/fixtures/`. `node src/build.ts` = incremental crawl,
   `--full` = re-parse everything.
 - `content/` is GENERATED — never hand-edit. Regenerate via the pipeline.
+  Exception: `content/videos/` is gitignored and holds the video masters
+  (~869MB) plus `delivery/` transcodes; the pipeline never touches it.
+- Videos are NOT crawled. Edit `pipeline/videos.json` by hand (posters in
+  `pipeline/video-posters/`), then rebuild. See RUNBOOK §7 for transcoding.
 - `app/` Expo SDK 57. After content changes run `npm run seed` (regenerates
   `app/src/content/seed.json` + `bundled-images.ts` + copies webp assets).
   `app/src/content/` and `app/assets/content/` are generated too.

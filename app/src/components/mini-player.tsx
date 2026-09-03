@@ -2,10 +2,11 @@
 // is loaded, so a story keeps playing while browsing and is always one tap
 // away. Tapping the bar returns to the story; the X stops playback.
 
-import { useRouter } from 'expo-router';
+import { useRouter, useSegments } from 'expo-router';
 import { useSyncExternalStore } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { TAB_BAR_HEIGHT } from '@/constants/layout';
 import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import {
@@ -17,7 +18,16 @@ export function MiniPlayer() {
   const theme = useTheme();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const segments = useSegments();
   const state = useSyncExternalStore(subscribePlayer, playerState);
+
+  // This bar is rendered outside the tab navigator so it survives screens
+  // pushed above the tabs (a story, a video). On those it sits at the bottom
+  // edge; on a tab screen it has to clear the tab bar as well. Asking React
+  // Navigation is not an option from out here, so the height comes from the
+  // shared constant the tab bar itself is pinned to.
+  const onTabScreen = segments[0] === '(tabs)';
+  const bottom = insets.bottom + 12 + (onTabScreen ? TAB_BAR_HEIGHT : 0);
 
   if (!state.storyId) return null;
 
@@ -27,7 +37,7 @@ export function MiniPlayer() {
     <View
       style={[
         styles.wrap,
-        { bottom: insets.bottom + 12 },
+        { bottom },
       ]}
       pointerEvents="box-none"
     >

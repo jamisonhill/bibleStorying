@@ -24,8 +24,10 @@ biblestoryingkenya.com  (static site, hand-edited)
         ▼                          ▼
   app/        Expo (React Native) app — everything offline:
               text+images ship in the binary (~6MB payload);
-              audio (548MB total) stays on the website and is
-              downloaded per story / per collection on request.
+              audio (553MB total) stays on the website and is
+              downloaded per story / per collection on request;
+              videos (~142MB, 4 films) are hosted alongside and
+              downloaded per video from the Videos tab.
 ```
 
 - **Fully offline:** every story's text, scripture reference, and artwork works
@@ -43,6 +45,7 @@ biblestoryingkenya.com  (static site, hand-edited)
 | Path | What |
 |---|---|
 | `pipeline/` | TypeScript crawler/parser (`npm run build`, `npm test`). `node src/build.ts --full` forces a full re-crawl. |
+| `pipeline/videos.json` | Hand-maintained video list (videos are not on the website, so there is nothing to crawl). Posters in `pipeline/video-posters/`. |
 | `content/` | Generated bundle (committed). `manifest.json` is the app's update contract. |
 | `app/` | Expo app. `npm run seed` regenerates `src/content/` from `../content`. |
 | `.github/workflows/content-update.yml` | Daily crawl → commit → publish to Pages. |
@@ -80,9 +83,16 @@ accounts. Then:
 
 ## Design decisions (research-backed)
 
-- Image-first navigation (cloth-art cards) for oral learners; 3-level
-  hierarchy: Home → Collection grid → Story. No search, accounts, or
-  notifications in v1.
+- Image-first navigation (cloth-art cards) for oral learners. Bottom tabs
+  (Stories · Videos · More) over a 3-level story hierarchy:
+  Stories → Collection grid → Story. Tabs replaced the original single-stack
+  design when videos were added: a persistent, always-visible bar with icons
+  and labels suits oral learners better than a hidden drawer gesture, and it
+  gave About/Settings a home instead of hanging off the home screen. No
+  search, accounts, or notifications in v1.
+- Videos are download-then-watch, never streamed: the files are 18–45MB and
+  the audience is on metered, intermittent connections, where a stream that
+  stalls mid-teaching is worse than a download that finishes once.
 - Audio-first story screen: large play button, ±15s skip, tap-to-seek,
   speed cycle (1 → 1.25 → 1.5 → 0.75), repeat toggle, resume position,
   background/lock-screen playback with artwork.

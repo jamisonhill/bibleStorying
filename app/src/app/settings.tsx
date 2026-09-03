@@ -11,7 +11,8 @@ import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { getMeta, getMetaNumber, setMeta } from '@/lib/db';
 import {
-  deleteAllAudio, downloadsVersion, subscribeDownloads, totalDownloadedBytes,
+  deleteAllAudio, deleteAllVideos, downloadsVersion, subscribeDownloads,
+  totalDownloadedBytes, totalVideoBytes,
 } from '@/lib/downloads';
 import { formatBytes } from '@/lib/format';
 import { checkForUpdates } from '@/lib/updater';
@@ -26,6 +27,7 @@ export default function SettingsScreen() {
   const [updateNote, setUpdateNote] = useState<string | null>(null);
 
   const storedBytes = totalDownloadedBytes();
+  const storedVideoBytes = totalVideoBytes();
   const contentVersion = getMetaNumber('contentVersion') ?? 1;
 
   const toggleWifiOnly = (value: boolean) => {
@@ -53,6 +55,17 @@ export default function SettingsScreen() {
     }
   };
 
+  const confirmDeleteAllVideos = () => {
+    Alert.alert(
+      'Remove all downloaded videos?',
+      `This frees ${formatBytes(storedVideoBytes)}. You can download them again at any time.`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Remove all', style: 'destructive', onPress: deleteAllVideos },
+      ],
+    );
+  };
+
   const confirmDeleteAll = () => {
     Alert.alert(
       'Remove all downloaded audio?',
@@ -75,7 +88,7 @@ export default function SettingsScreen() {
           <View style={{ flex: 1 }}>
             <Text style={[styles.rowTitle, { color: theme.text }]}>Download on Wi-Fi only</Text>
             <Text style={[styles.rowSub, { color: theme.textSecondary }]}>
-              Protects your mobile data bundle. Audio downloads wait for Wi-Fi.
+              Protects your mobile data bundle. Audio and video downloads wait for Wi-Fi.
             </Text>
           </View>
           <Switch
@@ -99,10 +112,35 @@ export default function SettingsScreen() {
           onPress={confirmDeleteAll}
           disabled={storedBytes === 0}
           accessibilityRole="button"
-          style={({ pressed }) => [styles.row, { opacity: pressed ? 0.7 : 1 }]}
+          style={({ pressed }) => [
+            styles.row,
+            { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.separator },
+            { opacity: pressed ? 0.7 : 1 },
+          ]}
         >
           <Text style={[styles.rowTitle, { color: storedBytes === 0 ? theme.textSecondary : theme.danger }]}>
             Remove all downloaded audio
+          </Text>
+        </Pressable>
+        <View style={[styles.row, { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.separator }]}>
+          <Text style={[styles.rowTitle, { color: theme.text, flex: 1 }]}>Downloaded videos</Text>
+          <Text style={[styles.rowValue, { color: theme.textSecondary }]}>
+            {formatBytes(storedVideoBytes)}
+          </Text>
+        </View>
+        <Pressable
+          onPress={confirmDeleteAllVideos}
+          disabled={storedVideoBytes === 0}
+          accessibilityRole="button"
+          style={({ pressed }) => [styles.row, { opacity: pressed ? 0.7 : 1 }]}
+        >
+          <Text
+            style={[
+              styles.rowTitle,
+              { color: storedVideoBytes === 0 ? theme.textSecondary : theme.danger },
+            ]}
+          >
+            Remove all downloaded videos
           </Text>
         </Pressable>
       </View>
