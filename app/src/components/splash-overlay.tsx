@@ -22,13 +22,26 @@ import * as SplashScreen from 'expo-splash-screen';
 import { BrandLogo } from '@/components/brand-logo';
 import { brand } from '@/constants/theme';
 
+// The wordmark stage totals five seconds on screen: it fades in, holds, and
+// fades out, and the logo is visible throughout all three.
 const FADE_IN_MS = 400;
-// The wordmark is the stage worth looking at, so it holds well past the moment
-// it takes to read. The OS launch icon that precedes it has no duration of its
-// own — it lasts however long the JS bundle takes to load, which is seconds
-// under Metro in development and a fraction of that in a release build.
-const HOLD_MS = 1800;
+const HOLD_MS = 4250;
 const FADE_OUT_MS = 350;
+
+/**
+ * Minimum time the OS launch icon gets before this stage takes over.
+ *
+ * That icon has no duration of its own — it lasts however long the JS bundle
+ * takes to load. In a release build that is a fraction of a second, so without
+ * a floor the icon would barely register; this holds it to roughly two seconds.
+ * It can only ever wait longer, never cut the icon short, so in development,
+ * where Metro takes several seconds to serve the bundle, the floor is already
+ * exceeded and adding to it would only make the wait worse — hence __DEV__.
+ */
+const MIN_LAUNCH_ICON_MS = 2000;
+
+/** When the JS bundle finished loading — the earliest this stage could appear. */
+const JS_READY_AT = Date.now();
 
 /**
  * How long the native launch screen takes to dissolve into this one. Kept
@@ -48,6 +61,7 @@ const LOGO_MAX_WIDTH = 320;
 export function SplashOverlay() {
   const { width } = useWindowDimensions();
   const [visible, setVisible] = useState(true);
+  const [painted, setPainted] = useState(false);
 
   // Two values: the logo's own entrance, and the whole stage fading away.
   const logoOpacity = useRef(new Animated.Value(0)).current;
@@ -55,7 +69,12 @@ export function SplashOverlay() {
   const stageOpacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
+    // Nothing may happen until this stage has actually painted: hiding the
+    // native splash before that shows a white frame underneath.
+    if (!painted) return;
+
     let cancelled = false;
+    let handover: ReturnType<typeof setTimeout>;
 
     // Someone who has asked the system for less motion still gets the brand
     // moment — it simply fades, with no travel.
@@ -63,39 +82,52 @@ export function SplashOverlay() {
       if (cancelled) return;
       if (reduceMotion) logoRise.setValue(0);
 
-      Animated.sequence([
-        Animated.parallel([
-          Animated.timing(logoOpacity, {
-            toValue: 1,
-            duration: FADE_IN_MS,
-            easing: Easing.out(Easing.quad),
-            useNativeDriver: true,
-          }),
-          Animated.timing(logoRise, {
+      // Give the launch icon its floor, then dissolve into the wordmark and
+      // start its entrance in the same beat so the two marks cross.
+      const alreadyShown = Date.now() - JS_READY_AT;
+      const waitFor = __DEV__ ? 0 : Math.max(0, MIN_LAUNCH_ICON_MS - alreadyShown);
+
+      handover = setTimeout(() => {
+        if (cancelled) return;
+        void SplashScreen.hideAsync().catch(() => {
+          // Already hidden, or hidden by the OS — nothing to recover from.
+        });
+
+        Animated.sequence([
+          Animated.parallel([
+            Animated.timing(logoOpacity, {
+              toValue: 1,
+              duration: FADE_IN_MS,
+              easing: Easing.out(Easing.quad),
+              useNativeDriver: true,
+            }),
+            Animated.timing(logoRise, {
+              toValue: 0,
+              duration: reduceMotion ? 0 : FADE_IN_MS,
+              easing: Easing.out(Easing.cubic),
+              useNativeDriver: true,
+            }),
+          ]),
+          Animated.delay(HOLD_MS),
+          Animated.timing(stageOpacity, {
             toValue: 0,
-            duration: reduceMotion ? 0 : FADE_IN_MS,
-            easing: Easing.out(Easing.cubic),
+            duration: FADE_OUT_MS,
+            easing: Easing.in(Easing.quad),
             useNativeDriver: true,
           }),
-        ]),
-        Animated.delay(HOLD_MS),
-        Animated.timing(stageOpacity, {
-          toValue: 0,
-          duration: FADE_OUT_MS,
-          easing: Easing.in(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ]).start(({ finished }) => {
-        // Only tear down on a clean finish; an interrupted animation leaves
-        // the stage up rather than flashing a half-faded overlay away.
-        if (finished && !cancelled) setVisible(false);
-      });
+        ]).start(({ finished }) => {
+          // Only tear down on a clean finish; an interrupted animation leaves
+          // the stage up rather than flashing a half-faded overlay away.
+          if (finished && !cancelled) setVisible(false);
+        });
+      }, waitFor);
     });
 
     return () => {
       cancelled = true;
+      clearTimeout(handover);
     };
-  }, [logoOpacity, logoRise, stageOpacity]);
+  }, [painted, logoOpacity, logoRise, stageOpacity]);
 
   if (!visible) return null;
 
@@ -108,12 +140,8 @@ export function SplashOverlay() {
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
       // The native launch screen stays up until this paints, so there is no
-      // white frame between the two.
-      onLayout={() => {
-        void SplashScreen.hideAsync().catch(() => {
-          // Already hidden, or hidden by the OS — nothing to recover from.
-        });
-      }}
+      // white frame between the two. The effect above does the handing over.
+      onLayout={() => setPainted(true)}
     >
       <Animated.View
         style={{ opacity: logoOpacity, transform: [{ translateY: logoRise }] }}
