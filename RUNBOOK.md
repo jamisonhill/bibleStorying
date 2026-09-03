@@ -46,6 +46,10 @@ _This repo is public: no addresses, credentials, or account specifics live in th
   update with the new `DEFAULT_CONTENT_BASE_URL` (`app/src/lib/updater.ts`).
 - The `content-update.yml` fail-loud behavior — do not make the crawler "best effort";
   publishing a half-parsed bundle is worse than publishing nothing.
+- The `videos-v1` release and its assets — `manifest.json` points phones straight
+  at those URLs. Deleting the release or retagging it breaks video downloads for
+  anyone who has not already downloaded them. Add new files to the same tag
+  rather than replacing it.
 
 ---
 
@@ -175,7 +179,14 @@ copies in `content/videos/delivery/`.
 2. Add the entry to `pipeline/videos.json`. `bytes` must be the real size of the
    delivery file (`stat -f %z`) and `durationSec` its real duration — they are
    declared, not discovered, because the files may not be hosted yet.
-3. Upload the mp4 to the host so `url` resolves. **Not yet decided — see §14.**
+3. Upload the mp4 as a GitHub release asset and point `url` at it:
+   ```bash
+   gh release upload videos-v1 content/videos/delivery/<slug>.mp4
+   # url = https://github.com/jamisonhill/bibleStorying/releases/download/videos-v1/<slug>.mp4
+   ```
+   Releases, not Pages: the website host caps uploads at 10MB, and Pages is
+   not meant for large downloads. Release assets allow 2GB per file, cost
+   nothing, and are anonymously downloadable because the repo is public.
 4. `cd pipeline && npm test && node src/build.ts`, then `cd app && npm run seed`.
 - _Last verified: 2026-09-03_
 
@@ -234,11 +245,13 @@ copies in `content/videos/delivery/`.
 - [x] ~~Whether Sonship stories 13-31 should go live.~~ **RESOLVED 2026-09-03:**
       Ben published them. The crawl now returns 31 Sonship stories in each of
       English and Swahili (was 12), taking the bundle from 228 to 266 stories.
-- [ ] Where the four videos are hosted. `pipeline/videos.json` currently points at
-      `biblestoryingkenya.com/assets/files/video/<slug>.mp4`, which does not exist
-      yet — the delivery files (~142MB, in gitignored `content/videos/delivery/`)
-      still need uploading, or the URLs changing. Until then the Videos tab lists
-      all four with posters, but a download fails.
+- [x] ~~Where the four videos are hosted.~~ **RESOLVED 2026-09-03:** GitHub
+      release `videos-v1` on this repo (140MB across 4 assets). The website host
+      caps uploads at 10MB, which the smallest film (17.6MB) already exceeds.
+      Verified anonymously downloadable. Note video URLs live inside
+      `manifest.json` and are republished every build, so unlike
+      `DEFAULT_CONTENT_BASE_URL` they are cheap to change if the repo ever moves
+      to the client's GitHub organisation.
 - [ ] A master for "Chronological Bible Storying 2025". The only copy is a 360p
       YouTube rip (unlisted, Ben's channel); the other three come from 1080p/540p
       masters. Ben can export the original from YouTube Studio — drop it in and

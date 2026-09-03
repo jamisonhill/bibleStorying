@@ -26,8 +26,8 @@ biblestoryingkenya.com  (static site, hand-edited)
               text+images ship in the binary (~6MB payload);
               audio (553MB total) stays on the website and is
               downloaded per story / per collection on request;
-              videos (~142MB, 4 films) are hosted alongside and
-              downloaded per video from the Videos tab.
+              videos (140MB, 4 films) are GitHub release assets
+              (videos-v1), downloaded per video from the Videos tab.
 ```
 
 - **Fully offline:** every story's text, scripture reference, and artwork works

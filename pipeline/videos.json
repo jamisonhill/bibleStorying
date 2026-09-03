@@ -7,7 +7,7 @@
       "durationSec": 354,
       "bytes": 43788616,
       "poster": "cbs-and-sbs-overview.webp",
-      "url": "https://www.biblestoryingkenya.com/assets/files/video/cbs-and-sbs-overview.mp4"
+      "url": "https://github.com/jamisonhill/bibleStorying/releases/download/videos-v1/cbs-and-sbs-overview.mp4"
     },
     {
       "slug": "chronological-bible-storying-2025",
@@ -16,7 +16,7 @@
       "durationSec": 365,
       "bytes": 17603381,
       "poster": "chronological-bible-storying-2025.webp",
-      "url": "https://www.biblestoryingkenya.com/assets/files/video/chronological-bible-storying-2025.mp4"
+      "url": "https://github.com/jamisonhill/bibleStorying/releases/download/videos-v1/chronological-bible-storying-2025.mp4"
     },
     {
       "slug": "storying-shorter-version",
@@ -25,7 +25,7 @@
       "durationSec": 281,
       "bytes": 40930962,
       "poster": "storying-shorter-version.webp",
-      "url": "https://www.biblestoryingkenya.com/assets/files/video/storying-shorter-version.mp4"
+      "url": "https://github.com/jamisonhill/bibleStorying/releases/download/videos-v1/storying-shorter-version.mp4"
     },
     {
       "slug": "impact-of-cbs-and-sonship",
@@ -34,7 +34,7 @@
       "durationSec": 325,
       "bytes": 44777230,
       "poster": "impact-of-cbs-and-sonship.webp",
-      "url": "https://www.biblestoryingkenya.com/assets/files/video/impact-of-cbs-and-sonship.mp4"
+      "url": "https://github.com/jamisonhill/bibleStorying/releases/download/videos-v1/impact-of-cbs-and-sonship.mp4"
     }
   ]
 }
