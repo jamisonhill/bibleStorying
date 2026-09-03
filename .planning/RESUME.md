@@ -1,40 +1,40 @@
 # Resume — Bible Storying Kenya app
 
-**Paused:** 2026-09-03 · **Reason:** Sonship 13-31 staged as CMS drafts; awaiting Ben's publish decision
-**Phase/Task:** Phase 7 — website content completion (staging done, nothing published)
-**Tree:** clean · **Last commit:** a153ce3 docs: record how the website CMS actually works
+**Paused:** 2026-09-03 · **Reason:** Videos tab + bottom tabs shipped and published; iOS build handed to another session
+**Phase/Task:** Phase 8 — Videos; everything landed except device verification
+**Tree:** clean · **Last commit:** ed2ee14 docs: when a hand-built content bundle actually reaches Pages
 
 ## State
-- The website publishes Sonship stories 1-12 only. Stories **13-31 now exist as
-  UNPUBLISHED drafts** in the CMS: English ids 297-315, Swahili 316-334. They were
-  created this session from the 2026 curriculum PDFs in `documents/` — they were
-  never live, and no existing page was modified (196-207 untouched, last edited April).
-- Verified: all 38 render identically to `drafts/`, are absent from `sitemap.xml`,
-  and 404 publicly. Cloth art set for lessons 13-30 in both languages.
-- Extractor validated against the 12 live pages: lowest similarity 0.991, eight at 1.000.
-- Two new pipeline commands: `npm run report` (coverage + crossKey audit) and
-  `npm run extract` (PDF → drafts). `drafts/` and `documents/` are gitignored.
-- Audio remains the biggest content gap: Maasai 0/45, Sonship 0/24, Acts 0/22.
+- **Videos tab is live end to end.** 4 films (540p H.264/AAC, faststart, ~142MB)
+  hosted as GitHub release `videos-v1`, downloaded on demand like story audio.
+  Verified anonymously: HTTP 200, exact bytes, round-trip SHA-256 match.
+- **Manifest v4 is published** at `jamisonhill.github.io/bibleStorying/manifest.json`
+  — 266 stories, 4 videos, all URLs resolving. Confirmed against the live URL.
+- **Navigation changed shape:** flat Stack → bottom tabs (Stories · Videos · More);
+  About + Settings moved into More. README updated, since the old 3-level
+  hierarchy was a documented design decision.
+- **Sonship 13-31 went live** while this ran — Ben published them. 228 → 266 stories.
+- **Nothing has run on hardware.** `expo-video` is new native code, so it needs a
+  real build, not Expo Go. Pipeline 21/21 and both typechecks pass.
 
 ## Next action
-1. Get Ben's decision on publishing Sonship 13-31 — it would be their **first**
-   public appearance, not a re-publish. Do not publish without it.
-2. If yes: tick Published in the CMS, English first. The check that matters is
-   the **index grid** — `sonship-stories/english-stories2.html` must show 13+
-   cards — because the crawler discovers stories from the nav → index pages,
-   not from `sitemap.xml` (`build.ts` step 3). Confirm the next daily crawl
-   commits them before doing Swahili.
-   Delivery is automatic from there: crawl 03:15 UTC → GitHub Pages → the app's
-   once-a-day launch check. Roughly 24-48h to reach a phone. New installs still
-   need `npm run seed` + a build to carry the stories offline out of the box.
-3. Get the actual error text for Jamison's local `npm run build` (Node 25.6.1 and
-   sharp both load fine, so it is not the install).
+1. **In the iOS session:** `cd app && npx expo run:ios` (native rebuild required —
+   expo-video was added). Then verify, in order:
+   - three tabs render and switch
+   - start a story, switch tabs → **mini-player sits above the tab bar, not over it**
+     (the one piece of layout math done blind — `components/mini-player.tsx:29`,
+     offset by `TAB_BAR_HEIGHT` from `constants/layout.ts`)
+   - Videos tab shows 4 posters; a download reports progress and survives relaunch
+   - downloaded video plays in airplane mode
+2. Ask Ben for the "Chronological Bible Storying 2025" master from YouTube Studio —
+   the only 360p asset. RUNBOOK §7 has the transcode + `gh release upload`.
 
 ## Gotchas
-- CMS specifics — template ids, the draft workflow, the "Double action (GET & POST)"
-  silent no-op, stale editor iframes — are documented in **RUNBOOK.md §6**. Read it
-  before touching the CMS again.
-- `content/` is generated; the build now only garbage-collects its own hashed
-  `.webp` files, so stray files there survive (`build.ts`, `isMirroredImage`).
-- Physical-device testing needs a native build — Expo Go is stuck at SDK 54.
-- A locked iPhone reports `developerModeStatus: disabled`; unlock before debugging.
+- **Video URLs are cheap to change; the Pages base URL is not.** Video URLs live in
+  `manifest.json` and republish every build; `DEFAULT_CONTENT_BASE_URL` does not (§2).
+- Don't delete or retag release `videos-v1`; phones point straight at those assets.
+- Hand-committing `content/` does not deploy it — the 03:15 UTC run does, or
+  `gh workflow run "Update content bundle"` to publish now. RUNBOOK §13.
+- `app/src/lib/db.ts` has **no migration path** (all `CREATE TABLE IF NOT EXISTS`).
+  New content types need new tables, never new columns on `stories`.
+- Homebrew is dead on this Intel Mac; `ffmpeg`/`ffprobe` need a static build.

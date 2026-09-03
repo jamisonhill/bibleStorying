@@ -12,20 +12,30 @@
 - [ ] Collect feedback; verify offline, lock-screen audio, downloads, language switch
 - [ ] Test on a low-end Android device (none available yet)
 
-## Phase 7 — Website content completion via the CMS ← PAUSED HERE
-- [x] `npm run report` — coverage + crossKey audit over the published bundle
-- [x] `npm run extract` — Sonship curriculum PDFs → per-lesson drafts (31/31 both langs)
-- [x] 38 draft pages staged UNPUBLISHED in Evolution CMS
-      (English 297-315, Swahili 316-334 = curriculum lessons 13-31)
-- [x] Cloth art assigned to lessons 13-30 in both languages
-- [x] Verified: drafts absent from sitemap.xml, 404 publicly, bodies match drafts
-- [ ] Ben decides whether Sonship 13-31 are published (see RUNBOOK §14)
+## Phase 7 — Website content completion via the CMS [MOSTLY COMPLETE]
+- [x] `npm run report` / `npm run extract`; 38 drafts staged, cloth art assigned
+- [x] **Ben published Sonship 13-31** — live in English + Swahili, 12→31 each.
+      Bundle went 228 → 266 stories (v3). RUNBOOK §14 item closed.
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
 - [ ] Diagnose Jamison's local `npm run build` failure (env checks out; need the error)
 
-## Phase 8 — Publishing (BLOCKED: client will open dev accounts)
+## Phase 8 — Videos tab + bottom tab navigation ← PAUSED HERE
+- [x] 4 films transcoded 540p H.264/AAC + faststart + poster frames (~142MB)
+- [x] `pipeline/videos.json` + `videos.ts` loader + 6 tests (videos are declared,
+      not crawled — they were never on the website)
+- [x] Manifest gains `videos`; posters mirrored into `content/images`
+- [x] App: `videos`/`video_downloads` tables, OTA apply, download-on-demand
+- [x] Bottom tabs (Stories · Videos · More); About + Settings moved into More
+- [x] Hosted as GitHub release `videos-v1`; manifest v4 published and verified live
+- [ ] **Device verification — the other session's iOS build.** Nothing has run
+      on hardware: tab bar, mini-player docking above it, video playback
+- [ ] Replace the 360p "Chronological Bible Storying 2025" with Ben's
+      YouTube Studio master (RUNBOOK §7 has the transcode recipe)
+
+## Phase 9 — Publishing (BLOCKED: client will open dev accounts)
 - [ ] Client opens Apple Developer + Google Play accounts
 - [ ] Replace placeholder bundle IDs + appleTeamId in app/app.json
-- [ ] Decide final content hosting home (repo may move to client org)
+- [ ] Decide final content hosting home (repo may move to client org — video URLs
+      live in manifest.json and are cheap to change; the Pages base URL is not)
 - [ ] EAS build + submit, store listings, privacy labels (checklist in README.md)
