@@ -23,7 +23,11 @@ import { BrandLogo } from '@/components/brand-logo';
 import { brand } from '@/constants/theme';
 
 const FADE_IN_MS = 400;
-const HOLD_MS = 900;
+// The wordmark is the stage worth looking at, so it holds well past the moment
+// it takes to read. The OS launch icon that precedes it has no duration of its
+// own — it lasts however long the JS bundle takes to load, which is seconds
+// under Metro in development and a fraction of that in a release build.
+const HOLD_MS = 1800;
 const FADE_OUT_MS = 350;
 
 /**

@@ -61,11 +61,11 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="collection/[id]" options={{ title: '' }} />
+        <Stack.Screen name="collection/[id]" options={{ title: '', headerBackTitle: 'Stories' }} />
         <Stack.Screen name="story/[...id]" options={{ title: '' }} />
-        <Stack.Screen name="video/[id]" options={{ title: '' }} />
-        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
-        <Stack.Screen name="about" options={{ title: 'About CBS' }} />
+        <Stack.Screen name="video/[id]" options={{ title: '', headerBackTitle: 'Videos' }} />
+        <Stack.Screen name="settings" options={{ title: 'Settings', headerBackTitle: 'More' }} />
+        <Stack.Screen name="about" options={{ title: 'About CBS', headerBackTitle: 'More' }} />
       </Stack>
       <MiniPlayer />
       <SplashOverlay />
