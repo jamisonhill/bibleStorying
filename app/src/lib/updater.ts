@@ -1,5 +1,5 @@
 // Over-the-air content updates. The pipeline publishes a versioned bundle
-// (manifest.json + story JSONs + images); this module polls the manifest
+// (manifest.json + story/page JSONs + images); this module polls the manifest
 // at most once a day, and applies only the files whose SHA-256 changed.
 // Text and images update silently (they are small); downloaded audio is
 // never re-fetched automatically — it is marked stale and the user chooses.
@@ -7,10 +7,10 @@
 import { Directory, File } from 'expo-file-system';
 import * as Network from 'expo-network';
 import {
-  db, getMeta, getMetaNumber, setMeta, upsertStory,
+  db, deletePage, getMeta, getMetaNumber, pageShaKey, setMeta, upsertPage, upsertStory,
 } from './db';
 import { imagesDir } from './downloads';
-import type { Manifest, StoryBody } from './types';
+import type { InfoPage, Manifest, StoryBody } from './types';
 
 /**
  * Where the published content bundle lives. GitHub Pages for the content
@@ -88,7 +88,20 @@ async function applyManifest(manifest: Manifest): Promise<void> {
     changed.push({ body: (await res.json()) as StoryBody, sha: meta.text.sha256 });
   }
 
-  // 2. Download new/changed images before touching the database, so a failed
+  // 2. Fetch changed static pages (About CBS). Few and small, but they are
+  //    published content like any story: without this an edit on the website
+  //    would only ever reach a phone in a new app build.
+  const changedPages: { page: InfoPage; sha: string }[] = [];
+  for (const meta of Object.values(manifest.pages)) {
+    if (getMeta(pageShaKey(meta.id)) === meta.text.sha256) continue;
+    const res = await fetch(new URL(meta.text.path, base).toString(), {
+      signal: AbortSignal.timeout(30_000),
+    });
+    if (!res.ok) throw new Error(`page ${meta.id} HTTP ${res.status}`);
+    changedPages.push({ page: (await res.json()) as InfoPage, sha: meta.text.sha256 });
+  }
+
+  // 3. Download new/changed images before touching the database, so a failed
   //    download aborts the whole update and retries next time.
   const wantedImages = new Set<string>();
   for (const meta of Object.values(manifest.stories)) {
@@ -104,8 +117,8 @@ async function applyManifest(manifest: Manifest): Promise<void> {
     }
   }
 
-  // 3. Apply everything in one transaction: story rows, order refresh,
-  //    collections, deletions.
+  // 4. Apply everything in one transaction: story rows, order refresh,
+  //    static pages, collections, deletions.
   db.withTransactionSync(() => {
     for (const { body, sha } of changed) upsertStory(body, sha);
 
@@ -133,6 +146,14 @@ async function applyManifest(manifest: Manifest): Promise<void> {
           db.runSync('DELETE FROM audio_downloads WHERE storyId = ?', id);
         }
       }
+    }
+
+    for (const { page, sha } of changedPages) upsertPage(page, sha);
+
+    // Drop a static page the site no longer publishes.
+    const manifestPageIds = new Set(Object.keys(manifest.pages));
+    for (const row of db.getAllSync<{ id: string }>('SELECT id FROM pages')) {
+      if (!manifestPageIds.has(row.id)) deletePage(row.id);
     }
 
     for (const col of manifest.collections) {

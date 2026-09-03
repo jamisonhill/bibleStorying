@@ -77,10 +77,7 @@ function importSeed(): void {
   db.withTransactionSync(() => {
     for (const body of Object.values(stories)) upsertStory(body, manifest.stories[body.id].text.sha256);
     for (const page of Object.values(pages)) {
-      db.runSync(
-        'INSERT OR REPLACE INTO pages(id, title, paragraphs) VALUES(?,?,?)',
-        page.id, page.title, JSON.stringify(page.paragraphs),
-      );
+      upsertPage(page, manifest.pages[page.id].text.sha256);
     }
     for (const col of manifest.collections) {
       for (const l of col.languages) {
@@ -108,6 +105,31 @@ export function upsertStory(body: StoryBody, textSha: string): void {
     body.doc?.url ?? null, body.doc?.bytes ?? null, body.doc?.kind ?? null,
     textSha,
   );
+}
+
+/**
+ * Insert or update one static info page (used by both seeding and OTA
+ * updates). The pages table carries no hash column, so the body's SHA-256 is
+ * remembered in `meta` under `pageSha:<id>` — that is what lets the updater
+ * skip re-downloading a page whose text has not changed.
+ */
+export function upsertPage(page: InfoPage, textSha: string): void {
+  db.runSync(
+    'INSERT OR REPLACE INTO pages(id, title, paragraphs) VALUES(?,?,?)',
+    page.id, page.title, JSON.stringify(page.paragraphs),
+  );
+  setMeta(pageShaKey(page.id), textSha);
+}
+
+/** Remove a static page that has disappeared from the published manifest. */
+export function deletePage(id: string): void {
+  db.runSync('DELETE FROM pages WHERE id = ?', id);
+  db.runSync('DELETE FROM meta WHERE key = ?', pageShaKey(id));
+}
+
+/** meta key holding the SHA-256 of a page's published JSON body. */
+export function pageShaKey(id: string): string {
+  return `pageSha:${id}`;
 }
 
 interface StoryRow {
