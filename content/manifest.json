@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
- "contentVersion": 2,
- "generatedAt": "2026-09-03T08:02:27.086Z",
+ "contentVersion": 3,
+ "generatedAt": "2026-09-03T18:58:58.227Z",
  "collections": [
   {
    "id": "cbs",
@@ -17,7 +17,6 @@
       "cbs/en/cain-and-abel",
       "cbs/en/noah-and-the-flood",
       "cbs/en/the-call-of-abram",
-      "cbs/en/abram-with-lot-cutting-covenant-with-god",
       "cbs/en/abraham-birth-and-sacrifice-of-isaac",
       "cbs/en/isaac-jacob-and-esau",
       "cbs/en/jacobs-dream",
@@ -48,6 +47,7 @@
       "cbs/en/jesus-casts-demons-out-of-boy-foretells-his-death-and-resurrection",
       "cbs/en/jesus-raises-lazarus-from-the-dead",
       "cbs/en/the-rich-young-ruler",
+      "cbs/en/nicodemus",
       "cbs/en/a-sinful-woman-washes-jesus-feet",
       "cbs/en/the-last-supper",
       "cbs/en/gethsemane-and-jesus-arrest-jesus-before-pilate",
@@ -229,7 +229,26 @@
       "sonship/en/the-parable-of-the-pharisee-and-the-tax-collector",
       "sonship/en/jesus-and-the-rich-young-ruler",
       "sonship/en/jesus-and-the-pharisees-sabbath-controversies",
-      "sonship/en/god-calls-the-prophet-isaiah"
+      "sonship/en/god-calls-the-prophet-isaiah",
+      "sonship/en/david-and-bathsheba",
+      "sonship/en/saul-and-the-amalekites",
+      "sonship/en/peters-denial-of-jesus",
+      "sonship/en/shadrach-meschach-and-abednego-and-the-fiery-furnace",
+      "sonship/en/jacob-laban-rachel-and-leah",
+      "sonship/en/the-cleansing-of-naaman-with-the-healing-of-blind-bartimaeus",
+      "sonship/en/paul-rebukes-peter",
+      "sonship/en/the-parable-of-the-unmerciful-servant",
+      "sonship/en/joseph-forgives-his-brothers",
+      "sonship/en/jonahs-anger-and-gods-compassion-with-jesus-and-the-sinful-woman",
+      "sonship/en/jesus-washes-his-disciples-feet",
+      "sonship/en/rehoboam-and-the-divided-kingdom",
+      "sonship/en/paul-philemon-and-onesimus",
+      "sonship/en/jesus-teaches-his-disciples-to-pray-and-ask-for-the-holy-spirit",
+      "sonship/en/ezekiel-and-the-valley-of-the-dry-bones",
+      "sonship/en/jesus-reads-isaiah-in-the-synagogue",
+      "sonship/en/the-parable-of-ten-minas",
+      "sonship/en/the-parable-of-the-mustard-seed-the-leaven",
+      "sonship/en/the-parable-of-the-laborers-in-the-vineyard"
      ]
     },
     {
@@ -246,7 +265,26 @@
       "sonship/sw/mfarisayo-na-mtoza-ushuru",
       "sonship/sw/yesu-na-kijana-tajiri",
       "sonship/sw/yesu-na-mafarisayo-mabishano-ya-sabato",
-      "sonship/sw/mwito-wa-isaya"
+      "sonship/sw/mwito-wa-isaya",
+      "sonship/sw/daudi-na-bathsheba",
+      "sonship/sw/sauli-na-waamaleki",
+      "sonship/sw/petro-amkana-yesu",
+      "sonship/sw/shadraka-meshaki-na-abednego-na-tanuru-ya-moto",
+      "sonship/sw/yakobo-labani-raheli-na-lea",
+      "sonship/sw/naamani-na-bartimayo",
+      "sonship/sw/paulo-anamkemea-petro",
+      "sonship/sw/mfano-wa-mtumishi-asiyesamehe",
+      "sonship/sw/yusufu-anawasamehe-ndugu-zake",
+      "sonship/sw/hasira-ya-yona-na-huruma-ya-mungu-yesu-na-mwanamke-mwenye-dhambi",
+      "sonship/sw/yesu-anawaosha-miguu-wanafunzi-wake",
+      "sonship/sw/rehoboamu-na-ufalme-uliogawanyika",
+      "sonship/sw/paulo-filemoni-na-onesimo",
+      "sonship/sw/yesu-anawafundisha-wanafunzi-wake-kuomba-na-kuomba-roho-mtakatifu",
+      "sonship/sw/ezekieli-na-bonde-la-mifupa-kavu",
+      "sonship/sw/yesu-anasoma-isaya-katika-sinagogi",
+      "sonship/sw/mfano-wa-mina-kumi",
+      "sonship/sw/mfano-wa-mbegu-ya-haradali-na-chachu",
+      "sonship/sw/wafanyakazi-katika-shamba-la-mizabibu"
      ]
     },
     {
@@ -333,8 +371,8 @@
    "scriptureRef": "Genesis 1:1-2:3",
    "text": {
     "path": "stories/cbs__en__creation-of-the-heavens-and-earth.json",
-    "sha256": "a2e07c1d24fc0f8b0d1c1a2bc99af04bb4ca3a17b5adfcc3d627d29455614915",
-    "bytes": 3572
+    "sha256": "d112dd654d93d40ed6f5e8159c58cdd149a196a0ca30a04b26c81399e992aee1",
+    "bytes": 5362
    },
    "image": {
     "path": "images/720decf1a428981a.webp",
@@ -354,11 +392,11 @@
    "order": 2,
    "crossKey": "bsk_3",
    "title": "The Creation of the Man & the Woman",
-   "scriptureRef": "Genesis 2",
+   "scriptureRef": "Genesis 2:5-25",
    "text": {
     "path": "stories/cbs__en__the-creation-of-the-man-and-the-woman.json",
-    "sha256": "1a9dfb94f04e703cf221ca604167e52c75497479827d028097a724783ab3874f",
-    "bytes": 2488
+    "sha256": "828ca8edacbca2c04977715bd079829d37dab3794bacdda6fc3d958c18bf073e",
+    "bytes": 2310
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -381,8 +419,8 @@
    "scriptureRef": "Genesis 3",
    "text": {
     "path": "stories/cbs__en__woman-and-serpent.json",
-    "sha256": "c74fe3796a7f65cec8d1c6db9b45e880f6816e66df0dcdf1a3917008d693a143",
-    "bytes": 3608
+    "sha256": "89535477854a85171123b99b515e9de6c03b98ad25e551e5ebe6402fe0428987",
+    "bytes": 3619
    },
    "image": {
     "path": "images/a43e2bc887e0d1ef.webp",
@@ -409,8 +447,8 @@
    "scriptureRef": "Genesis 4",
    "text": {
     "path": "stories/cbs__en__cain-and-abel.json",
-    "sha256": "3544dcb9619796c069aae386bdd76de2971b9aee30673e35859306c0a1f2404f",
-    "bytes": 2327
+    "sha256": "ba030a8ef139ca8cbe7398b9a70557dae913f6684abe642b68692bd4ba8e825b",
+    "bytes": 2309
    },
    "image": {
     "path": "images/59d6528a60fcc11d.webp",
@@ -430,11 +468,11 @@
    "order": 5,
    "crossKey": "bsk_5",
    "title": "Noah and the Flood",
-   "scriptureRef": "",
+   "scriptureRef": "Genesis 6-9",
    "text": {
     "path": "stories/cbs__en__noah-and-the-flood.json",
-    "sha256": "28637ec94fb2e421bba661787650703bb4ad351cbb138fff404d8000098ab381",
-    "bytes": 3177
+    "sha256": "72d7a555e0aff8771cec20cdaf7fbe5ecd7a8f28ea48c7e753965bf35e751f17",
+    "bytes": 3514
    },
    "image": {
     "path": "images/f2402ad35367f083.webp",
@@ -475,38 +513,17 @@
    },
    "doc": null
   },
-  "cbs/en/abram-with-lot-cutting-covenant-with-god": {
-   "id": "cbs/en/abram-with-lot-cutting-covenant-with-god",
-   "collection": "cbs",
-   "lang": "en",
-   "order": 7,
-   "crossKey": "bsk_6#1",
-   "title": "Abram with Lot, Cutting Covenant with God",
-   "scriptureRef": "Genesis 13, 15",
-   "text": {
-    "path": "stories/cbs__en__abram-with-lot-cutting-covenant-with-god.json",
-    "sha256": "2a828a4e37b8745d59c097567adc763c0ee7914e15a241b17d739359974e633f",
-    "bytes": 2048
-   },
-   "image": {
-    "path": "images/a729f961326f8742.webp",
-    "sha256": "a729f961326f8742862e66f8a4ef0040f7a8656f8b1217848804c39fd79020e9",
-    "bytes": 23560
-   },
-   "audio": null,
-   "doc": null
-  },
   "cbs/en/abraham-birth-and-sacrifice-of-isaac": {
    "id": "cbs/en/abraham-birth-and-sacrifice-of-isaac",
    "collection": "cbs",
    "lang": "en",
-   "order": 8,
+   "order": 7,
    "crossKey": "bsk_7",
    "title": "Abraham - Birth and Sacrifice of Isaac",
    "scriptureRef": "Genesis 17, 21 - 22",
    "text": {
     "path": "stories/cbs__en__abraham-birth-and-sacrifice-of-isaac.json",
-    "sha256": "f1af393a93549c2afed3cdece31baa1089de35f208e96b9732779e17a2e89d28",
+    "sha256": "4eaec9be9a693d8d0cd24d798b4b499dd59f0d37cfe4fc1fbedd73319826bd7d",
     "bytes": 3240
    },
    "image": {
@@ -524,13 +541,13 @@
    "id": "cbs/en/isaac-jacob-and-esau",
    "collection": "cbs",
    "lang": "en",
-   "order": 9,
+   "order": 8,
    "crossKey": "bsk_8",
    "title": "Isaac, Jacob, and Esau",
    "scriptureRef": "Genesis 24 - 33",
    "text": {
     "path": "stories/cbs__en__isaac-jacob-and-esau.json",
-    "sha256": "eb71566cdac9bec4a02224fec9afe91fe5c72b0632bf21d8dd21eb6cec8a7918",
+    "sha256": "015da23ef567370e2d6b556c3c14e38782723153b3baf0d8217fbdc48b35e727",
     "bytes": 3659
    },
    "image": {
@@ -545,14 +562,14 @@
    "id": "cbs/en/jacobs-dream",
    "collection": "cbs",
    "lang": "en",
-   "order": 10,
+   "order": 9,
    "crossKey": "bsk_9",
    "title": "Jacob’s Dream",
    "scriptureRef": "Genesis 28:10-22",
    "text": {
     "path": "stories/cbs__en__jacobs-dream.json",
-    "sha256": "be2680ddfa7a094191f808764cf96ddfe5fe1375ad49d5d36e59098467050fa2",
-    "bytes": 2402
+    "sha256": "f162901fd03df20664dae75bdda0aba1b752aaebc241b43dc4963bbe9e607691",
+    "bytes": 2401
    },
    "image": {
     "path": "images/6f0e095eaed8d254.webp",
@@ -573,13 +590,13 @@
    "id": "cbs/en/jacob-laban-rachael-and-leah",
    "collection": "cbs",
    "lang": "en",
-   "order": 11,
+   "order": 10,
    "crossKey": "bsk_10",
    "title": "Jacob, Laban, Rachael and Leah",
    "scriptureRef": "Genesis 29:15 - 35",
    "text": {
     "path": "stories/cbs__en__jacob-laban-rachael-and-leah.json",
-    "sha256": "5534ee7bdc9ce7baef9f8699a3410ad8609667a2465b5a356da0211dffdf3ece",
+    "sha256": "f6c1a3f95d155c33897f6e749364323bc19afadbd562fd58cdbaffe8f267bb19",
     "bytes": 2831
    },
    "image": {
@@ -597,13 +614,13 @@
    "id": "cbs/en/jacob-wrestles-with-god",
    "collection": "cbs",
    "lang": "en",
-   "order": 12,
+   "order": 11,
    "crossKey": "bsk_11",
    "title": "Jacob Wrestles with God",
    "scriptureRef": "Genesis 32,33",
    "text": {
     "path": "stories/cbs__en__jacob-wrestles-with-god.json",
-    "sha256": "1f31e36eeef64bfb4adb4d8b7115004e2263a47016ebf8b26df701b9b1c525a7",
+    "sha256": "8e2fd5631ac8994a231d52fbd9ea4b5aef97df1d3f358e526cf52c175b86cc44",
     "bytes": 2791
    },
    "image": {
@@ -625,13 +642,13 @@
    "id": "cbs/en/joseph",
    "collection": "cbs",
    "lang": "en",
-   "order": 13,
+   "order": 12,
    "crossKey": "bsk_12",
    "title": "Joseph",
    "scriptureRef": "Genesis 37, 39 - 50",
    "text": {
     "path": "stories/cbs__en__joseph.json",
-    "sha256": "c640c3b4369a6d61ba8e7aef66950858d3b2e8e3a0186a7206ba985690da9bb3",
+    "sha256": "6ac00ac6303ba5a659baf0169b75c905be9fabb3e9c93abb61cca715296dcf80",
     "bytes": 3848
    },
    "image": {
@@ -653,13 +670,13 @@
    "id": "cbs/en/moses-birth-and-flight",
    "collection": "cbs",
    "lang": "en",
-   "order": 14,
+   "order": 13,
    "crossKey": "bsk_13",
    "title": "Moses’ Birth and Flight",
    "scriptureRef": "Exodus 1, 2",
    "text": {
     "path": "stories/cbs__en__moses-birth-and-flight.json",
-    "sha256": "306ed29d383935a8fee9090fb69f56de680803766d6ed0707c0bc43f2fb8eb49",
+    "sha256": "b0b0aa9acd2fba457416ddd41b2847f202c5fdf1b9191c050409a365fc28a20f",
     "bytes": 2445
    },
    "image": {
@@ -677,13 +694,13 @@
    "id": "cbs/en/god-calls-moses-at-the-burning-bush",
    "collection": "cbs",
    "lang": "en",
-   "order": 15,
+   "order": 14,
    "crossKey": "bsk_14",
    "title": "God calls Moses at the Burning Bush",
    "scriptureRef": "Exodus 3 & 4",
    "text": {
     "path": "stories/cbs__en__god-calls-moses-at-the-burning-bush.json",
-    "sha256": "4a606e9422a3d2708a552dd11093b536611fcd3fa7d2ab4bfd78428127d3cb7d",
+    "sha256": "ba1e4e5a5bc2774de20afdf60e26bb8cc2710ad8cadd0b2a13523002f33e4296",
     "bytes": 3104
    },
    "image": {
@@ -705,13 +722,13 @@
    "id": "cbs/en/the-first-nine-plagues-on-egypt",
    "collection": "cbs",
    "lang": "en",
-   "order": 16,
+   "order": 15,
    "crossKey": "bsk_15",
    "title": "The first nine plagues on Egypt",
    "scriptureRef": "Exodus 7 - 11",
    "text": {
     "path": "stories/cbs__en__the-first-nine-plagues-on-egypt.json",
-    "sha256": "e26897bc36c016e52340a481eadb4eb2af27ca6ee184555096bb9d31848de290",
+    "sha256": "6ddb6677df12721e069aec086d15ca1102cce651ccf4b82a18a3f10c1597f5a5",
     "bytes": 3089
    },
    "image": {
@@ -733,13 +750,13 @@
    "id": "cbs/en/the-passover",
    "collection": "cbs",
    "lang": "en",
-   "order": 17,
+   "order": 16,
    "crossKey": "bsk_16",
    "title": "The Passover",
    "scriptureRef": "Exodus 12",
    "text": {
     "path": "stories/cbs__en__the-passover.json",
-    "sha256": "5308d8bee8387a720d16aa8b9d18e899a3bc434bb4872c4ed1feef50a2527d1a",
+    "sha256": "ab02ebe9a3fa484c65f1e18fc56909762faf3cfaa0cc9b868875a304a3cb181d",
     "bytes": 2524
    },
    "image": {
@@ -761,13 +778,13 @@
    "id": "cbs/en/crossing-the-red-sea",
    "collection": "cbs",
    "lang": "en",
-   "order": 18,
+   "order": 17,
    "crossKey": "bsk_17",
    "title": "Crossing the Red Sea",
    "scriptureRef": "Exodus 13:17-14:31",
    "text": {
     "path": "stories/cbs__en__crossing-the-red-sea.json",
-    "sha256": "504bf3aaa6fa52919af67fdf45ad5b1cfd41d1f628a6ba4398b14b7d1bc0fbb5",
+    "sha256": "1f944716f2d7cb41d728682ee6f831476a13970d4d9cb46761d33cd1bb568300",
     "bytes": 3566
    },
    "image": {
@@ -789,13 +806,13 @@
    "id": "cbs/en/mt-sinai-ten-commandments",
    "collection": "cbs",
    "lang": "en",
-   "order": 19,
+   "order": 18,
    "crossKey": "bsk_18",
    "title": "Mt. Sinai, Ten Commandments",
    "scriptureRef": "Exodus 19, 20, 24, 33 and 34",
    "text": {
     "path": "stories/cbs__en__mt-sinai-ten-commandments.json",
-    "sha256": "dd5fcd558e22b0b61343b6ff71cdac06a98a86c5438b543a1fd8feac44b3d95a",
+    "sha256": "34280ec956a0d0c56d8b7b3d5229777ea40ad7d34b78db8d18c305e8b6d3a840",
     "bytes": 2713
    },
    "image": {
@@ -813,13 +830,13 @@
    "id": "cbs/en/the-golden-calf",
    "collection": "cbs",
    "lang": "en",
-   "order": 20,
+   "order": 19,
    "crossKey": "bsk_19",
    "title": "The Golden Calf",
    "scriptureRef": "Exodus 32",
    "text": {
     "path": "stories/cbs__en__the-golden-calf.json",
-    "sha256": "309c0aadc2dc0f61110358284be8d5fd394538b601d4f8eead04b3946ab82574",
+    "sha256": "ad2e07f801e9d213c042c9989a1da90e23ddc45447d51203668480cd8c553c3c",
     "bytes": 2553
    },
    "image": {
@@ -837,13 +854,13 @@
    "id": "cbs/en/the-tabernacle-and-day-of-atonement",
    "collection": "cbs",
    "lang": "en",
-   "order": 21,
+   "order": 20,
    "crossKey": "bsk_20",
    "title": "The Tabernacle and Day of Atonement",
    "scriptureRef": "Exodus 25 - 29, 34 - 40; Leviticus 1 - 10, 16, 17",
    "text": {
     "path": "stories/cbs__en__the-tabernacle-and-day-of-atonement.json",
-    "sha256": "1c77d75884bb53183626a330b198a4bcab18be09e23736c9546b83ae69d30d72",
+    "sha256": "6c79e1fe8238de79c122380f2e7cb46e6635df745057380e0173fc4802a93713",
     "bytes": 4770
    },
    "image": {
@@ -861,13 +878,13 @@
    "id": "cbs/en/the-spies-the-wilderness-bronze-serpent-the-promise-land",
    "collection": "cbs",
    "lang": "en",
-   "order": 22,
+   "order": 21,
    "crossKey": "bsk_21",
    "title": "The Spies, The Wilderness, bronze serpent, the Promise Land",
    "scriptureRef": "Numbers 13-21, Deuteronomy 4:15 – 31; 6: 1ff; 7:1-16; 8:10-20; 9:4-6; 11:1ff; 34:1-5; Joshua 1:1 – 7:9",
    "text": {
     "path": "stories/cbs__en__the-spies-the-wilderness-bronze-serpent-the-promise-land.json",
-    "sha256": "c27720e95136b58f24384c516cb532a5f7a85b8b359d1f9c85df1f5928343635",
+    "sha256": "a689769d79515fb9636dc725db925d49d2ec0550da4ba1743a8bc487a03551ae",
     "bytes": 3558
    },
    "image": {
@@ -882,13 +899,13 @@
    "id": "cbs/en/judges",
    "collection": "cbs",
    "lang": "en",
-   "order": 23,
+   "order": 22,
    "crossKey": "bsk_22",
    "title": "Judges",
    "scriptureRef": "Joshua 7-28, Judges",
    "text": {
     "path": "stories/cbs__en__judges.json",
-    "sha256": "1fb7ae2d235449ce8e09295d1ad3c08046217c528f06d015a2af8a02b9c90d22",
+    "sha256": "86605af0e1f607f4eaba097ef9728f49a7e9f4982b412195da33fba25412e679",
     "bytes": 2709
    },
    "image": {
@@ -903,13 +920,13 @@
    "id": "cbs/en/israel-demanda-a-king-king-saul-and-the-amalekites",
    "collection": "cbs",
    "lang": "en",
-   "order": 24,
+   "order": 23,
    "crossKey": "bsk_23",
    "title": "Israel demanda a King - King Saul and the Amalekites",
    "scriptureRef": "1 Samuel 8-10, 13:2-15, 15:1-23, 16:1-13, 2 Samuel 5:1-12",
    "text": {
     "path": "stories/cbs__en__israel-demanda-a-king-king-saul-and-the-amalekites.json",
-    "sha256": "035f411052c7f7f7df44938a709623526d4ae873fd9fcd6481d28ebda251d645",
+    "sha256": "561dd42215e49f3e2579fa780b6c70c98c10840cb3691b739238caf517f43ec0",
     "bytes": 3432
    },
    "image": {
@@ -931,13 +948,13 @@
    "id": "cbs/en/david-the-king",
    "collection": "cbs",
    "lang": "en",
-   "order": 25,
+   "order": 24,
    "crossKey": "bsk_24",
    "title": "David the King",
    "scriptureRef": "1 & 2 Samuel, esp. 1 Samuel 16, 17 and 2 Samuel 6, 7, 11, 12",
    "text": {
     "path": "stories/cbs__en__david-the-king.json",
-    "sha256": "8c136cd731a4c663d1f33757ee6bcd49e360ddde3025bfb3c922d90d9d4a6e7d",
+    "sha256": "1f94f1d3f96f06bc54f7279090211050a065737599247727591c68c249041a78",
     "bytes": 3348
    },
    "image": {
@@ -959,13 +976,13 @@
    "id": "cbs/en/elijah-and-the-prophets-of-baal",
    "collection": "cbs",
    "lang": "en",
-   "order": 26,
+   "order": 25,
    "crossKey": "bsk_25",
    "title": "Elijah and the Prophets of Baal",
    "scriptureRef": "1 Kings 18",
    "text": {
     "path": "stories/cbs__en__elijah-and-the-prophets-of-baal.json",
-    "sha256": "c32020826f29077f79a37e404d2fde28acea41958f885f2f5600c13e0c6b9061",
+    "sha256": "b7c9cd779ed82b1bd2e64b3bed171823d26a4f673ed6a6a71961f855fca5d8e9",
     "bytes": 2972
    },
    "image": {
@@ -983,13 +1000,13 @@
    "id": "cbs/en/prophets-foretell-the-coming-of-the-promised-savior-and-the-new-covenant",
    "collection": "cbs",
    "lang": "en",
-   "order": 27,
+   "order": 26,
    "crossKey": "bsk_26",
    "title": "Prophets foretell the coming of The Promised Savior and The New Covenant",
    "scriptureRef": "",
    "text": {
     "path": "stories/cbs__en__prophets-foretell-the-coming-of-the-promised-savior-and-the-new-covenant.json",
-    "sha256": "1789dc11eb20ac5428728c917b19e5a4496fbf0e80bfc3e2fac71814076bbd9f",
+    "sha256": "2f4897d82c4fa52312d775db5a16705ede573fbfa98b294346ca92bde58c4771",
     "bytes": 3169
    },
    "image": {
@@ -1007,13 +1024,13 @@
    "id": "cbs/en/the-announcement-and-birth-of-jesus",
    "collection": "cbs",
    "lang": "en",
-   "order": 28,
+   "order": 27,
    "crossKey": "bsk_27",
    "title": "The Announcement and Birth of Jesus",
    "scriptureRef": "Luke 1:5 - 2:20, Matthew 1",
    "text": {
     "path": "stories/cbs__en__the-announcement-and-birth-of-jesus.json",
-    "sha256": "7f75ab0dd8f16dc9ef357b08adc83151f7414f32dae65e8cec58d80ebfdb9a81",
+    "sha256": "91d049877c122d59c7f4cea508754dbc047dbaeb18d4f4c2e62befdd13604942",
     "bytes": 4532
    },
    "image": {
@@ -1035,13 +1052,13 @@
    "id": "cbs/en/johns-ministry-jesus-baptism",
    "collection": "cbs",
    "lang": "en",
-   "order": 29,
+   "order": 28,
    "crossKey": "bsk_28",
    "title": "John's Ministry, Jesus' Baptism",
    "scriptureRef": "John 1:19-31, Matthew 3",
    "text": {
     "path": "stories/cbs__en__johns-ministry-jesus-baptism.json",
-    "sha256": "0b70c3f96c681df8cff26b2d11f4fa68f776ab1a2900bb452ecbb58c30209567",
+    "sha256": "ee107a0f819e03a0e572b5ae785c422111fc0113094a06c5e0da31e320e4e316",
     "bytes": 2051
    },
    "image": {
@@ -1059,13 +1076,13 @@
    "id": "cbs/en/satan-tests-jesus",
    "collection": "cbs",
    "lang": "en",
-   "order": 30,
+   "order": 29,
    "crossKey": "bsk_28#1",
    "title": "Satan Tests Jesus",
    "scriptureRef": "Matthew 4:1-11, Luke 4:1-13",
    "text": {
     "path": "stories/cbs__en__satan-tests-jesus.json",
-    "sha256": "e88bccc73d76c8ec08dcc200804ad77068934ff303e26c0c0de22ce5c7416f5b",
+    "sha256": "1b2bde332b094f57db62180b13aa7a5b3f19222e515638e61f5507cc009deaf6",
     "bytes": 2456
    },
    "image": {
@@ -1087,13 +1104,13 @@
    "id": "cbs/en/jesus-calls-his-disciples",
    "collection": "cbs",
    "lang": "en",
-   "order": 31,
+   "order": 30,
    "crossKey": "bsk_29",
    "title": "Jesus Calls His Disciples",
    "scriptureRef": "Luke 5:1-11, 27-31; 6:12-15",
    "text": {
     "path": "stories/cbs__en__jesus-calls-his-disciples.json",
-    "sha256": "b74dc2a6d0f97b30b0919bdafb957fc08bebe031cb451c131374a4b084103578",
+    "sha256": "bc6233de99ecd53436f9b4966ca9e9c31e98a6fe5780982de75f81054568b01b",
     "bytes": 2860
    },
    "image": {
@@ -1111,13 +1128,13 @@
    "id": "cbs/en/jesus-heals-and-forgives-a-paralized-man",
    "collection": "cbs",
    "lang": "en",
-   "order": 32,
+   "order": 31,
    "crossKey": "bsk_30",
    "title": "Jesus Heals and Forgives a Paralized Man",
    "scriptureRef": "Mark 2:1-12",
    "text": {
     "path": "stories/cbs__en__jesus-heals-and-forgives-a-paralized-man.json",
-    "sha256": "cb993fcb3e8a03b00601f72e603f73e286be70e9dd6cae2ce9dd5b5f2c666b43",
+    "sha256": "9478473e876027afaf30bc4f7f565ee50192de914bf29f25c71be832badec7b3",
     "bytes": 2487
    },
    "image": {
@@ -1139,13 +1156,13 @@
    "id": "cbs/en/jesus-and-the-samaritan-woman",
    "collection": "cbs",
    "lang": "en",
-   "order": 33,
+   "order": 32,
    "crossKey": "bsk_31",
    "title": "Jesus and the Samaritan Woman",
    "scriptureRef": "John 4:1-45",
    "text": {
     "path": "stories/cbs__en__jesus-and-the-samaritan-woman.json",
-    "sha256": "36082ede77e0c565f186bba82ff040945cf8699cb73798f8dbe3e0760252fd2f",
+    "sha256": "51004e8080927f70c383ece43393a2fc233811e3209554980e7a77ec782088e3",
     "bytes": 3651
    },
    "image": {
@@ -1167,13 +1184,13 @@
    "id": "cbs/en/jesus-feeds-the-five-thousand",
    "collection": "cbs",
    "lang": "en",
-   "order": 34,
+   "order": 33,
    "crossKey": "bsk_32",
    "title": "Jesus Feeds The Five Thousand",
    "scriptureRef": "Mark 6:30-44",
    "text": {
     "path": "stories/cbs__en__jesus-feeds-the-five-thousand.json",
-    "sha256": "8adb6c1d82a69705961efc9b59c66157866b69200c27275f1f9b5a3d63289029",
+    "sha256": "2faf528effa7040f3b80c1f97abe3bac1fb22e8061f618de444c8bc6e17e14a9",
     "bytes": 2325
    },
    "image": {
@@ -1195,13 +1212,13 @@
    "id": "cbs/en/jesus-casts-demons-out-of-boy-foretells-his-death-and-resurrection",
    "collection": "cbs",
    "lang": "en",
-   "order": 35,
+   "order": 34,
    "crossKey": "bsk_33",
    "title": "Jesus casts demons out of boy, foretells His death and resurrection",
    "scriptureRef": "Mark 9:14-32",
    "text": {
     "path": "stories/cbs__en__jesus-casts-demons-out-of-boy-foretells-his-death-and-resurrection.json",
-    "sha256": "89389be6530eb1263826594d5e7765c56247d73fd4c10d81bb7346681e1a4d8f",
+    "sha256": "da4018d9c1c60bf1afc8100efddf77115153af09d63ddec0e47b8b943fa4ed7e",
     "bytes": 2917
    },
    "image": {
@@ -1216,13 +1233,13 @@
    "id": "cbs/en/jesus-raises-lazarus-from-the-dead",
    "collection": "cbs",
    "lang": "en",
-   "order": 36,
+   "order": 35,
    "crossKey": "bsk_34",
    "title": "Jesus raises Lazarus from the dead",
    "scriptureRef": "John 11:1-44",
    "text": {
     "path": "stories/cbs__en__jesus-raises-lazarus-from-the-dead.json",
-    "sha256": "60d1a6057d67dca0d65bdf3b0ed314cc50d40d1d6f6218f4b64ce817e27eb7ee",
+    "sha256": "658be4e204647e2b71871d3f2aa613a7eff9435d55523ff3383648e0dad1d202",
     "bytes": 2888
    },
    "image": {
@@ -1244,13 +1261,13 @@
    "id": "cbs/en/the-rich-young-ruler",
    "collection": "cbs",
    "lang": "en",
-   "order": 37,
+   "order": 36,
    "crossKey": "bsk_35",
    "title": "The Rich Young Ruler",
    "scriptureRef": "Matthew 19:16-26 (& Luke 18:18-30, Mark 10:17-27)",
    "text": {
     "path": "stories/cbs__en__the-rich-young-ruler.json",
-    "sha256": "4388c1c522b64c7665c51cbca900cc29804c660edc965b7e7ee4df86cff12fee",
+    "sha256": "55d3d6ad3478fc1a420d019be6628afd63aa0df438ee50805fe7c2a30c73a4f3",
     "bytes": 2066
    },
    "image": {
@@ -1265,6 +1282,34 @@
    "doc": {
     "url": "https://www.biblestoryingkenya.com/assets/files/read/en/__StEn%20-%20Rich%20Young%20Ruler.doc",
     "bytes": 27648,
+    "kind": "doc"
+   }
+  },
+  "cbs/en/nicodemus": {
+   "id": "cbs/en/nicodemus",
+   "collection": "cbs",
+   "lang": "en",
+   "order": 37,
+   "crossKey": "bsk_35#1",
+   "title": "Nicodemus",
+   "scriptureRef": "John 3:1-21",
+   "text": {
+    "path": "stories/cbs__en__nicodemus.json",
+    "sha256": "02d3436574d9b4c1a839f62b201644785f8a379515b00a66590f6b51e03b984f",
+    "bytes": 2895
+   },
+   "image": {
+    "path": "images/171941df315ba8d5.webp",
+    "sha256": "171941df315ba8d565eeb94acf694aed89174163aac9cafd28a885d3a6416546",
+    "bytes": 30888
+   },
+   "audio": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/audio/en/Story%2035%20B%20-%20NICODEMUS.MP3",
+    "bytes": 4192967
+   },
+   "doc": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/read/en/__StEn%20-%20Nicodemus.doc",
+    "bytes": 30720,
     "kind": "doc"
    }
   },
@@ -5282,6 +5327,401 @@
     "kind": "pdf"
    }
   },
+  "sonship/en/david-and-bathsheba": {
+   "id": "sonship/en/david-and-bathsheba",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 12,
+   "crossKey": "pos_12",
+   "title": "David and Bathsheba",
+   "scriptureRef": "2 Samuel 11:1-12:25, Psalm 51:1-19",
+   "text": {
+    "path": "stories/sonship__en__david-and-bathsheba.json",
+    "sha256": "eb1bdb9bbaaec37b6e1b7512f4a83f0783249f0c2b99be151ebf5e7f29080707",
+    "bytes": 3440
+   },
+   "image": {
+    "path": "images/a3d82d222cab6676.webp",
+    "sha256": "a3d82d222cab6676793bfef719eae81938efe3b62efba79459218b68ecd044fd",
+    "bytes": 15518
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/saul-and-the-amalekites": {
+   "id": "sonship/en/saul-and-the-amalekites",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 13,
+   "crossKey": "pos_13",
+   "title": "Saul and the Amalekites",
+   "scriptureRef": "1 Samuel 15:1-35; (Background: 1 Samuel 8:1-22; 13:1-14)",
+   "text": {
+    "path": "stories/sonship__en__saul-and-the-amalekites.json",
+    "sha256": "8c08862c7bf3e028942602d439db7cf9d06cefe204a7e86d079070efa4d4c325",
+    "bytes": 2911
+   },
+   "image": {
+    "path": "images/568ce208537df45a.webp",
+    "sha256": "568ce208537df45ace34504a2c78e81f77cbed4d019ece1babf3c7f6788b2424",
+    "bytes": 22496
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/peters-denial-of-jesus": {
+   "id": "sonship/en/peters-denial-of-jesus",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 14,
+   "crossKey": "pos_14",
+   "title": "Peter’s Denial of Jesus",
+   "scriptureRef": "Matthew 26:31-55, 69-75, Luke 22:61",
+   "text": {
+    "path": "stories/sonship__en__peters-denial-of-jesus.json",
+    "sha256": "6d463d5853ddef2556a5ad1325445ec78a229a6b8ec4f3344e423e46c7de7825",
+    "bytes": 3543
+   },
+   "image": {
+    "path": "images/bec0dbc0a3bf61c7.webp",
+    "sha256": "bec0dbc0a3bf61c7a063b41e0504c203552266ec2b7e24e14b5c8ab4f30a52a8",
+    "bytes": 17902
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/shadrach-meschach-and-abednego-and-the-fiery-furnace": {
+   "id": "sonship/en/shadrach-meschach-and-abednego-and-the-fiery-furnace",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 15,
+   "crossKey": "pos_15",
+   "title": "Shadrach, Meschach, and Abednego and the Fiery Furnace",
+   "scriptureRef": "Daniel 3:1-30",
+   "text": {
+    "path": "stories/sonship__en__shadrach-meschach-and-abednego-and-the-fiery-furnace.json",
+    "sha256": "ac0fffde7f83e4f0f1301aed2df73532142df8954418452aaae47dedbdbb4a9f",
+    "bytes": 4741
+   },
+   "image": {
+    "path": "images/8f77867cac3930a1.webp",
+    "sha256": "8f77867cac3930a15811d817e9475a330cb43087a9462cbeb6fd49fa513cb0ce",
+    "bytes": 19290
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/jacob-laban-rachel-and-leah": {
+   "id": "sonship/en/jacob-laban-rachel-and-leah",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 16,
+   "crossKey": "pos_16",
+   "title": "Jacob, Laban, Rachel, and Leah",
+   "scriptureRef": "Genesis 29:15-35",
+   "text": {
+    "path": "stories/sonship__en__jacob-laban-rachel-and-leah.json",
+    "sha256": "9841e644b97beb8cb5c785d9c1833367eb6d408d4a72bcce4aade8f3bd120a74",
+    "bytes": 3845
+   },
+   "image": {
+    "path": "images/c098160536593510.webp",
+    "sha256": "c0981605365935105f2714a334fef7f4f789782f63f238859a7f1a0409612803",
+    "bytes": 13040
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/the-cleansing-of-naaman-with-the-healing-of-blind-bartimaeus": {
+   "id": "sonship/en/the-cleansing-of-naaman-with-the-healing-of-blind-bartimaeus",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 17,
+   "crossKey": "pos_17",
+   "title": "The Cleansing of Naaman with the Healing of Blind Bartimaeus",
+   "scriptureRef": "2 Kings 5:1-15; Mark 10:46-52 and Luke 18:35-43",
+   "text": {
+    "path": "stories/sonship__en__the-cleansing-of-naaman-with-the-healing-of-blind-bartimaeus.json",
+    "sha256": "c62c0c65e72517aaf344c54c8b854a62253893b86017432fb1945c2fdc791ec7",
+    "bytes": 3835
+   },
+   "image": {
+    "path": "images/ead43767b2a13fa5.webp",
+    "sha256": "ead43767b2a13fa5bfef54cb26a2b38a239db558e5e174bfac9988f87ea42163",
+    "bytes": 22348
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/paul-rebukes-peter": {
+   "id": "sonship/en/paul-rebukes-peter",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 18,
+   "crossKey": "pos_18",
+   "title": "Paul Rebukes Peter",
+   "scriptureRef": "Galatians 2:11-15,20,21; (Also see Acts 10:1-11:18; 15:1,2,5,7-11; 1 Peter 1:13-2:10",
+   "text": {
+    "path": "stories/sonship__en__paul-rebukes-peter.json",
+    "sha256": "99a03f88f3fb8f3d48ccb244770376384140b32eacfbedcdfcb9f40bd8c68316",
+    "bytes": 3777
+   },
+   "image": {
+    "path": "images/f92c470a4e0c921c.webp",
+    "sha256": "f92c470a4e0c921c24ed2fe9fd2e06fb79a40e20fda4f30f5e88d51959255276",
+    "bytes": 22064
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/the-parable-of-the-unmerciful-servant": {
+   "id": "sonship/en/the-parable-of-the-unmerciful-servant",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 19,
+   "crossKey": "pos_19",
+   "title": "The Parable of the Unmerciful Servant",
+   "scriptureRef": "Matthew 18:21-35",
+   "text": {
+    "path": "stories/sonship__en__the-parable-of-the-unmerciful-servant.json",
+    "sha256": "e08b2d0d8fc96a1d1b766de460738ac59195137fa1c36c2812965c02f6c52b3d",
+    "bytes": 2507
+   },
+   "image": {
+    "path": "images/f84d8831bf84b4f1.webp",
+    "sha256": "f84d8831bf84b4f104b6511841028389fbadf6cebed79d642d3e3f380d08541f",
+    "bytes": 19982
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/joseph-forgives-his-brothers": {
+   "id": "sonship/en/joseph-forgives-his-brothers",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 20,
+   "crossKey": "pos_20",
+   "title": "Joseph Forgives His Brothers",
+   "scriptureRef": "Genesis 37, 39-50",
+   "text": {
+    "path": "stories/sonship__en__joseph-forgives-his-brothers.json",
+    "sha256": "86e405ec23eaeef8c0c944d70c9aa5417501d1bcce4da6f3cbfd1dd2ba9dbf8e",
+    "bytes": 3920
+   },
+   "image": {
+    "path": "images/1b63bad3bb4066ba.webp",
+    "sha256": "1b63bad3bb4066baea56d8905ab3be6fc8e1829f69216c86e8a66a9fb556ee2c",
+    "bytes": 18734
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/jonahs-anger-and-gods-compassion-with-jesus-and-the-sinful-woman": {
+   "id": "sonship/en/jonahs-anger-and-gods-compassion-with-jesus-and-the-sinful-woman",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 21,
+   "crossKey": "pos_21",
+   "title": "Jonah’s Anger and God’s Compassion with Jesus and the Sinful Woman",
+   "scriptureRef": "Jonah 4:1-11 / Luke 7:36-50; (Background: Jonah 1:1-3:10)",
+   "text": {
+    "path": "stories/sonship__en__jonahs-anger-and-gods-compassion-with-jesus-and-the-sinful-woman.json",
+    "sha256": "893b7311a61079a674ff5548b01f032a10a6719fd09c6ada08413171f6cad563",
+    "bytes": 5395
+   },
+   "image": {
+    "path": "images/235044baef733e21.webp",
+    "sha256": "235044baef733e21a482fc823aea80f4104e608bf99ddc4d79e269f8fdd1ef54",
+    "bytes": 18008
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/jesus-washes-his-disciples-feet": {
+   "id": "sonship/en/jesus-washes-his-disciples-feet",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 22,
+   "crossKey": "pos_22",
+   "title": "Jesus Washes his Disciples’ Feet",
+   "scriptureRef": "Luke 22:24-27; John 13:1-9, 12-17",
+   "text": {
+    "path": "stories/sonship__en__jesus-washes-his-disciples-feet.json",
+    "sha256": "4691a48400c7a9a9f6c3ad271329dcf08cd792b5b9b798efb103da6f850c56c6",
+    "bytes": 3140
+   },
+   "image": {
+    "path": "images/f077c5a5acb79341.webp",
+    "sha256": "f077c5a5acb79341700115942709da72302147a67b64f5ecea1482e50cbcc13b",
+    "bytes": 23686
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/rehoboam-and-the-divided-kingdom": {
+   "id": "sonship/en/rehoboam-and-the-divided-kingdom",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 23,
+   "crossKey": "pos_23",
+   "title": "Rehoboam and the Divided Kingdom",
+   "scriptureRef": "1 Kings 11:1-4, 9-13; 12:1-19; (cf. 2 Chronicles 10:1-19)",
+   "text": {
+    "path": "stories/sonship__en__rehoboam-and-the-divided-kingdom.json",
+    "sha256": "6b6ca6b2cd9c7d2ae49616b15accbae96f3f0b977ca5faf87e6fbb9999d511f3",
+    "bytes": 3134
+   },
+   "image": {
+    "path": "images/2b27a4561139d375.webp",
+    "sha256": "2b27a4561139d375cce0511f90356df0e1186b4bd8122297ee208f3a87a0eea5",
+    "bytes": 16466
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/paul-philemon-and-onesimus": {
+   "id": "sonship/en/paul-philemon-and-onesimus",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 24,
+   "crossKey": "pos_24",
+   "title": "Paul, Philemon, and Onesimus",
+   "scriptureRef": "",
+   "text": {
+    "path": "stories/sonship__en__paul-philemon-and-onesimus.json",
+    "sha256": "da33348286de660b465db1c77e8aecb8613483e0c1811cb84c7ee4ae8c803336",
+    "bytes": 3386
+   },
+   "image": {
+    "path": "images/86b32ba87f2d5869.webp",
+    "sha256": "86b32ba87f2d58698c13a83bb223f96446096cf845df865a4294512d15b561a4",
+    "bytes": 9966
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/jesus-teaches-his-disciples-to-pray-and-ask-for-the-holy-spirit": {
+   "id": "sonship/en/jesus-teaches-his-disciples-to-pray-and-ask-for-the-holy-spirit",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 25,
+   "crossKey": "pos_25",
+   "title": "Jesus Teaches His Disciples to Pray and Ask for the Holy Spirit",
+   "scriptureRef": "Luke 11:1-13; (cf. Matthew 6:5-15, 7:7-11)",
+   "text": {
+    "path": "stories/sonship__en__jesus-teaches-his-disciples-to-pray-and-ask-for-the-holy-spirit.json",
+    "sha256": "5ae1522bfd214a6015ced43576500090c5810ae2e4ff1326c9723cac653c0241",
+    "bytes": 2464
+   },
+   "image": {
+    "path": "images/ce2ccf2f9d6af022.webp",
+    "sha256": "ce2ccf2f9d6af0220ea414b9c865727ccff37c3f49d9d610102adf534f758a36",
+    "bytes": 36982
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/ezekiel-and-the-valley-of-the-dry-bones": {
+   "id": "sonship/en/ezekiel-and-the-valley-of-the-dry-bones",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 26,
+   "crossKey": "pos_26",
+   "title": "Ezekiel and the Valley of the Dry Bones",
+   "scriptureRef": "Ezekiel 37:1-14",
+   "text": {
+    "path": "stories/sonship__en__ezekiel-and-the-valley-of-the-dry-bones.json",
+    "sha256": "18a39f6680557769ce54d9538e1a80805bedb7ab0d2661e6addf352b546a7937",
+    "bytes": 4767
+   },
+   "image": {
+    "path": "images/0504beba7518e4c0.webp",
+    "sha256": "0504beba7518e4c0c15f7b433e0b0b138729bf1030df84669bd63b168a0d39b7",
+    "bytes": 32362
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/jesus-reads-isaiah-in-the-synagogue": {
+   "id": "sonship/en/jesus-reads-isaiah-in-the-synagogue",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 27,
+   "crossKey": "pos_27",
+   "title": "Jesus Reads Isaiah in the Synagogue",
+   "scriptureRef": "Luke 4:14-30 (Also Isaiah 61:1,2a; 58:6)",
+   "text": {
+    "path": "stories/sonship__en__jesus-reads-isaiah-in-the-synagogue.json",
+    "sha256": "1c2b2b95ab391899105aed112ad1c636d2b550ff099d78ddd8b9fee63034efb8",
+    "bytes": 3008
+   },
+   "image": {
+    "path": "images/686bf72c80663055.webp",
+    "sha256": "686bf72c80663055578362d02b8eba95ba54d2a38f39a7a3891791d761cebd17",
+    "bytes": 20578
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/the-parable-of-ten-minas": {
+   "id": "sonship/en/the-parable-of-ten-minas",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 28,
+   "crossKey": "pos_28",
+   "title": "The Parable of Ten Minas",
+   "scriptureRef": "Luke 19:11-27",
+   "text": {
+    "path": "stories/sonship__en__the-parable-of-ten-minas.json",
+    "sha256": "072c7919f84c0988eff4df0990d2b75b19be555c73493ca487d6a0725621a067",
+    "bytes": 3458
+   },
+   "image": {
+    "path": "images/798b757136e8dbc3.webp",
+    "sha256": "798b757136e8dbc3c590b39d2f14f589fab5158a557634931b37ffbd0f7134e6",
+    "bytes": 13944
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/the-parable-of-the-mustard-seed-the-leaven": {
+   "id": "sonship/en/the-parable-of-the-mustard-seed-the-leaven",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 29,
+   "crossKey": "pos_29",
+   "title": "The Parable of The Mustard Seed & the Leaven",
+   "scriptureRef": "Matthew 13:31-33 (cf. Mark 4:30-33; Luke 13:19)",
+   "text": {
+    "path": "stories/sonship__en__the-parable-of-the-mustard-seed-the-leaven.json",
+    "sha256": "729acd4f1e46b2ba4141308e04afb4582caecbc38185a39374246a5d2e519eb2",
+    "bytes": 1395
+   },
+   "image": {
+    "path": "images/a6ecf3b5684d241e.webp",
+    "sha256": "a6ecf3b5684d241eb0eb7f5811714573330d2a995f038d2182011ddcd69f12a4",
+    "bytes": 9950
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/en/the-parable-of-the-laborers-in-the-vineyard": {
+   "id": "sonship/en/the-parable-of-the-laborers-in-the-vineyard",
+   "collection": "sonship",
+   "lang": "en",
+   "order": 30,
+   "crossKey": "pos_30",
+   "title": "The Parable of The Laborers in the Vineyard",
+   "scriptureRef": "Matthew 20:1-16",
+   "text": {
+    "path": "stories/sonship__en__the-parable-of-the-laborers-in-the-vineyard.json",
+    "sha256": "a7283e77003ebdb7d74e38fdac81cd3d6030b8c9a0707924b1469d3e662c1bc0",
+    "bytes": 3833
+   },
+   "image": null,
+   "audio": null,
+   "doc": null
+  },
   "sonship/sw/wana-wawili-wapotevu-sehemu-ya-kwanza": {
    "id": "sonship/sw/wana-wawili-wapotevu-sehemu-ya-kwanza",
    "collection": "sonship",
@@ -5581,6 +6021,401 @@
     "bytes": 214078,
     "kind": "pdf"
    }
+  },
+  "sonship/sw/daudi-na-bathsheba": {
+   "id": "sonship/sw/daudi-na-bathsheba",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 12,
+   "crossKey": "pos_12",
+   "title": "Daudi na Bathsheba",
+   "scriptureRef": "2 Samweli 11:1-12:25, Zaburi 51:1-19",
+   "text": {
+    "path": "stories/sonship__sw__daudi-na-bathsheba.json",
+    "sha256": "b341ec8a6a202c59c4f83246188209e8fb2b42e12ed22dfc9db62e8d04c2d811",
+    "bytes": 3593
+   },
+   "image": {
+    "path": "images/a3d82d222cab6676.webp",
+    "sha256": "a3d82d222cab6676793bfef719eae81938efe3b62efba79459218b68ecd044fd",
+    "bytes": 15518
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/sauli-na-waamaleki": {
+   "id": "sonship/sw/sauli-na-waamaleki",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 13,
+   "crossKey": "pos_13",
+   "title": "Sauli na Waamaleki",
+   "scriptureRef": "1 Samweli 15:1-35; (Usuli: 1 Samweli 8:1-22; 13:1-14)",
+   "text": {
+    "path": "stories/sonship__sw__sauli-na-waamaleki.json",
+    "sha256": "389e3c837f7b1ead43ec272a2c48212aa7a39a78bc1ed1dbe646760a8f09ef59",
+    "bytes": 2867
+   },
+   "image": {
+    "path": "images/568ce208537df45a.webp",
+    "sha256": "568ce208537df45ace34504a2c78e81f77cbed4d019ece1babf3c7f6788b2424",
+    "bytes": 22496
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/petro-amkana-yesu": {
+   "id": "sonship/sw/petro-amkana-yesu",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 14,
+   "crossKey": "pos_14",
+   "title": "Petro Amkana Yesu",
+   "scriptureRef": "Mathayo 26:31-55, 69-75, Luka 22:61",
+   "text": {
+    "path": "stories/sonship__sw__petro-amkana-yesu.json",
+    "sha256": "98e6f110cb684684597565afe6d82c475b92025cfb560a8c9ee177c479875904",
+    "bytes": 3293
+   },
+   "image": {
+    "path": "images/bec0dbc0a3bf61c7.webp",
+    "sha256": "bec0dbc0a3bf61c7a063b41e0504c203552266ec2b7e24e14b5c8ab4f30a52a8",
+    "bytes": 17902
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/shadraka-meshaki-na-abednego-na-tanuru-ya-moto": {
+   "id": "sonship/sw/shadraka-meshaki-na-abednego-na-tanuru-ya-moto",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 15,
+   "crossKey": "pos_15",
+   "title": "Shadraka, Meshaki, na Abednego na Tanuru ya Moto",
+   "scriptureRef": "Danieli 3:1-30",
+   "text": {
+    "path": "stories/sonship__sw__shadraka-meshaki-na-abednego-na-tanuru-ya-moto.json",
+    "sha256": "2135e73759ee32ba46fb8337ccf10d7b71650bb68ea4a3a92d847a120de087fe",
+    "bytes": 4926
+   },
+   "image": {
+    "path": "images/8f77867cac3930a1.webp",
+    "sha256": "8f77867cac3930a15811d817e9475a330cb43087a9462cbeb6fd49fa513cb0ce",
+    "bytes": 19290
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/yakobo-labani-raheli-na-lea": {
+   "id": "sonship/sw/yakobo-labani-raheli-na-lea",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 16,
+   "crossKey": "pos_16",
+   "title": "Yakobo, Labani, Raheli, na Lea",
+   "scriptureRef": "Mwanzo 29:15-35",
+   "text": {
+    "path": "stories/sonship__sw__yakobo-labani-raheli-na-lea.json",
+    "sha256": "0c7505b0343a385c333d536b58a2b49fe331927b2a064042b34051fda15db2c5",
+    "bytes": 3741
+   },
+   "image": {
+    "path": "images/c098160536593510.webp",
+    "sha256": "c0981605365935105f2714a334fef7f4f789782f63f238859a7f1a0409612803",
+    "bytes": 13040
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/naamani-na-bartimayo": {
+   "id": "sonship/sw/naamani-na-bartimayo",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 17,
+   "crossKey": "pos_17",
+   "title": "Naamani na Bartimayo",
+   "scriptureRef": "2 Wafalme 5:1-15; Marko 10:46-52 na Luka 18:35-43",
+   "text": {
+    "path": "stories/sonship__sw__naamani-na-bartimayo.json",
+    "sha256": "95a59bbdfafb8db39f5a577c3681c95c69f22bbc053ff509a294eb794ccf795f",
+    "bytes": 3583
+   },
+   "image": {
+    "path": "images/ead43767b2a13fa5.webp",
+    "sha256": "ead43767b2a13fa5bfef54cb26a2b38a239db558e5e174bfac9988f87ea42163",
+    "bytes": 22348
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/paulo-anamkemea-petro": {
+   "id": "sonship/sw/paulo-anamkemea-petro",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 18,
+   "crossKey": "pos_18",
+   "title": "Paulo Anamkemea Petro",
+   "scriptureRef": "Wagalatia 2:11-15, 20, 21; (Pia tazama Matendo 10:1-11:18; 15:1,2,5,7-11; 1 Petro 1:13-2:10",
+   "text": {
+    "path": "stories/sonship__sw__paulo-anamkemea-petro.json",
+    "sha256": "e78aa46e9bb36bcfaca2c26e5b2bd0f86d0f4e9eaaa6cfe3f4ebde79ea2ed26d",
+    "bytes": 3876
+   },
+   "image": {
+    "path": "images/f92c470a4e0c921c.webp",
+    "sha256": "f92c470a4e0c921c24ed2fe9fd2e06fb79a40e20fda4f30f5e88d51959255276",
+    "bytes": 22064
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/mfano-wa-mtumishi-asiyesamehe": {
+   "id": "sonship/sw/mfano-wa-mtumishi-asiyesamehe",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 19,
+   "crossKey": "pos_19",
+   "title": "Mfano wa Mtumishi Asiyesamehe",
+   "scriptureRef": "Mathayo 18:21-35",
+   "text": {
+    "path": "stories/sonship__sw__mfano-wa-mtumishi-asiyesamehe.json",
+    "sha256": "97f420db3cbfe6a57437609ade83ae21fb76d8b8bba745b7ac811d059afb7c02",
+    "bytes": 2325
+   },
+   "image": {
+    "path": "images/f84d8831bf84b4f1.webp",
+    "sha256": "f84d8831bf84b4f104b6511841028389fbadf6cebed79d642d3e3f380d08541f",
+    "bytes": 19982
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/yusufu-anawasamehe-ndugu-zake": {
+   "id": "sonship/sw/yusufu-anawasamehe-ndugu-zake",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 20,
+   "crossKey": "pos_20",
+   "title": "Yusufu Anawasamehe Ndugu Zake",
+   "scriptureRef": "Mwanzo 37, 39-50",
+   "text": {
+    "path": "stories/sonship__sw__yusufu-anawasamehe-ndugu-zake.json",
+    "sha256": "6ebea1a720cb368185f80aa0c3bb9513b5a635dd3fb6db7ceb8b293dc762e0f3",
+    "bytes": 3788
+   },
+   "image": {
+    "path": "images/1b63bad3bb4066ba.webp",
+    "sha256": "1b63bad3bb4066baea56d8905ab3be6fc8e1829f69216c86e8a66a9fb556ee2c",
+    "bytes": 18734
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/hasira-ya-yona-na-huruma-ya-mungu-yesu-na-mwanamke-mwenye-dhambi": {
+   "id": "sonship/sw/hasira-ya-yona-na-huruma-ya-mungu-yesu-na-mwanamke-mwenye-dhambi",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 21,
+   "crossKey": "pos_21",
+   "title": "Hasira ya Yona na Huruma ya Mungu / Yesu na Mwanamke Mwenye Dhambi",
+   "scriptureRef": "Yona 4:1-11 / Luka 7:36-50; (Usuli: Yona 1:1-3:10)",
+   "text": {
+    "path": "stories/sonship__sw__hasira-ya-yona-na-huruma-ya-mungu-yesu-na-mwanamke-mwenye-dhambi.json",
+    "sha256": "2701cd2c1abf4e68417d7a818f9bd79e2b0d643891b8d88bd56fd611e576e65f",
+    "bytes": 5348
+   },
+   "image": {
+    "path": "images/235044baef733e21.webp",
+    "sha256": "235044baef733e21a482fc823aea80f4104e608bf99ddc4d79e269f8fdd1ef54",
+    "bytes": 18008
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/yesu-anawaosha-miguu-wanafunzi-wake": {
+   "id": "sonship/sw/yesu-anawaosha-miguu-wanafunzi-wake",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 22,
+   "crossKey": "pos_22",
+   "title": "Yesu Anawaosha Miguu Wanafunzi Wake",
+   "scriptureRef": "Luka 22:24-27; Yohana 13:1-9, 12-17",
+   "text": {
+    "path": "stories/sonship__sw__yesu-anawaosha-miguu-wanafunzi-wake.json",
+    "sha256": "56c9fe8040791e8836ae4178514d999f2709ec676f6762ecbe76572d36c237a2",
+    "bytes": 3054
+   },
+   "image": {
+    "path": "images/f077c5a5acb79341.webp",
+    "sha256": "f077c5a5acb79341700115942709da72302147a67b64f5ecea1482e50cbcc13b",
+    "bytes": 23686
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/rehoboamu-na-ufalme-uliogawanyika": {
+   "id": "sonship/sw/rehoboamu-na-ufalme-uliogawanyika",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 23,
+   "crossKey": "pos_23",
+   "title": "Rehoboamu na Ufalme Uliogawanyika",
+   "scriptureRef": "1 Wafalme 11:1-4, 9-13; 12:1-19; (kama vile 2 Mambo ya Nyakati 10:1-19)",
+   "text": {
+    "path": "stories/sonship__sw__rehoboamu-na-ufalme-uliogawanyika.json",
+    "sha256": "bbc6c49f8d81b431fe1218ce791527419dd6fe6a34e191cc6aba9df50ad0814c",
+    "bytes": 3092
+   },
+   "image": {
+    "path": "images/2b27a4561139d375.webp",
+    "sha256": "2b27a4561139d375cce0511f90356df0e1186b4bd8122297ee208f3a87a0eea5",
+    "bytes": 16466
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/paulo-filemoni-na-onesimo": {
+   "id": "sonship/sw/paulo-filemoni-na-onesimo",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 24,
+   "crossKey": "pos_24",
+   "title": "Paulo, Filemoni, na Onesimo",
+   "scriptureRef": "",
+   "text": {
+    "path": "stories/sonship__sw__paulo-filemoni-na-onesimo.json",
+    "sha256": "dcab3d81e9ddf398b08dd027aefc3c388b2cf200ba6bc7fdc49bab5ed1438dfc",
+    "bytes": 3387
+   },
+   "image": {
+    "path": "images/86b32ba87f2d5869.webp",
+    "sha256": "86b32ba87f2d58698c13a83bb223f96446096cf845df865a4294512d15b561a4",
+    "bytes": 9966
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/yesu-anawafundisha-wanafunzi-wake-kuomba-na-kuomba-roho-mtakatifu": {
+   "id": "sonship/sw/yesu-anawafundisha-wanafunzi-wake-kuomba-na-kuomba-roho-mtakatifu",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 25,
+   "crossKey": "pos_25",
+   "title": "Yesu Anawafundisha Wanafunzi Wake Kuomba na Kuomba Roho Mtakatifu",
+   "scriptureRef": "Luka 11:1-13; (tazama Mathayo 6:5-15, 7:7-11)",
+   "text": {
+    "path": "stories/sonship__sw__yesu-anawafundisha-wanafunzi-wake-kuomba-na-kuomba-roho-mtakatifu.json",
+    "sha256": "792d061db448223003d96b3a5e22627fb7fa12a8143ba72fd902ef86e0995538",
+    "bytes": 2354
+   },
+   "image": {
+    "path": "images/ce2ccf2f9d6af022.webp",
+    "sha256": "ce2ccf2f9d6af0220ea414b9c865727ccff37c3f49d9d610102adf534f758a36",
+    "bytes": 36982
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/ezekieli-na-bonde-la-mifupa-kavu": {
+   "id": "sonship/sw/ezekieli-na-bonde-la-mifupa-kavu",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 26,
+   "crossKey": "pos_26",
+   "title": "Ezekieli na Bonde la Mifupa Kavu",
+   "scriptureRef": "Ezekieli 37:1-14",
+   "text": {
+    "path": "stories/sonship__sw__ezekieli-na-bonde-la-mifupa-kavu.json",
+    "sha256": "1deb1ae72091b955af1b58401c5f652e1c4a8e122394c7dd8d5a315350b5d1fa",
+    "bytes": 4638
+   },
+   "image": {
+    "path": "images/0504beba7518e4c0.webp",
+    "sha256": "0504beba7518e4c0c15f7b433e0b0b138729bf1030df84669bd63b168a0d39b7",
+    "bytes": 32362
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/yesu-anasoma-isaya-katika-sinagogi": {
+   "id": "sonship/sw/yesu-anasoma-isaya-katika-sinagogi",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 27,
+   "crossKey": "pos_27",
+   "title": "Yesu Anasoma Isaya Katika Sinagogi",
+   "scriptureRef": "Luka 4:14-30(Pia Isaya 61:1,2a; 58:6)",
+   "text": {
+    "path": "stories/sonship__sw__yesu-anasoma-isaya-katika-sinagogi.json",
+    "sha256": "a182b461b1a26cae1abaffbe4c8f6785f5c0cd1b58baf6960a09a0ce949717fb",
+    "bytes": 2800
+   },
+   "image": {
+    "path": "images/686bf72c80663055.webp",
+    "sha256": "686bf72c80663055578362d02b8eba95ba54d2a38f39a7a3891791d761cebd17",
+    "bytes": 20578
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/mfano-wa-mina-kumi": {
+   "id": "sonship/sw/mfano-wa-mina-kumi",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 28,
+   "crossKey": "pos_28",
+   "title": "Mfano wa Mina Kumi",
+   "scriptureRef": "Luka 19:11-27",
+   "text": {
+    "path": "stories/sonship__sw__mfano-wa-mina-kumi.json",
+    "sha256": "292022ec9e44cab6338235a8e72e49a7d4df4645195de3c55ac5fb403b4cf4a7",
+    "bytes": 3361
+   },
+   "image": {
+    "path": "images/798b757136e8dbc3.webp",
+    "sha256": "798b757136e8dbc3c590b39d2f14f589fab5158a557634931b37ffbd0f7134e6",
+    "bytes": 13944
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/mfano-wa-mbegu-ya-haradali-na-chachu": {
+   "id": "sonship/sw/mfano-wa-mbegu-ya-haradali-na-chachu",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 29,
+   "crossKey": "pos_29",
+   "title": "Mfano wa Mbegu ya Haradali na Chachu",
+   "scriptureRef": "Mathayo 13:31-33 (tazama Marko 4:30-33; Luka 13:19)",
+   "text": {
+    "path": "stories/sonship__sw__mfano-wa-mbegu-ya-haradali-na-chachu.json",
+    "sha256": "3222c3c2df8608a9e4c75b9baf0d7009f24bc3fbb6c19653fc5a895e8c26a4d6",
+    "bytes": 1395
+   },
+   "image": {
+    "path": "images/a6ecf3b5684d241e.webp",
+    "sha256": "a6ecf3b5684d241eb0eb7f5811714573330d2a995f038d2182011ddcd69f12a4",
+    "bytes": 9950
+   },
+   "audio": null,
+   "doc": null
+  },
+  "sonship/sw/wafanyakazi-katika-shamba-la-mizabibu": {
+   "id": "sonship/sw/wafanyakazi-katika-shamba-la-mizabibu",
+   "collection": "sonship",
+   "lang": "sw",
+   "order": 30,
+   "crossKey": "pos_30",
+   "title": "Wafanyakazi Katika Shamba la Mizabibu",
+   "scriptureRef": "Mathayo 20:1-16",
+   "text": {
+    "path": "stories/sonship__sw__wafanyakazi-katika-shamba-la-mizabibu.json",
+    "sha256": "f292a985fba74bb4e2cf64b65c2af563a13629b671162a724e296f108676eaa7",
+    "bytes": 3823
+   },
+   "image": null,
+   "audio": null,
+   "doc": null
   },
   "acts/en/the-ascension-of-jesus-christ": {
    "id": "acts/en/the-ascension-of-jesus-christ",
@@ -6144,5 +6979,67 @@
    }
   }
  },
- "fingerprint": "e8b4ca47e4a19185de36917b0025dea28393a81f8b14b614f09966d4b4582055"
+ "videos": {
+  "cbs-and-sbs-overview": {
+   "id": "cbs-and-sbs-overview",
+   "title": "CBS and SBS Overview",
+   "order": 1,
+   "durationSec": 354,
+   "poster": {
+    "path": "images/482bccc703f906db.webp",
+    "sha256": "482bccc703f906db2125fe6c46fffa663ae8c76661d410c8e599cc71f9a6dd62",
+    "bytes": 46386
+   },
+   "file": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/video/cbs-and-sbs-overview.mp4",
+    "bytes": 43788616
+   }
+  },
+  "chronological-bible-storying-2025": {
+   "id": "chronological-bible-storying-2025",
+   "title": "Chronological Bible Storying 2025",
+   "order": 2,
+   "durationSec": 365,
+   "poster": {
+    "path": "images/67345a50664192dc.webp",
+    "sha256": "67345a50664192dcd4dce6bbf372a89979483174a198a3d2d1101ce339c77ea3",
+    "bytes": 17520
+   },
+   "file": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/video/chronological-bible-storying-2025.mp4",
+    "bytes": 17603381
+   }
+  },
+  "storying-shorter-version": {
+   "id": "storying-shorter-version",
+   "title": "Storying — Shorter Version",
+   "order": 3,
+   "durationSec": 281,
+   "poster": {
+    "path": "images/aa8c0647499c6f23.webp",
+    "sha256": "aa8c0647499c6f23b0a2b7b96366d9ebe7ebb38a0c38c5bfb69d64a28fc16d9e",
+    "bytes": 77992
+   },
+   "file": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/video/storying-shorter-version.mp4",
+    "bytes": 40930962
+   }
+  },
+  "impact-of-cbs-and-sonship": {
+   "id": "impact-of-cbs-and-sonship",
+   "title": "The Impact of CBS and Sonship",
+   "order": 4,
+   "durationSec": 325,
+   "poster": {
+    "path": "images/cf88f006c61cb2b5.webp",
+    "sha256": "cf88f006c61cb2b51ad803e12068b7d99f76e04a56607e4f70f16acef7a06dd3",
+    "bytes": 29112
+   },
+   "file": {
+    "url": "https://www.biblestoryingkenya.com/assets/files/video/impact-of-cbs-and-sonship.mp4",
+    "bytes": 44777230
+   }
+  }
+ },
+ "fingerprint": "a041ee2245ae76985341e1494a54a87913e457ce4c5a595a07171b78167694ab"
 }
