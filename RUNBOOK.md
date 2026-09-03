@@ -123,6 +123,26 @@ the daily crawler cannot pick it up and the app never receives it. That is the
 safe way to stage content for the client to review — nothing reaches a phone in
 Kenya until Ben ticks Published himself.
 
+### Uploading documents: the 2 MB wall
+
+PHP on the host caps uploads at **2 MB**, so the file manager rejects anything
+larger — the CMS's own `upload_maxsize` is already 10 MB and is not the limit.
+Larger files already on the server were placed some other way (FTP).
+
+- Booklet PDFs run 3.5–3.8 MB. Recompress with
+  `gs -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress` — roughly halves them, keeps
+  images at 300 dpi, page counts and text unchanged (verified: mean pixel
+  difference 0.007/255 on a rendered page).
+- **The three live booklets are therefore recompressed, not the masters.** The
+  originals are in `documents/`. Swap them back if the limit is ever raised.
+- The file manager silently **lowercases** uploaded filenames.
+- The full-booklet link is the `full_story_pdf` TV on the *index* page
+  (Sonship EN 195, Sonship SW 208, CBS SW 22) — not on a story page.
+- A brief for the client's web developer asking for the PHP change:
+  https://claude.ai/code/artifact/1dced9f1-65c1-4afc-bc1f-f7318c6c6334
+
+- _Last verified: 2026-09-04_
+
 ### Gotchas that cost real time
 
 - A save posted with the action in BOTH the query string and the form body is
