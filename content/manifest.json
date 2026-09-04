@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
- "contentVersion": 4,
- "generatedAt": "2026-09-03T19:43:17.543Z",
+ "contentVersion": 5,
+ "generatedAt": "2026-09-04T08:03:56.532Z",
  "collections": [
   {
    "id": "cbs",
@@ -523,8 +523,8 @@
    "scriptureRef": "Genesis 17, 21 - 22",
    "text": {
     "path": "stories/cbs__en__abraham-birth-and-sacrifice-of-isaac.json",
-    "sha256": "4eaec9be9a693d8d0cd24d798b4b499dd59f0d37cfe4fc1fbedd73319826bd7d",
-    "bytes": 3240
+    "sha256": "0d69d09b6ac95af3018df194dcd936d0930c85c4a84f9dd360121fc4a470c546",
+    "bytes": 3049
    },
    "image": {
     "path": "images/df2569ba9179827b.webp",
@@ -547,8 +547,8 @@
    "scriptureRef": "Genesis 24 - 33",
    "text": {
     "path": "stories/cbs__en__isaac-jacob-and-esau.json",
-    "sha256": "015da23ef567370e2d6b556c3c14e38782723153b3baf0d8217fbdc48b35e727",
-    "bytes": 3659
+    "sha256": "74cd078fe65171ed0eb9aa29b9577b0be3cbb65fdbb50c50ddbabec36e9a9c6d",
+    "bytes": 3663
    },
    "image": {
     "path": "images/202b3fcd88973f7e.webp",
@@ -568,8 +568,8 @@
    "scriptureRef": "Genesis 28:10-22",
    "text": {
     "path": "stories/cbs__en__jacobs-dream.json",
-    "sha256": "f162901fd03df20664dae75bdda0aba1b752aaebc241b43dc4963bbe9e607691",
-    "bytes": 2401
+    "sha256": "103d5b4189db3b6b964fd06765ccdd427c8b4f0ca9b68e6eff9a5a6febf825d4",
+    "bytes": 2402
    },
    "image": {
     "path": "images/6f0e095eaed8d254.webp",
@@ -596,8 +596,8 @@
    "scriptureRef": "Genesis 29:15 - 35",
    "text": {
     "path": "stories/cbs__en__jacob-laban-rachael-and-leah.json",
-    "sha256": "f6c1a3f95d155c33897f6e749364323bc19afadbd562fd58cdbaffe8f267bb19",
-    "bytes": 2831
+    "sha256": "b0781feacbb1652be7f8dba8f0da04b2444a68f3cc0bf3c16bc08205d089b100",
+    "bytes": 2829
    },
    "image": {
     "path": "images/836975fb7282ff9b.webp",
@@ -620,8 +620,8 @@
    "scriptureRef": "Genesis 32,33",
    "text": {
     "path": "stories/cbs__en__jacob-wrestles-with-god.json",
-    "sha256": "8e2fd5631ac8994a231d52fbd9ea4b5aef97df1d3f358e526cf52c175b86cc44",
-    "bytes": 2791
+    "sha256": "92fbad73db09c87b72fb39c193299da94cb3f1a75c7b4dd8f856dac35387e400",
+    "bytes": 2789
    },
    "image": {
     "path": "images/c1a293701fe6a4d2.webp",
@@ -648,8 +648,8 @@
    "scriptureRef": "Genesis 37, 39 - 50",
    "text": {
     "path": "stories/cbs__en__joseph.json",
-    "sha256": "6ac00ac6303ba5a659baf0169b75c905be9fabb3e9c93abb61cca715296dcf80",
-    "bytes": 3848
+    "sha256": "9f5decb62125e315f7c360ad2fe921e6f0e15b879d8733067c279dbebbf0fbe5",
+    "bytes": 3846
    },
    "image": {
     "path": "images/c27d2e4939933fc4.webp",
@@ -700,8 +700,8 @@
    "scriptureRef": "Exodus 3 & 4",
    "text": {
     "path": "stories/cbs__en__god-calls-moses-at-the-burning-bush.json",
-    "sha256": "ba1e4e5a5bc2774de20afdf60e26bb8cc2710ad8cadd0b2a13523002f33e4296",
-    "bytes": 3104
+    "sha256": "6547b7953e26cfe36d357fb83752915933c3ce49f5b52cb5705a76f0eab2f192",
+    "bytes": 3102
    },
    "image": {
     "path": "images/d93d3f2e63a060be.webp",
@@ -728,8 +728,8 @@
    "scriptureRef": "Exodus 7 - 11",
    "text": {
     "path": "stories/cbs__en__the-first-nine-plagues-on-egypt.json",
-    "sha256": "6ddb6677df12721e069aec086d15ca1102cce651ccf4b82a18a3f10c1597f5a5",
-    "bytes": 3089
+    "sha256": "d639fc1c0ee371b40f29dcc0ece29af4dcac5500728d78a46818f9c4b3405c37",
+    "bytes": 3087
    },
    "image": {
     "path": "images/27293d09fabbea07.webp",
@@ -756,8 +756,8 @@
    "scriptureRef": "Exodus 12",
    "text": {
     "path": "stories/cbs__en__the-passover.json",
-    "sha256": "ab02ebe9a3fa484c65f1e18fc56909762faf3cfaa0cc9b868875a304a3cb181d",
-    "bytes": 2524
+    "sha256": "cfb85d0bc9934b11c862e1ad01a085b43d8df469a8bc23cef6c77fc11e6a98ee",
+    "bytes": 2520
    },
    "image": {
     "path": "images/c53694b5c8f30c27.webp",
@@ -812,8 +812,8 @@
    "scriptureRef": "Exodus 19, 20, 24, 33 and 34",
    "text": {
     "path": "stories/cbs__en__mt-sinai-ten-commandments.json",
-    "sha256": "34280ec956a0d0c56d8b7b3d5229777ea40ad7d34b78db8d18c305e8b6d3a840",
-    "bytes": 2713
+    "sha256": "23e8e8551857161ae416ae294f59e2c121f285ea07d91d26b6ec3568a9ed0b54",
+    "bytes": 2715
    },
    "image": {
     "path": "images/f71f907800b8ba5c.webp",
@@ -836,8 +836,8 @@
    "scriptureRef": "Exodus 32",
    "text": {
     "path": "stories/cbs__en__the-golden-calf.json",
-    "sha256": "ad2e07f801e9d213c042c9989a1da90e23ddc45447d51203668480cd8c553c3c",
-    "bytes": 2553
+    "sha256": "b9fc99144b6140effdd4327794e4b346d71d03b91594de2389acaf1419824469",
+    "bytes": 2548
    },
    "image": {
     "path": "images/3b66e16ccee7c687.webp",
@@ -860,8 +860,8 @@
    "scriptureRef": "Exodus 25 - 29, 34 - 40; Leviticus 1 - 10, 16, 17",
    "text": {
     "path": "stories/cbs__en__the-tabernacle-and-day-of-atonement.json",
-    "sha256": "6c79e1fe8238de79c122380f2e7cb46e6635df745057380e0173fc4802a93713",
-    "bytes": 4770
+    "sha256": "ff2bba17ea9b37008623be2f740b81b97623fab2bc336a6fc280f90b22475df2",
+    "bytes": 4768
    },
    "image": {
     "path": "images/62d325fa1a7292d3.webp",
@@ -884,8 +884,8 @@
    "scriptureRef": "Numbers 13-21, Deuteronomy 4:15 – 31; 6: 1ff; 7:1-16; 8:10-20; 9:4-6; 11:1ff; 34:1-5; Joshua 1:1 – 7:9",
    "text": {
     "path": "stories/cbs__en__the-spies-the-wilderness-bronze-serpent-the-promise-land.json",
-    "sha256": "a689769d79515fb9636dc725db925d49d2ec0550da4ba1743a8bc487a03551ae",
-    "bytes": 3558
+    "sha256": "b19e148c7f1f1b09e75bc94b15ef892797bcfc109439cbd6307caf8b8954cd02",
+    "bytes": 3556
    },
    "image": {
     "path": "images/92a0b9180b220462.webp",
@@ -7041,5 +7041,5 @@
    }
   }
  },
- "fingerprint": "896887eb6aa4aa40a9fd6355c2c112182816b238a294df0fece80b112765fcfb"
+ "fingerprint": "9a091b935216e7e18e7fe4ae87c00af25569219f479557f2a42a7ff68754e8d5"
 }
