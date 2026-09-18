@@ -1,41 +1,44 @@
 # Resume — Bible Storying Kenya app
 
-**Paused:** 2026-09-04 · **Reason:** Ben's feedback round; next is Contact Us as an Obed Forms web form
-**Phase/Task:** Phase 10 — Ben's feedback + app polish
-**Tree:** clean · **Last commit:** 0224f5a app: shorten the iOS home screen name to "CBS Kenya"
+**Paused:** 2026-09-17 · **Reason:** Phase 10 items all built; waiting on Ben to publish the
+Contact Us page · **Phase/Task:** Phase 10 done → Phase 9 (publishing) still blocked on the
+client's developer accounts
+**Tree:** clean after this session's commits · see `git log` for the four commits of 2026-09-17
 
 ## State
-- **The iOS build works again.** It died in RN's prebuilt-framework swap; recovery
-  is in RUNBOOK §13. App runs on the iPhone 17 simulator, Metro attached.
-- **Ben's booklet complaints (items 1 & 3) are fixed and live** — Sonship EN/SW and
-  CBS SW now serve the 2026 files. They had to be recompressed to clear a 2 MB PHP
-  cap, so the live files are not the masters (RUNBOOK §6; the brief for his
-  developer: https://claude.ai/code/artifact/1dced9f1-65c1-4afc-bc1f-f7318c6c6334).
-- **App polish shipped:** branded launch stage (2s icon → 5s wordmark), the real
-  ministry mark on every icon, "CBS Kenya" home-screen label, back button named,
-  static pages now update over the air.
-- **Ben's item 2 (numbering on the pictures) is parked** — target undecided.
-- Untested even on the simulator: mini-player docking above the tab bar, and video
-  playback/download.
+- **Contact Us is an Obed Forms form.** `cbs-kenya-contact` on forms.duski.org (published,
+  v2, Turnstile on), emails hello@biblestoryingkenya.com. CMS resource 6 holds the intro text
+  (content) + the iframe (the `form` TV, right column); it is saved **unpublished** and
+  preview-verified. **Ben ticks Published** — until then `/contact-us.html` 404s for everyone,
+  including the About page's "Contact Us" link in the app. RUNBOOK §6 "Contact form".
+- **App (verified on the iPhone 17 Pro simulator):** More → Contact Us opens the form in an
+  in-app browser sheet; Settings → Appearance (Automatic/Light/Dark) switches instantly and
+  survives relaunch; collection screen shows "Full booklet (PDF, n MB)"; About links are
+  tappable. `db.ts` now has `ensureColumn()` — the first migration path.
+- **Pipeline:** publishes `booklet` per collection language and `links` per static page.
+  Content v6 built locally and committed; CI republishes nightly (or `gh workflow run
+  "Update content bundle"` after pushing).
+- **Not done:** no test submission was sent through the form (it would land in Ben's inbox).
+  Ben's item 2 (numbering on the pictures) is still parked.
 
 ## Next action
-1. **Contact Us page → Obed Forms web form**, so no email address is posted on the
-   page. Ask Jamison what Obed Forms is and where it lives before designing this —
-   it is not used or documented anywhere in this repo. The page is CMS resource
-   **Contact Us (6)**, linked from the footer and the About page.
-2. Full-booklet download in the app (approved, not started): pipeline reads the
-   index page's `full_story_pdf` TV → manifest → collection screen.
-3. About page "View More" links: `pipeline/src/parse.ts` `parseStaticPage` keeps
-   paragraph text and drops anchors, so three lines dangle in the app.
-4. Dark mode in Settings — the app follows the system with no override
-   (`app/src/hooks/use-color-scheme.ts`).
+1. Push, then confirm the live manifest reaches v6 (RUNBOOK §13 has the curl).
+2. Ask Ben to tick Published on Contact Us (6) and confirm a real message arrives at hello@.
+3. Optional polish: for dark-mode visitors the embedded form shows a dark strip beside the
+   iframe (the form page's `color-scheme` follows the browser even with the theme pinned to
+   light) — an Obed Forms fix, not a BSK one.
+4. Phase 9 once the client opens developer accounts.
 
 ## Gotchas
-- **CMS uploads die over 2 MB** (PHP, not the CMS setting). Recompress per §6.
-- The full-booklet link is a TV on the *index* resource (Sonship EN 195, SW 208,
-  CBS SW 22), not a story page — the crawler has never captured it.
-- Two sessions committing in one repo sweep up each other's unstaged files; §13's
-  write-up landed inside another session's commit that way.
-- `app/src/lib/db.ts` has **no migration path** (all `CREATE TABLE IF NOT EXISTS`).
-- Keep Finder out of `app/ios/Pods` during a build — a `.DS_Store` written mid-delete
-  is what broke the iOS build today.
+- **This Mac's checkout had no `node_modules`** in `pipeline/` or `app/` — that was the whole
+  "local npm run build failure". `npm ci` in each.
+- **RUNBOOK §13's React.xcframework recovery is missing** — RESUME and PROGRESS point at it,
+  but the section was never (or no longer) in the file. The build worked first time this
+  session via plain `npx expo run:ios --device <udid>` (prebuild + pods, ~10 min), so it may
+  not be needed; if it breaks again, write the recovery up properly.
+- Two simulators were booted (17 Pro + 17 Pro Max) plus an iPad; screen taps via cliclick go
+  to whichever window is frontmost — raise the right one first.
+- Deep links (`biblestoryingkenya://…`) prompt "Open in CBS Kenya?" every time on the simulator.
+- CMS: both the content field and the `form` TV are TinyMCE instances; set values through
+  `tinymce.get(id).setContent()`, never the hidden textarea.
+- The forms.duski.org API key minted for this errand is revoked. Mint a new one for the next.
