@@ -1,11 +1,12 @@
 // Collection screen: 2-column grid of story cards in the chosen language,
-// with in-place language switching and a "download all audio" action.
+// with in-place language switching, a "download all audio" action, and the
+// whole collection as one printable booklet when the website offers one.
 
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { DownloadIcon } from '@/components/icons';
+import { DocIcon, DownloadIcon } from '@/components/icons';
 import { LanguageChips } from '@/components/language-chips';
 import { StoryCard } from '@/components/story-card';
 import { radius } from '@/constants/theme';
@@ -16,6 +17,7 @@ import {
 } from '@/lib/downloads';
 import { formatBytes } from '@/lib/format';
 import { useLanguage } from '@/lib/language-context';
+import { openInAppBrowser } from '@/lib/open-link';
 import type { CollectionId, LangCode } from '@/lib/types';
 
 export default function CollectionScreen() {
@@ -46,6 +48,10 @@ export default function CollectionScreen() {
   );
 
   const title = collections.find((c) => c.id === collectionId)?.title ?? '';
+  // The printable booklet is per language; it stays on the website (like the
+  // per-story handouts) and opens in an in-app browser sheet.
+  const booklet =
+    collections.find((c) => c.id === collectionId && c.lang === effectiveLang)?.booklet ?? null;
   useEffect(() => {
     navigation.setOptions({ title });
   }, [navigation, title]);
@@ -101,6 +107,22 @@ export default function CollectionScreen() {
                   : undownloaded.length === 0
                     ? 'All audio downloaded'
                     : `Download all audio (${formatBytes(undownloadedBytes)})`}
+              </Text>
+            </Pressable>
+          )}
+          {booklet && (
+            <Pressable
+              onPress={() => void openInAppBrowser(booklet.url)}
+              accessibilityRole="button"
+              accessibilityLabel="Open the full booklet"
+              style={({ pressed }) => [
+                styles.downloadAll,
+                { backgroundColor: theme.surfaceAlt, opacity: pressed ? 0.7 : 1 },
+              ]}
+            >
+              <DocIcon size={18} color={theme.text} />
+              <Text style={[styles.downloadAllText, { color: theme.text }]}>
+                Full booklet (PDF, {formatBytes(booklet.bytes)})
               </Text>
             </Pressable>
           )}

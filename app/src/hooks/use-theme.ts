@@ -1,9 +1,15 @@
-// Resolve the active semantic color set from the system light/dark setting.
+// Resolve the active semantic color set. The scheme comes from ThemeProvider
+// (the phone's setting, or the override chosen in Settings), so every screen
+// re-renders together when it changes.
 
-import { useColorScheme } from 'react-native';
-import { Colors, type ThemeColors } from '@/constants/theme';
+import type { ThemeColors } from '@/constants/theme';
+import { useThemeContext, type ResolvedScheme } from '@/lib/theme-context';
 
 export function useTheme(): ThemeColors {
-  const scheme = useColorScheme();
-  return Colors[scheme === 'dark' ? 'dark' : 'light'];
+  return useThemeContext().colors;
+}
+
+/** 'light' | 'dark' as currently shown — for the status bar and similar. */
+export function useResolvedScheme(): ResolvedScheme {
+  return useThemeContext().scheme;
 }

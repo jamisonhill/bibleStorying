@@ -5,10 +5,26 @@
 import { openDatabaseSync, type SQLiteDatabase } from 'expo-sqlite';
 import seed from '../content/seed.json';
 import type {
-  CollectionId, CollectionLang, InfoPage, LangCode, Manifest, Story, StoryBody, Video,
+  CollectionId, CollectionLang, InfoPage, LangCode, Manifest, PageLink, RemoteFile, Story,
+  StoryBody, Video,
 } from './types';
 
 export const db: SQLiteDatabase = openDatabaseSync('content.db');
+
+/**
+ * Add a column to an existing table when it is missing.
+ *
+ * CREATE TABLE IF NOT EXISTS only shapes a brand-new database; a phone that
+ * already has the app keeps its old table layout forever. Every column added
+ * after the first release therefore needs one of these so that an upgrade
+ * does not crash on the first INSERT that names it. Existing rows get the
+ * column's default (NULL unless the DDL says otherwise).
+ */
+function ensureColumn(table: string, column: string, ddl: string): void {
+  const columns = db.getAllSync<{ name: string }>(`PRAGMA table_info(${table})`);
+  if (columns.some((c) => c.name === column)) return;
+  db.execSync(`ALTER TABLE ${table} ADD COLUMN ${column} ${ddl}`);
+}
 
 /** Create tables and import the bundled seed once. Called before first render. */
 export function initDatabase(): void {
@@ -39,12 +55,15 @@ export function initDatabase(): void {
       lang TEXT NOT NULL,
       title TEXT NOT NULL,
       storyIds TEXT NOT NULL,
+      bookletUrl TEXT,
+      bookletBytes INTEGER,
       PRIMARY KEY(id, lang)
     );
     CREATE TABLE IF NOT EXISTS pages(
       id TEXT PRIMARY KEY,
       title TEXT NOT NULL,
-      paragraphs TEXT NOT NULL
+      paragraphs TEXT NOT NULL,
+      links TEXT NOT NULL DEFAULT '[]'
     );
     CREATE TABLE IF NOT EXISTS audio_downloads(
       storyId TEXT PRIMARY KEY,
@@ -77,6 +96,12 @@ export function initDatabase(): void {
     );
   `);
 
+  // Columns added after the first release. No-ops on a fresh database, where
+  // the CREATE TABLE statements above already include them.
+  ensureColumn('collections', 'bookletUrl', 'TEXT');
+  ensureColumn('collections', 'bookletBytes', 'INTEGER');
+  ensureColumn('pages', 'links', "TEXT NOT NULL DEFAULT '[]'");
+
   // Seed only when the database is empty (fresh install). A reinstalled app
   // with a newer bundled seed than the stored content also re-imports.
   const stored = getMetaNumber('contentVersion');
@@ -97,12 +122,7 @@ function importSeed(): void {
       upsertPage(page, manifest.pages[page.id].text.sha256);
     }
     for (const col of manifest.collections) {
-      for (const l of col.languages) {
-        db.runSync(
-          'INSERT OR REPLACE INTO collections(id, lang, title, storyIds) VALUES(?,?,?,?)',
-          col.id, l.lang, col.title, JSON.stringify(l.storyIds),
-        );
-      }
+      for (const l of col.languages) upsertCollectionLang(col.id, col.title, l);
     }
     // `videos` is absent from bundles published before the Videos tab existed.
     for (const v of Object.values(manifest.videos ?? {})) upsertVideo(v);
@@ -134,10 +154,28 @@ export function upsertStory(body: StoryBody, textSha: string): void {
  */
 export function upsertPage(page: InfoPage, textSha: string): void {
   db.runSync(
-    'INSERT OR REPLACE INTO pages(id, title, paragraphs) VALUES(?,?,?)',
-    page.id, page.title, JSON.stringify(page.paragraphs),
+    'INSERT OR REPLACE INTO pages(id, title, paragraphs, links) VALUES(?,?,?,?)',
+    // Pages published before links were crawled have none.
+    page.id, page.title, JSON.stringify(page.paragraphs), JSON.stringify(page.links ?? []),
   );
   setMeta(pageShaKey(page.id), textSha);
+}
+
+/**
+ * Insert or update one collection+language row (used by both seeding and
+ * OTA updates). `booklet` is optional on the manifest side because older
+ * bundles never carried it.
+ */
+export function upsertCollectionLang(
+  id: CollectionId,
+  title: string,
+  l: { lang: LangCode; storyIds: string[]; booklet?: RemoteFile | null },
+): void {
+  db.runSync(
+    `INSERT OR REPLACE INTO collections(id, lang, title, storyIds, bookletUrl, bookletBytes)
+     VALUES(?,?,?,?,?,?)`,
+    id, l.lang, title, JSON.stringify(l.storyIds), l.booklet?.url ?? null, l.booklet?.bytes ?? null,
+  );
 }
 
 /** Remove a static page that has disappeared from the published manifest. */
@@ -204,22 +242,30 @@ export function getTranslation(story: Story, lang: LangCode): Story | null {
 
 /** Which languages have content, per collection (drives the language chips). */
 export function getCollections(): CollectionLang[] {
-  const rows = db.getAllSync<{ id: string; lang: string; title: string; storyIds: string }>(
-    'SELECT * FROM collections',
-  );
+  const rows = db.getAllSync<{
+    id: string; lang: string; title: string; storyIds: string;
+    bookletUrl: string | null; bookletBytes: number | null;
+  }>('SELECT * FROM collections');
   return rows.map((r) => ({
     id: r.id as CollectionId,
     lang: r.lang as LangCode,
     title: r.title,
     storyIds: JSON.parse(r.storyIds) as string[],
+    booklet: r.bookletUrl && r.bookletBytes ? { url: r.bookletUrl, bytes: r.bookletBytes } : null,
   }));
 }
 
 export function getPage(id: string): InfoPage | null {
-  const row = db.getFirstSync<{ id: string; title: string; paragraphs: string }>(
+  const row = db.getFirstSync<{ id: string; title: string; paragraphs: string; links: string | null }>(
     'SELECT * FROM pages WHERE id = ?', id,
   );
-  return row ? { id: row.id, title: row.title, paragraphs: JSON.parse(row.paragraphs) } : null;
+  if (!row) return null;
+  return {
+    id: row.id,
+    title: row.title,
+    paragraphs: JSON.parse(row.paragraphs) as string[],
+    links: JSON.parse(row.links ?? '[]') as PageLink[],
+  };
 }
 
 // --- videos ---

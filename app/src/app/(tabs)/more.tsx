@@ -2,14 +2,16 @@
 // "What is Chronological Bible Storying?" link in its footer and the gear
 // icon in its header. Tabs give them a permanent home instead.
 
-import { useRouter, type Href } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ChevronRightIcon, GearIcon, InfoCircleIcon } from '@/components/icons';
+import { ChevronRightIcon, EnvelopeIcon, GearIcon, InfoCircleIcon } from '@/components/icons';
 import { MINI_PLAYER_SPACE, TAB_BAR_HEIGHT } from '@/constants/layout';
+import { CONTACT_FORM_URL } from '@/constants/links';
 import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { getMetaNumber } from '@/lib/db';
+import { openInAppBrowser } from '@/lib/open-link';
 
 export default function MoreScreen() {
   const theme = useTheme();
@@ -17,20 +19,29 @@ export default function MoreScreen() {
   const insets = useSafeAreaInsets();
   const contentVersion = getMetaNumber('contentVersion') ?? 1;
 
-  const rows: { key: string; title: string; subtitle: string; icon: React.ReactNode; to: Href }[] = [
+  const rows: { key: string; title: string; subtitle: string; icon: React.ReactNode; onPress: () => void }[] = [
     {
       key: 'about',
       title: 'About CBS',
       subtitle: 'What is Chronological Bible Storying?',
       icon: <InfoCircleIcon size={20} color={theme.textSecondary} />,
-      to: '/about',
+      onPress: () => router.push('/about'),
+    },
+    {
+      key: 'contact',
+      title: 'Contact Us',
+      subtitle: 'Send the team a message (needs internet)',
+      icon: <EnvelopeIcon size={20} color={theme.textSecondary} />,
+      // The form lives on the web, not in the bundle: an offline contact
+      // form could not deliver anything anyway.
+      onPress: () => void openInAppBrowser(CONTACT_FORM_URL),
     },
     {
       key: 'settings',
       title: 'Settings',
-      subtitle: 'Mobile data, storage, and content updates',
+      subtitle: 'Appearance, mobile data, storage, and content updates',
       icon: <GearIcon size={20} color={theme.textSecondary} />,
-      to: '/settings',
+      onPress: () => router.push('/settings'),
     },
   ];
 
@@ -51,7 +62,7 @@ export default function MoreScreen() {
         {rows.map((row, i) => (
           <Pressable
             key={row.key}
-            onPress={() => router.push(row.to)}
+            onPress={row.onPress}
             accessibilityRole="button"
             accessibilityLabel={row.title}
             style={({ pressed }) => [

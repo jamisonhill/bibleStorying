@@ -1,12 +1,13 @@
-// Settings: data protection (Wi-Fi only), storage management, and manual
-// content updates. Deliberately small — the app should mostly disappear
-// behind the stories.
+// Settings: appearance, data protection (Wi-Fi only), storage management,
+// and manual content updates. Deliberately small — the app should mostly
+// disappear behind the stories.
 
 import { useState, useSyncExternalStore } from 'react';
 import {
   Alert, Pressable, ScrollView, StyleSheet, Switch, Text, View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ChoiceChips, type ChipOption } from '@/components/choice-chips';
 import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { getMeta, getMetaNumber, setMeta } from '@/lib/db';
@@ -15,10 +16,18 @@ import {
   totalDownloadedBytes, totalVideoBytes,
 } from '@/lib/downloads';
 import { formatBytes } from '@/lib/format';
+import { useThemeContext, type ThemePreference } from '@/lib/theme-context';
 import { checkForUpdates } from '@/lib/updater';
+
+const THEME_OPTIONS: ChipOption<ThemePreference>[] = [
+  { value: 'system', label: 'Automatic' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+];
 
 export default function SettingsScreen() {
   const theme = useTheme();
+  const { preference: themePreference, setPreference: setThemePreference } = useThemeContext();
   const insets = useSafeAreaInsets();
   useSyncExternalStore(subscribeDownloads, downloadsVersion);
 
@@ -82,6 +91,17 @@ export default function SettingsScreen() {
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 96 }]}
     >
+      <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>APPEARANCE</Text>
+      <View style={[styles.card, { backgroundColor: theme.surface }]}>
+        <View style={[styles.row, styles.stackedRow]}>
+          <Text style={[styles.rowTitle, { color: theme.text }]}>Theme</Text>
+          <ChoiceChips options={THEME_OPTIONS} selected={themePreference} onSelect={setThemePreference} />
+          <Text style={[styles.rowSub, { color: theme.textSecondary }]}>
+            Automatic follows your phone’s light or dark setting.
+          </Text>
+        </View>
+      </View>
+
       <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>MOBILE DATA</Text>
       <View style={[styles.card, { backgroundColor: theme.surface }]}>
         <View style={styles.row}>
@@ -193,6 +213,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
+  // A row whose control sits under its title instead of beside it.
+  stackedRow: { flexDirection: 'column', alignItems: 'stretch', gap: 10 },
   rowTitle: { fontSize: 16 },
   rowSub: { fontSize: 13, lineHeight: 18, marginTop: 3 },
   rowValue: { fontSize: 16 },

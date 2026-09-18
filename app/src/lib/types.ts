@@ -60,12 +60,26 @@ export interface CollectionLang {
   lang: LangCode;
   title: string;
   storyIds: string[];
+  /** The whole collection as one printable PDF on the live site, if the index page offers one. */
+  booklet: RemoteFile | null;
+}
+
+/**
+ * A tappable run inside a static page paragraph: which paragraph, the exact
+ * anchor text within it, and where it goes. Paragraphs themselves stay plain
+ * strings; the About screen splits them around these runs.
+ */
+export interface PageLink {
+  paragraph: number;
+  text: string;
+  href: string;
 }
 
 export interface InfoPage {
   id: string;
   title: string;
   paragraphs: string[];
+  links: PageLink[];
 }
 
 /** manifest.json as published by the pipeline. */
@@ -76,7 +90,8 @@ export interface Manifest {
   collections: {
     id: CollectionId;
     title: string;
-    languages: { lang: LangCode; storyIds: string[] }[];
+    /** `booklet` is absent from bundles published before booklets were crawled. */
+    languages: { lang: LangCode; storyIds: string[]; booklet?: RemoteFile | null }[];
   }[];
   stories: Record<
     string,

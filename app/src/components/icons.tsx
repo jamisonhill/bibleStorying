@@ -113,6 +113,15 @@ export function DocIcon(p: IconProps) {
   );
 }
 
+export function EnvelopeIcon(p: IconProps) {
+  return (
+    <Svg {...base(p)}>
+      <Rect x="3.5" y="5.5" width="17" height="13" rx="2" {...strokeProps(p.color, p.strokeWidth)} />
+      <Path d="m4.5 7.5 7.5 5.5 7.5-5.5" {...strokeProps(p.color, p.strokeWidth)} />
+    </Svg>
+  );
+}
+
 export function VideoIcon(p: IconProps) {
   return (
     <Svg {...base(p)}>

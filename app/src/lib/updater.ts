@@ -8,7 +8,7 @@ import { Directory, File } from 'expo-file-system';
 import * as Network from 'expo-network';
 import {
   db, deletePage, deleteVideoRow, getMeta, getMetaNumber, pageShaKey, setMeta,
-  upsertPage, upsertStory, upsertVideo,
+  upsertCollectionLang, upsertPage, upsertStory, upsertVideo,
 } from './db';
 import { imagesDir } from './downloads';
 import type { InfoPage, Manifest, StoryBody } from './types';
@@ -163,12 +163,7 @@ async function applyManifest(manifest: Manifest): Promise<void> {
     }
 
     for (const col of manifest.collections) {
-      for (const l of col.languages) {
-        db.runSync(
-          'INSERT OR REPLACE INTO collections(id, lang, title, storyIds) VALUES(?,?,?,?)',
-          col.id, l.lang, col.title, JSON.stringify(l.storyIds),
-        );
-      }
+      for (const l of col.languages) upsertCollectionLang(col.id, col.title, l);
     }
 
     // Videos carry no separate body file, so there is nothing to fetch or
