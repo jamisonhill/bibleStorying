@@ -25,6 +25,10 @@ import { imageSource } from '@/lib/images';
 import { stopPlayback } from '@/lib/player';
 
 export default function VideoScreen() {
+  // Reads the downloads store through plain functions (see downloads.ts);
+  // the React Compiler would otherwise memoise them on `video.id` alone and
+  // the screen would never show a download finishing.
+  'use no memo';
   const { id } = useLocalSearchParams<{ id: string }>();
   const theme = useTheme();
   const navigation = useNavigation();

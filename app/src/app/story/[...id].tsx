@@ -34,6 +34,10 @@ import {
 import type { LangCode } from '@/lib/types';
 
 export default function StoryScreen() {
+  // Reads the downloads store through plain functions (see downloads.ts);
+  // the React Compiler would otherwise memoise them and "Download for
+  // offline" would never turn into "Downloaded".
+  'use no memo';
   const { id } = useLocalSearchParams<{ id: string[] }>();
   const storyId = Array.isArray(id) ? id.join('/') : (id ?? '');
   const theme = useTheme();

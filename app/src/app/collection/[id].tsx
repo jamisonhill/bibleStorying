@@ -21,6 +21,10 @@ import { openInAppBrowser } from '@/lib/open-link';
 import type { CollectionId, LangCode } from '@/lib/types';
 
 export default function CollectionScreen() {
+  // Reads the downloads store through plain functions (see downloads.ts);
+  // the React Compiler would otherwise memoise them and the badges/progress
+  // would freeze until the screen remounts.
+  'use no memo';
   const { id } = useLocalSearchParams<{ id: string }>();
   const collectionId = id as CollectionId;
   const theme = useTheme();

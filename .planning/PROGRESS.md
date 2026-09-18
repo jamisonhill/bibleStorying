@@ -33,8 +33,12 @@
 - [x] Hosted as GitHub release `videos-v1`; manifest v4 published and verified live
 - [x] iOS build fixed and running on the simulator: tabs render, splash and
       icons verified. RUNBOOK §13 has the React.xcframework recovery
-- [ ] **Still unverified even on the simulator:** mini-player docking above the
-      tab bar, and video playback/download
+- [x] Verified on the simulator 2026-09-18: mini-player docks above the tab bar
+      and persists across tabs; video download + playback (native controls)
+- [x] **Bug found + fixed while verifying:** screens never showed a download
+      finishing until remounted — the React Compiler memoised the plain
+      `downloadStateFor()`-style reads. Those five screens now carry
+      `'use no memo'` (explained in `downloads.ts`)
 - [ ] Replace the 360p "Chronological Bible Storying 2025" with Ben's
       YouTube Studio master (RUNBOOK §7 has the transcode recipe)
 

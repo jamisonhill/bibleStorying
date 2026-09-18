@@ -16,6 +16,10 @@ import { getVideos } from '@/lib/db';
 import { downloadsVersion, subscribeDownloads, videoDownloadStateFor } from '@/lib/downloads';
 
 export default function VideosScreen() {
+  // Reads the downloads store through plain functions (see downloads.ts);
+  // the React Compiler would otherwise memoise them and "Not downloaded"
+  // would stick after a download finished.
+  'use no memo';
   const theme = useTheme();
   const router = useRouter();
   const insets = useSafeAreaInsets();

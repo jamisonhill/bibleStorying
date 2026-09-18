@@ -26,6 +26,14 @@ const states = new Map<string, DownloadState>();
 const listeners = new Set<() => void>();
 let version = 0; // bumped on every change; used as the store snapshot
 
+// Screens subscribe with useSyncExternalStore(subscribeDownloads,
+// downloadsVersion) and then read state through the plain functions below
+// (downloadStateFor, localVideoUri, totalDownloadedBytes, …). Those reads are
+// invisible to the React Compiler — it sees only their arguments, which do not
+// change when a download finishes — so every screen that calls them during
+// render carries a 'use no memo' directive. Without it the UI froze on
+// "Download to watch" until the screen was remounted.
+
 export function subscribeDownloads(listener: () => void): () => void {
   listeners.add(listener);
   return () => listeners.delete(listener);

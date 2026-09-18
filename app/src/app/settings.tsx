@@ -26,6 +26,10 @@ const THEME_OPTIONS: ChipOption<ThemePreference>[] = [
 ];
 
 export default function SettingsScreen() {
+  // Reads storage totals through plain functions (see downloads.ts); the
+  // React Compiler would otherwise memoise them and "Remove all" would leave
+  // the numbers unchanged.
+  'use no memo';
   const theme = useTheme();
   const { preference: themePreference, setPreference: setThemePreference } = useThemeContext();
   const insets = useSafeAreaInsets();
