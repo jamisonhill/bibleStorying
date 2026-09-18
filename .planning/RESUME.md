@@ -27,7 +27,7 @@ client's developer accounts
 3. Obed Forms `c627fb2` (pushed, NOT yet deployed) makes the public form's document follow
    the theme and renders Turnstile in the matching theme — that removes the dark Turnstile
    box on the CMS page for dark-mode visitors. Deploy per obed-forms RUNBOOK §7:
-   `./infra/deploy.sh c627fb2`. The iframe is now 960px tall (CMS TV + `website/`), which
+   `./infra/deploy.sh c627fb2`. **Deployed 2026-09-18**, healthz reports c627fb2. The iframe is now 1040px tall (CMS TV + `website/`), which
    already removed the inner scrollbar and its dark track.
 4. Phase 9 once the client opens developer accounts.
 
