@@ -45,8 +45,9 @@
 - [x] Back button said "(tabs)"; now names its tab
 - [x] Contact Us as an Obed Forms web form: definition + page body in
       `website/`, More → Contact Us in the app (RUNBOOK §6 "Contact form")
-- [ ] …form created + published on forms.duski.org, resource 6 body pasted
-      (unpublished) — needs the forms.duski.org sign-in; Ben ticks Published
+- [x] Form `cbs-kenya-contact` created + published on forms.duski.org (v2);
+      resource 6 content + `form` TV updated, saved **unpublished**, preview
+      verified (no old form, no email). Ben ticks Published (RUNBOOK §14)
 - [x] Full booklet on the collection screen: pipeline publishes
       `collections[].languages[].booklet`; app opens it in-app (content v6)
 - [x] About page links: pipeline publishes `pages[].links`; app renders them

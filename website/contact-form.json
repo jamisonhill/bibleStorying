@@ -75,7 +75,7 @@
   "theme": {
     "primary": "#E06A38",
     "secondary": "#2D3142",
-    "colorScheme": "auto",
+    "colorScheme": "light",
     "fontFamily": "system",
     "borderRadius": "md",
     "header": { "show": true, "showInEmbed": false }

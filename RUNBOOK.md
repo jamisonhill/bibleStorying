@@ -153,8 +153,20 @@ form builder at `https://forms.duski.org` (repo
 - Form slug **`cbs-kenya-contact`** → `https://forms.duski.org/f/cbs-kenya-contact`.
   The app's More → Contact Us opens the same URL (`app/src/constants/links.ts`).
 - Definition of record: `website/contact-form.json` (Name, Email, Phone,
-  Message). Paste-ready page body: `website/contact-us.html` — the draft's
-  heading and two intro paragraphs plus the iframe; nothing else.
+  Message). What the CMS page holds: `website/contact-us.html`. The template
+  is two columns — resource **content** (left, the intro text) and the
+  **"Page contact form" TV** (`tv26`, right, the iframe). Both fields are
+  TinyMCE editors: TinyMCE keeps `<iframe>` but wraps it in `<p>` and drops
+  `loading="lazy"`, which is harmless. Set the TV through the editor (the
+  `<>` source button, or `tinymce.get('tv26').setContent(...)`) — writing to
+  the hidden textarea directly is overwritten on save.
+- Before 2026-09-17 that TV held a `[!FormLister …!]` call mailing
+  `hello@biblestoryingkenya.com` (formid `ContactForm`, chunks `contactForm` /
+  `contactFormReport`, subject "Website Feedback Form Request by [+name.value+]").
+  Those chunks still exist in Elements → Chunks if the CMS form is ever wanted
+  back; the page then shows the address only inside the CMS, not publicly.
+- Resource 6 also carries `<meta name="robots" content="noindex, nofollow">`
+  in its `tv3` — set before this work, left as found.
 - Submissions are emailed to **hello@biblestoryingkenya.com** — that address
   lives only in the form's notification settings. To change it: sign in to
   forms.duski.org, open the form, Settings → Notifications; or with an API key,
