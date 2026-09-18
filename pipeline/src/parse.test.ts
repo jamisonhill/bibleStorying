@@ -7,7 +7,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseNav, parseIndexPage, parseStoryPage, parseStaticPage } from './parse.ts';
+import {
+  parseNav, parseIndexPage, parseIndexBooklet, parseStoryPage, parseStaticPage,
+} from './parse.ts';
 
 const fixtures = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../test/fixtures');
 const load = (name: string) => fs.readFile(path.join(fixtures, name), 'utf8');
@@ -48,7 +50,42 @@ test('parseStoryPage extracts title, scripture, text, image, audio, doc', async 
   assert.ok(story.docUrl?.endsWith('/assets/files/read/en/28B-satan%20tests%20Jesus.docx'));
 });
 
+test('parseIndexBooklet finds the full-booklet PDF on an index page', async () => {
+  const url = parseIndexBooklet(await load('idx_en.html'));
+  // Relative "assets/files/read/…" resolves against the site root (the site
+  // sets <base href>), not against the /cbs-stories/ folder.
+  assert.equal(url, 'https://www.biblestoryingkenya.com/assets/files/read/en/CBS42Eng2025.04.08.pdf');
+});
+
+test('parseIndexBooklet returns null for placeholder language pages', async () => {
+  assert.equal(parseIndexBooklet(await load('sonship_ma.html')), null);
+});
+
 test('parseStaticPage extracts readable paragraphs', async () => {
   const page = parseStaticPage(await load('home.html'), 'https://www.biblestoryingkenya.com/');
   assert.ok(page.paragraphs.length > 0);
+});
+
+test('parseStaticPage keeps the links inside paragraphs', async () => {
+  const page = parseStaticPage(await load('about.html'), 'https://www.biblestoryingkenya.com/about-cbs.html');
+  const byText = (text: string) => page.links.filter((l) => l.text === text);
+
+  // Three "View More" anchors, each its own paragraph, pointing at resource pages.
+  const viewMore = byText('View More');
+  assert.equal(viewMore.length, 3);
+  assert.deepEqual(
+    viewMore.map((l) => l.href),
+    [
+      'https://www.biblestoryingkenya.com/resources/books.html',
+      'https://www.biblestoryingkenya.com/resources/articles.html',
+      'https://www.biblestoryingkenya.com/resources/links-and-websites.html',
+    ],
+  );
+  assert.ok(byText('Contact Us').some((l) => l.href.endsWith('/contact-us.html')));
+  assert.ok(byText('Donate').some((l) => l.href.startsWith('https://give.serge.org/')));
+
+  // Every link must point at a paragraph that actually contains its text.
+  for (const link of page.links) {
+    assert.ok(page.paragraphs[link.paragraph].includes(link.text), `${link.text} in paragraph ${link.paragraph}`);
+  }
 });

@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
- "contentVersion": 5,
- "generatedAt": "2026-09-17T08:38:49.568Z",
+ "contentVersion": 6,
+ "generatedAt": "2026-09-18T02:56:26.127Z",
  "collections": [
   {
    "id": "cbs",
@@ -55,7 +55,11 @@
       "cbs/en/the-resurrection-of-jesus",
       "cbs/en/the-road-to-emmaus",
       "cbs/en/appearances-and-ascension-of-jesus"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/en/CBS42Eng2025.04.08.pdf",
+      "bytes": 3912850
+     }
     },
     {
      "lang": "sw",
@@ -104,7 +108,11 @@
       "cbs/sw/ufufuo",
       "cbs/sw/safari-ya-emau",
       "cbs/sw/kupaa-kwa-yesu"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/sw/cbsswa2026.08.26.pdf",
+      "bytes": 1841248
+     }
     },
     {
      "lang": "ma",
@@ -154,7 +162,11 @@
       "cbs/ma/empiunoto-e-yesu",
       "cbs/ma/elototo-e-emmaus",
       "cbs/ma/keipangaki-yesu-ilaitengenak-lenye-enkilepata-e-yesu"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/ma/CBS_42_Maa_Temp_Feb_25.pdf",
+      "bytes": 2566727
+     }
     },
     {
      "lang": "br",
@@ -207,7 +219,11 @@
       "cbs/br/akka-yesoni-duisa-keesa-kae",
       "cbs/br/kara-emmaoti-deemu",
       "cbs/br/mulachaa-fi-oldeemisa-yesoo"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/br/CBS42%20BORANA%202025%20.pdf",
+      "bytes": 2745033
+     }
     }
    ]
   },
@@ -249,7 +265,11 @@
       "sonship/en/the-parable-of-ten-minas",
       "sonship/en/the-parable-of-the-mustard-seed-the-leaven",
       "sonship/en/the-parable-of-the-laborers-in-the-vineyard"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/sonship_en/sbseng2026.08.26.pdf",
+      "bytes": 1886793
+     }
     },
     {
      "lang": "sw",
@@ -285,15 +305,21 @@
       "sonship/sw/mfano-wa-mina-kumi",
       "sonship/sw/mfano-wa-mbegu-ya-haradali-na-chachu",
       "sonship/sw/wafanyakazi-katika-shamba-la-mizabibu"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/sonship_sw/sbsswa2026.08.26.pdf",
+      "bytes": 1894737
+     }
     },
     {
      "lang": "ma",
-     "storyIds": []
+     "storyIds": [],
+     "booklet": null
     },
     {
      "lang": "br",
-     "storyIds": []
+     "storyIds": [],
+     "booklet": null
     }
    ]
   },
@@ -315,7 +341,11 @@
       "acts/en/the-stoning-of-stephen",
       "acts/en/the-church-under-persecution",
       "acts/en/simon-the-sorcerer"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/acts_en/ACTS%201-10%20ENG%20.pdf",
+      "bytes": 2862769
+     }
     },
     {
      "lang": "sw",
@@ -331,7 +361,11 @@
       "acts/sw/kupigwa-kwa-mawe-kwa-stefano",
       "acts/sw/kanisa-chini-ya-mateso",
       "acts/sw/simoni-mchawi"
-     ]
+     ],
+     "booklet": {
+      "url": "https://www.biblestoryingkenya.com/assets/files/read/acts_sw/ACTS%201-10%20SWA%20.pdf",
+      "bytes": 947237
+     }
     }
    ]
   }
@@ -6974,8 +7008,8 @@
    "title": "About CBS",
    "text": {
     "path": "pages/about-cbs.json",
-    "sha256": "3a9b965bda32ed43f0da91e7bc45001e879b93cf9f3889e28e955a2ca547b88c",
-    "bytes": 4675
+    "sha256": "482c92e198b3d66ef4f029adb7cb67db621d1947ddfad96b5d0164d3a442c39b",
+    "bytes": 5203
    }
   }
  },
@@ -7041,5 +7075,5 @@
    }
   }
  },
- "fingerprint": "9a091b935216e7e18e7fe4ae87c00af25569219f479557f2a42a7ff68754e8d5"
+ "fingerprint": "efc93ecaa41dae304f92066200679f134fb64c7d2ddd64ea319863958385bfcc"
 }

@@ -88,6 +88,24 @@ export function parseIndexPage(html: string): IndexEntry[] {
   return entries;
 }
 
+/**
+ * The "Full Booklet (Printable)" PDF link on a collection index page, or null.
+ * It is rendered from the index resource's `full_story_pdf` template variable
+ * (RUNBOOK §6), outside the story grid, as `<a href="assets/files/read/…" download>`.
+ * Placeholder language pages have no booklet — null is a normal result here.
+ */
+export function parseIndexBooklet(html: string): string | null {
+  const $ = cheerio.load(html);
+  let bookletUrl: string | null = null;
+  $('a[download], a[href*="assets/files/read/"]').each((_, a) => {
+    const href = $(a).attr('href') ?? '';
+    if (!bookletUrl && /\.pdf$/i.test(href) && /assets\/files\/read\//i.test(href)) {
+      bookletUrl = absUrl(href);
+    }
+  });
+  return bookletUrl;
+}
+
 export interface ParsedStoryPage {
   title: string;
   scriptureRef: string;
@@ -148,19 +166,45 @@ export function parseStoryPage(html: string, pageUrl: string): ParsedStoryPage {
   };
 }
 
-/** Parse a static page (About CBS): title + all article paragraphs. */
-export function parseStaticPage(html: string, pageUrl: string): { title: string; paragraphs: string[] } {
+export interface ParsedStaticPage {
+  title: string;
+  paragraphs: string[];
+  /** Hyperlinks found inside the kept paragraphs (see PageLinkSchema). */
+  links: { paragraph: number; text: string; href: string }[];
+}
+
+/**
+ * Parse a static page (About CBS): title + all article paragraphs, plus the
+ * links inside them. Paragraph text is kept plain (the app renders text);
+ * each link records its paragraph index and anchor text so the app can make
+ * that run tappable — without this the site's "View More" anchors arrive as
+ * bare words with nothing behind them.
+ */
+export function parseStaticPage(html: string, pageUrl: string): ParsedStaticPage {
   const $ = cheerio.load(html);
   const title = $('.bannertitle h1').first().text().replace(/\s+/g, ' ').trim() || $('title').text().split('-')[0].trim();
   const paragraphs: string[] = [];
+  const links: ParsedStaticPage['links'] = [];
   $('article p, article li').each((_, el) => {
     // Skip nav/footer paragraphs by requiring the element to be outside them.
     if ($(el).closest('header, footer, .linkbar').length > 0) return;
     const text = $(el).text().replace(/\s+/g, ' ').trim();
-    if (text && text.length > 2) paragraphs.push(text);
+    if (!text || text.length <= 2) return;
+    const paragraph = paragraphs.push(text) - 1;
+
+    $(el).find('a[href]').each((_, a) => {
+      const href = ($(a).attr('href') ?? '').trim();
+      const anchorText = $(a).text().replace(/\s+/g, ' ').trim();
+      // In-page anchors and javascript: pseudo-links are not destinations.
+      if (!href || href.startsWith('#') || /^javascript:/i.test(href)) return;
+      // The anchor text must be findable inside the flattened paragraph,
+      // otherwise the app could not locate the run to make tappable.
+      if (!anchorText || !text.includes(anchorText)) return;
+      links.push({ paragraph, text: anchorText, href: absUrl(href) });
+    });
   });
   if (paragraphs.length === 0) throw new Error(`No content paragraphs on ${pageUrl}`);
-  return { title, paragraphs };
+  return { title, paragraphs, links };
 }
 
 /** Extract the sitemap's URL → lastmod map. */

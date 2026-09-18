@@ -18,7 +18,7 @@ import {
 } from './config.ts';
 import { fetchText, fetchBytes, headBytes } from './fetch.ts';
 import {
-  parseNav, parseIndexPage, parseStoryPage, parseStaticPage, parseSitemap,
+  parseNav, parseIndexPage, parseIndexBooklet, parseStoryPage, parseStaticPage, parseSitemap,
 } from './parse.ts';
 import {
   StorySchema, PageSchema, ManifestSchema, StateSchema,
@@ -141,13 +141,19 @@ async function main() {
 
   const imageCache = new Map<string, { path: string; sha256: string; bytes: number }>();
   const stories = new Map<string, Story>();
-  const collections = new Map<string, { id: string; title: string; languages: { lang: string; storyIds: string[] }[] }>();
+  type CollectionLang = { lang: string; storyIds: string[]; booklet: { url: string; bytes: number } | null };
+  const collections = new Map<string, { id: string; title: string; languages: CollectionLang[] }>();
   const problems: string[] = [];
 
   // 3. Walk every index page, then every story it lists (in the site's order).
   for (const idx of indexes) {
-    const entries = parseIndexPage(await fetchText(idx.url));
-    console.log(`${idx.collectionId}/${idx.langCode}: ${entries.length} stories listed`);
+    const indexHtml = await fetchText(idx.url);
+    const entries = parseIndexPage(indexHtml);
+    // The whole-collection PDF sits on the index page itself. A missing link
+    // is normal (placeholder languages); a broken one is dropped by remoteFile.
+    const bookletUrl = parseIndexBooklet(indexHtml);
+    const booklet = bookletUrl ? await remoteFile(bookletUrl, state, FULL_CRAWL) : null;
+    console.log(`${idx.collectionId}/${idx.langCode}: ${entries.length} stories listed${booklet ? ', booklet' : ''}`);
     const storyIds: string[] = [];
 
     for (let order = 0; order < entries.length; order++) {
@@ -226,7 +232,7 @@ async function main() {
       title: idx.collectionTitle,
       languages: [],
     };
-    col.languages.push({ lang: idx.langCode, storyIds });
+    col.languages.push({ lang: idx.langCode, storyIds, booklet });
     collections.set(idx.collectionId, col);
   }
 
@@ -246,7 +252,9 @@ async function main() {
   for (const sp of STATIC_PAGES) {
     const url = new URL(sp.url, SITE_BASE).toString();
     const parsed = parseStaticPage(await fetchText(url), url);
-    pages.push(PageSchema.parse({ id: sp.id, title: sp.title, paragraphs: parsed.paragraphs, sourceUrl: url }));
+    pages.push(PageSchema.parse({
+      id: sp.id, title: sp.title, paragraphs: parsed.paragraphs, links: parsed.links, sourceUrl: url,
+    }));
   }
 
   // 4b. Videos. Declared by hand (see videos.ts) rather than crawled, because

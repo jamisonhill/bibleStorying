@@ -54,11 +54,28 @@ export const StorySchema = z.object({
 });
 export type Story = z.infer<typeof StorySchema>;
 
+/**
+ * A hyperlink inside a static page paragraph. Paragraphs stay plain strings
+ * (the app renders them as text); a link records which paragraph it sits in
+ * and the exact anchor text, so the app can make just that run tappable.
+ * Apps built before links existed simply ignore this field.
+ */
+export const PageLinkSchema = z.object({
+  /** Index into `paragraphs`. */
+  paragraph: z.number().int().nonnegative(),
+  /** The anchor's visible text, exactly as it appears inside the paragraph. */
+  text: z.string().min(1),
+  /** Absolute URL. */
+  href: z.string().url(),
+});
+export type PageLink = z.infer<typeof PageLinkSchema>;
+
 /** A static informational page (About CBS). */
 export const PageSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   paragraphs: z.array(z.string().min(1)).min(1),
+  links: z.array(PageLinkSchema).default([]),
   sourceUrl: z.string().url(),
 });
 export type Page = z.infer<typeof PageSchema>;
@@ -68,6 +85,12 @@ export const CollectionLangSchema = z.object({
   lang: z.enum(['en', 'sw', 'ma', 'br']),
   /** Ordered story ids. Empty = the site has a placeholder page (no stories yet). */
   storyIds: z.array(z.string()),
+  /**
+   * The whole collection as one printable PDF ("Full Booklet" on the index
+   * page). Stays on the live site like story handouts; null when the page
+   * has no booklet link (placeholder languages) or the link is broken.
+   */
+  booklet: RemoteFileSchema.nullable().default(null),
 });
 
 export const CollectionSchema = z.object({
