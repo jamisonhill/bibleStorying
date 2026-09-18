@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "formId": "x",
+  "version": 0,
+  "name": "Bible Storying Kenya — Contact Us",
+  "pages": [
+    {
+      "id": "pg1",
+      "type": "page",
+      "children": [
+        {
+          "id": "f_name",
+          "type": "textbox",
+          "name": "Name",
+          "label": "Your name",
+          "required": { "kind": "always" },
+          "autocomplete": "name"
+        },
+        {
+          "id": "f_email",
+          "type": "email",
+          "name": "Email",
+          "label": "Email address",
+          "helpText": "We reply to this address.",
+          "required": { "kind": "always" },
+          "isPrimaryContact": true
+        },
+        {
+          "id": "f_phone",
+          "type": "phone",
+          "name": "Phone",
+          "label": "Phone or WhatsApp (optional)"
+        },
+        {
+          "id": "f_message",
+          "type": "textbox",
+          "name": "Message",
+          "label": "Message",
+          "multiline": true,
+          "rows": 6,
+          "required": { "kind": "always" }
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "submitButtonLabel": "Send message",
+    "showProgressBar": false,
+    "confirmation": {
+      "mode": "message",
+      "content": {
+        "html": "<p>Thank you. Your message has reached the Bible Storying Kenya team, and we will reply by email.</p>"
+      }
+    },
+    "allowedEmbedOrigins": [
+      "https://biblestoryingkenya.com",
+      "https://www.biblestoryingkenya.com"
+    ],
+    "notifications": [
+      {
+        "id": "n_team",
+        "name": "Tell the team",
+        "trigger": "submit",
+        "to": [
+          { "kind": "static", "email": "hello@biblestoryingkenya.com" }
+        ],
+        "subject": "Contact form: {{Name}}",
+        "body": {
+          "html": "<p><b>{{Name}}</b> wrote through the website contact form.</p><p><b>Email:</b> {{Email}}<br><b>Phone:</b> {{Phone}}</p><p>{{Message}}</p>"
+        }
+      }
+    ],
+    "analytics": { "enabled": false }
+  },
+  "theme": {
+    "primary": "#E06A38",
+    "secondary": "#2D3142",
+    "colorScheme": "auto",
+    "fontFamily": "system",
+    "borderRadius": "md",
+    "header": { "show": true, "showInEmbed": false }
+  }
+}

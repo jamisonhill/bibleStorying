@@ -143,6 +143,29 @@ Larger files already on the server were placed some other way (FTP).
 
 - _Last verified: 2026-09-04_
 
+### Contact form (Obed Forms)
+
+The **Contact Us** page (resource **6**, template `contacts_tpl (11)`) posts no
+email address. It embeds a form hosted on Obed Forms — Jamison's self-hosted
+form builder at `https://forms.duski.org` (repo
+`/Users/jamisonhill/Ai/Personal/apps/obed-forms`, its RUNBOOK §10 covers keys).
+
+- Form slug **`cbs-kenya-contact`** → `https://forms.duski.org/f/cbs-kenya-contact`.
+  The app's More → Contact Us opens the same URL (`app/src/constants/links.ts`).
+- Definition of record: `website/contact-form.json` (Name, Email, Phone,
+  Message). Paste-ready page body: `website/contact-us.html` — the draft's
+  heading and two intro paragraphs plus the iframe; nothing else.
+- Submissions are emailed to **hello@biblestoryingkenya.com** — that address
+  lives only in the form's notification settings. To change it: sign in to
+  forms.duski.org, open the form, Settings → Notifications; or with an API key,
+  `node scripts/forms.mjs forms patch <id> --json '{"settings":{"notifications":[…]}}'`
+  then `forms publish <id>` (settings apply on publish).
+- The iframe only renders on origins listed in the form's
+  `allowedEmbedOrigins` (both `biblestoryingkenya.com` and `www.`). Moving the
+  site to a new domain means adding it there and republishing the form.
+- Spam: per-IP submit rate limit on the server; Cloudflare Turnstile appears
+  automatically if the server ever gets Turnstile keys.
+
 ### Gotchas that cost real time
 
 - A save posted with the action in BOTH the query string and the form body is
@@ -298,6 +321,9 @@ copies in `content/videos/delivery/`.
 - [ ] Story 25 (Paul, Philemon, Onesimus) has no scripture reference in either
       language; the PDF has none either.
 - [ ] Story 31 has no cloth art — `sonship_31.jpg` does not exist on the server.
+- [ ] **Ben to tick Published on Contact Us (6)** once he has looked at the
+      embedded form. Until then the footer's and About page's "Contact Us"
+      links 404, on the website and in the app alike.
 - [ ] Client's name/contact for §3 escalation and eventual account ownership
 - [ ] 1Password Emergency Kit location (shared across projects)
 
@@ -318,3 +344,4 @@ the README and carry it. This is not worth losing sleep over.
 |---|---|---|
 | 2026-08-30 | Created at first pause: pipeline live, app in beta | Claude (with Jamison) |
 | 2026-09-03 | Videos tab + bottom tabs; films hosted as GitHub release `videos-v1`; Sonship 13-31 confirmed live; §13 publish-timing gotcha | Claude (with Jamison) |
+| 2026-09-17 | §6 "Contact form (Obed Forms)"; §14 Ben to publish resource 6; pipeline now publishes booklets + page links (content v6) | Claude (with Jamison) |

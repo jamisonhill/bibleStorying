@@ -20,7 +20,8 @@
       70pp→221pp, Sonship SW 73pp→234pp, CBS SW Apr-2025→2026 revision
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
-- [ ] Diagnose Jamison's local `npm run build` failure (env checks out; need the error)
+- [x] ~~Diagnose Jamison's local `npm run build` failure~~ — `pipeline/node_modules`
+      was simply missing on this Mac (`Cannot find package 'cheerio'`); `npm ci` fixed it
 
 ## Phase 8 — Videos tab + bottom tab navigation [MOSTLY COMPLETE]
 - [x] 4 films transcoded 540p H.264/AAC + faststart + poster frames (~142MB)
@@ -42,13 +43,16 @@
 - [x] Branded launch stage; 2s launch icon → 5s wordmark
 - [x] App + launch icons cut from the ministry's own mark; iOS label "CBS Kenya"
 - [x] Back button said "(tabs)"; now names its tab
-- [ ] **Contact Us page as an Obed Forms web form** — no email address posted
-      on the page (next task)
-- [ ] Full-booklet download in the app: pipeline captures the index-page
-      `full_story_pdf`; app shows it on the collection screen (approved, not built)
-- [ ] About page "View More" links are dropped by `parseStaticPage` — text
-      dangles with nothing to tap
-- [ ] Dark mode option in Settings (app follows the system only)
+- [x] Contact Us as an Obed Forms web form: definition + page body in
+      `website/`, More → Contact Us in the app (RUNBOOK §6 "Contact form")
+- [ ] …form created + published on forms.duski.org, resource 6 body pasted
+      (unpublished) — needs the forms.duski.org sign-in; Ben ticks Published
+- [x] Full booklet on the collection screen: pipeline publishes
+      `collections[].languages[].booklet`; app opens it in-app (content v6)
+- [x] About page links: pipeline publishes `pages[].links`; app renders them
+      as tappable runs
+- [x] Settings → Appearance: Automatic / Light / Dark (ThemeProvider)
+- [x] `db.ts` gained `ensureColumn()` — the first schema migration path
 - [ ] **Ben's item 2 — story numbering on the preview pictures.** Parked: app
       cards, website grid, or burned into the artwork is undecided
 

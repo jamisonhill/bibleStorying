@@ -10,7 +10,7 @@ artwork, and audio — with content that updates itself when the website changes
 ## How it fits together
 
 ```
-biblestoryingkenya.com  (static site, hand-edited)
+biblestoryingkenya.com  (Evolution CMS, edited by hand — RUNBOOK §6)
         │  daily crawl (GitHub Action, sitemap lastmod diff)
         ▼
   pipeline/   parses pages → validates → content bundle
@@ -37,7 +37,7 @@ biblestoryingkenya.com  (static site, hand-edited)
   when online and silently fetches only changed story text/images (hash-diffed).
   Changed audio is never re-downloaded silently — the story shows
   "Update audio" instead. App code never self-updates (store-compliant).
-- **Fail-loud pipeline:** the site is hand-edited; if its markup drifts, the
+- **Fail-loud pipeline:** the site is a hand-edited CMS; if its markup drifts, the
   crawl fails validation, publishes nothing, and auto-opens a GitHub issue.
 
 ## Repo layout
