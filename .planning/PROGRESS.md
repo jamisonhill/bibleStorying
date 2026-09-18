@@ -5,61 +5,29 @@
 ## Phase 3 — Expo app (offline stories, audio, downloads, OTA content) [COMPLETE]
 ## Phase 4 — Hosting & auto-update live on GitHub Pages [COMPLETE]
 ## Phase 5 — Simulator + physical-device verification [COMPLETE]
+## Phase 7 — Website content completion via the CMS [COMPLETE — 2 content gaps below]
+## Phase 8 — Videos tab + bottom tab navigation [COMPLETE — 1 asset gap below]
+## Phase 10 — Ben's feedback round + app polish [COMPLETE — item 2 parked]
 
-## Phase 6 — Beta testing [IN PROGRESS — awaiting feedback]
+## Phase 6 — Beta testing [IN PROGRESS — awaiting feedback] ← PAUSED HERE
 - [x] Release builds on two tester iPhones (Duski's 17; Ben's 16 Pro Max,
       udid 00008140-00166D460C38801C, 2026-09-02)
-- [ ] Collect feedback; verify offline, lock-screen audio, downloads, language switch
+- [x] Simulator pass 2026-09-18: mini-player docking, video download + playback,
+      audio download, dark mode, booklets, About links, Contact Us — all verified
+- [ ] Collect tester feedback; verify offline, lock-screen audio, language switch
 - [ ] Test on a low-end Android device (none available yet)
+- [ ] Testers on the pre-2026-09-18 build need a new build to get the fixes
+      (download-state refresh, theme, booklets, Contact Us)
 
-## Phase 7 — Website content completion via the CMS [MOSTLY COMPLETE]
-- [x] `npm run report` / `npm run extract`; 38 drafts staged, cloth art assigned
-- [x] **Ben published Sonship 13-31** — live in English + Swahili, 12→31 each.
-      Bundle went 228 → 266 stories (v3). RUNBOOK §14 item closed.
-- [x] **Stale booklet PDFs replaced and live** (Ben's items 1 & 3): Sonship EN
-      70pp→221pp, Sonship SW 73pp→234pp, CBS SW Apr-2025→2026 revision
+## Waiting on Ben / the client
+- [ ] Tick **Published** on CMS resource Contact Us (6); confirm the live test
+      message reached hello@biblestoryingkenya.com
+- [ ] Item 2 — story numbering on the preview pictures (app cards, website
+      grid, or burned into the artwork: undecided)
+- [ ] A master for the 360p "Chronological Bible Storying 2025" film
+      (RUNBOOK §7 has the transcode recipe)
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
-- [x] ~~Diagnose Jamison's local `npm run build` failure~~ — `pipeline/node_modules`
-      was simply missing on this Mac (`Cannot find package 'cheerio'`); `npm ci` fixed it
-
-## Phase 8 — Videos tab + bottom tab navigation [MOSTLY COMPLETE]
-- [x] 4 films transcoded 540p H.264/AAC + faststart + poster frames (~142MB)
-- [x] `pipeline/videos.json` + `videos.ts` loader + 6 tests (videos are declared,
-      not crawled — they were never on the website)
-- [x] Manifest gains `videos`; posters mirrored into `content/images`
-- [x] App: `videos`/`video_downloads` tables, OTA apply, download-on-demand
-- [x] Bottom tabs (Stories · Videos · More); About + Settings moved into More
-- [x] Hosted as GitHub release `videos-v1`; manifest v4 published and verified live
-- [x] iOS build fixed and running on the simulator: tabs render, splash and
-      icons verified. RUNBOOK §13 has the React.xcframework recovery
-- [x] Verified on the simulator 2026-09-18: mini-player docks above the tab bar
-      and persists across tabs; video download + playback (native controls)
-- [x] **Bug found + fixed while verifying:** screens never showed a download
-      finishing until remounted — the React Compiler memoised the plain
-      `downloadStateFor()`-style reads. Those five screens now carry
-      `'use no memo'` (explained in `downloads.ts`)
-- [ ] Replace the 360p "Chronological Bible Storying 2025" with Ben's
-      YouTube Studio master (RUNBOOK §7 has the transcode recipe)
-
-## Phase 10 — Ben's feedback round + app polish ← PAUSED HERE
-- [x] Static pages now apply over the air (About was seed-only)
-- [x] Branded launch stage; 2s launch icon → 5s wordmark
-- [x] App + launch icons cut from the ministry's own mark; iOS label "CBS Kenya"
-- [x] Back button said "(tabs)"; now names its tab
-- [x] Contact Us as an Obed Forms web form: definition + page body in
-      `website/`, More → Contact Us in the app (RUNBOOK §6 "Contact form")
-- [x] Form `cbs-kenya-contact` created + published on forms.duski.org (v2);
-      resource 6 content + `form` TV updated, saved **unpublished**, preview
-      verified (no old form, no email). Ben ticks Published (RUNBOOK §14)
-- [x] Full booklet on the collection screen: pipeline publishes
-      `collections[].languages[].booklet`; app opens it in-app (content v6)
-- [x] About page links: pipeline publishes `pages[].links`; app renders them
-      as tappable runs
-- [x] Settings → Appearance: Automatic / Light / Dark (ThemeProvider)
-- [x] `db.ts` gained `ensureColumn()` — the first schema migration path
-- [ ] **Ben's item 2 — story numbering on the preview pictures.** Parked: app
-      cards, website grid, or burned into the artwork is undecided
 
 ## Phase 9 — Publishing (BLOCKED: client will open dev accounts)
 - [ ] Client opens Apple Developer + Google Play accounts
@@ -67,3 +35,10 @@
 - [ ] Decide final content hosting home (repo may move to client org — video URLs
       live in manifest.json and are cheap to change; the Pages base URL is not)
 - [ ] EAS build + submit, store listings, privacy labels (checklist in README.md)
+
+## Optional polish (not blocking)
+- [ ] Hide the mini-player on the story screen that is already playing (it
+      covers the "Download for offline" row until you scroll)
+- [ ] Pre-existing lint errors: `splash-overlay.tsx` refs-during-render,
+      `use-color-scheme.web.ts` setState-in-effect
+- [ ] RUNBOOK §13 references a React.xcframework recovery that is not in the file
