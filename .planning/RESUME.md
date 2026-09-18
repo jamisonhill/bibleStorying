@@ -24,9 +24,11 @@ client's developer accounts
 ## Next action
 1. Push, then confirm the live manifest reaches v6 (RUNBOOK §13 has the curl).
 2. Ask Ben to tick Published on Contact Us (6) and confirm a real message arrives at hello@.
-3. Optional polish: for dark-mode visitors the embedded form shows a dark strip beside the
-   iframe (the form page's `color-scheme` follows the browser even with the theme pinned to
-   light) — an Obed Forms fix, not a BSK one.
+3. Obed Forms `c627fb2` (pushed, NOT yet deployed) makes the public form's document follow
+   the theme and renders Turnstile in the matching theme — that removes the dark Turnstile
+   box on the CMS page for dark-mode visitors. Deploy per obed-forms RUNBOOK §7:
+   `./infra/deploy.sh c627fb2`. The iframe is now 960px tall (CMS TV + `website/`), which
+   already removed the inner scrollbar and its dark track.
 4. Phase 9 once the client opens developer accounts.
 
 ## Gotchas
