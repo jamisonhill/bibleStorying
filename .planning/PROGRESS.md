@@ -16,8 +16,7 @@
       audio download, dark mode, booklets, About links, Contact Us — all verified
 - [ ] Collect tester feedback; verify offline, lock-screen audio, language switch
 - [ ] Test on a low-end Android device (none available yet)
-- [ ] Testers on the pre-2026-09-18 build need a new build to get the fixes
-      (download-state refresh, theme, booklets, Contact Us)
+- [ ] Testers on the pre-2026-09-18 build need a new build — now via TestFlight (Phase 9B)
 
 ## Waiting on Ben / the client
 - [x] Contact Us (resource 6) published — live with iframe (checked 2026-09-25)
@@ -29,20 +28,36 @@
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
 
-## Phase 9 — Publishing (DECIDED 2026-09-25: publish under Obed Works, not Ben's accounts)
-Ben enrolled as an Individual on both stores; Kenya 2FA + time zones made
-delegated access impractical. The app ships on Jamison's Obed Works (org) Apple
-account and a new Obed Works Google Play account. Ben closes his accounts and
-requests refunds (PDF sent: ~/Downloads/Ben - Closing Your Developer Accounts.pdf).
-- [ ] Ben: refund + close Apple and Google developer accounts
-- [ ] Brand-authorization letter from Ben (Apple may ask for it at review)
-- [ ] Open an Obed Works Google Play Console account (org → needs D-U-N-S;
-      exempt from the 12-tester/14-day rule)
-- [ ] Replace placeholder bundle IDs + appleTeamId (Obed Works) in app/app.json
-- [ ] TestFlight first; then App Store with unlisted-distribution request
-- [ ] Decide final content hosting home (video URLs live in manifest.json and
-      are cheap to change; the Pages base URL is not)
-- [ ] EAS build + submit, store listings, privacy labels (checklist in README.md)
+## Phase 9 — Publishing under Obed Works [PLANNED 2026-09-25]
+Apple TestFlight first (Ben tests), Android prepared in parallel, then a joint
+final release. Ben closes his accounts (PDFs sent 2026-09-25).
+
+A. Prereqs
+- [ ] Confirm Apple membership entity: the Developer ID cert reads
+      "Jamison Hill (HFAWAP3F3Z)", which is what an Individual account shows
+- [ ] Accept current agreements in App Store Connect; declare EU trader status
+- [ ] Lock bundle ID `com.biblestoryingkenya.app` (permanent after first upload)
+- [ ] Privacy policy page on GitHub Pages + in-app link (More/About)
+- [ ] app.json: `ITSAppUsesNonExemptEncryption: false`; `eas init` (projectId)
+- [ ] Decide iPad support before the first public release (can't drop it later)
+B. iOS build → TestFlight
+- [ ] Expo account + `eas login`; App Store Connect app record
+- [ ] `eas build -p ios --profile production` → `eas submit -p ios`
+- [ ] ASC API key (Admin) so submits skip 2FA
+- [ ] TestFlight test info; external group + public link → Beta App Review → Ben
+C. Store listing (while Ben tests)
+- [ ] Screenshots (6.9" iPhone; 13" iPad if tablet stays), description,
+      keywords, category, age rating, "Data Not Collected", content rights
+- [ ] Public vs unlisted final release decision
+D. Android
+- [ ] Obed Works Play Console org account (D-U-N-S, ID + org verification — slow, start now)
+- [ ] `eas build -p android` (AAB, Play App Signing); first upload manual to Internal testing
+- [ ] App content: privacy URL, data safety, content rating, target audience,
+      ads, foreground-service (media playback) declaration if prompted
+- [ ] Listing: icon 512², feature graphic 1024×500, phone screenshots
+- [ ] Internal testing + pre-launch report (covers the missing Android device)
+E. Release
+- [ ] Apple App Review (or unlisted request) + Play production, same week
 
 ## Optional polish (not blocking)
 - [ ] Hide the mini-player on the story screen that is already playing (it
