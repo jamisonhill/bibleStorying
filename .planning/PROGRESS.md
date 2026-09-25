@@ -38,14 +38,15 @@ A. Prereqs
 - [x] Bundle ID `com.biblestoryingkenya.app` registered on the Obed Works team
 - [x] Privacy policy live (jamisonhill.github.io/bibleStorying/privacy.html) + More-tab link
 - [x] app.json: `ITSAppUsesNonExemptEncryption: false`
-- [ ] `eas init` (projectId) — after Jamison's `eas login`
+- [x] `eas init` → @jamisonhill/bible-storying-kenya
 - [ ] Decide iPad support before the first public release (can't drop it later)
 B. iOS build → TestFlight
 - [x] App Store Connect app record: Apple ID 6816198255, SKU biblestoryingkenya-ios
-- [ ] Expo account + `eas login`
-- [ ] `eas build -p ios --profile production` → `eas submit -p ios`
-- [ ] ASC API key (Admin) so submits skip 2FA
-- [ ] TestFlight test info; external group + public link → Beta App Review → Ben
+- [x] Expo account + `eas login`
+- [x] Build 1.0.0 (2) built on EAS and uploaded (2026-09-25; recipe in RUNBOOK §7)
+- [x] Reusing existing Admin ASC key MJ2A5MH3KV (no 2FA)
+- [x] TestFlight test info; external group "Kenya Testers", build 2 in Beta App Review
+- [ ] Send Ben the public link https://testflight.apple.com/join/bc63E4Nq once review passes
 C. Store listing (while Ben tests)
 - [ ] Screenshots (6.9" iPhone; 13" iPad if tablet stays), description,
       keywords, category, age rating, "Data Not Collected", content rights
