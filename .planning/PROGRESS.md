@@ -20,8 +20,8 @@
       (download-state refresh, theme, booklets, Contact Us)
 
 ## Waiting on Ben / the client
-- [ ] Tick **Published** on CMS resource Contact Us (6); confirm the live test
-      message reached hello@biblestoryingkenya.com
+- [x] Contact Us (resource 6) published — live with iframe (checked 2026-09-25)
+- [ ] Confirm the live test message reached hello@biblestoryingkenya.com
 - [ ] Item 2 — story numbering on the preview pictures (app cards, website
       grid, or burned into the artwork: undecided)
 - [ ] A master for the 360p "Chronological Bible Storying 2025" film
@@ -29,11 +29,19 @@
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
 
-## Phase 9 — Publishing (BLOCKED: client will open dev accounts)
-- [ ] Client opens Apple Developer + Google Play accounts
-- [ ] Replace placeholder bundle IDs + appleTeamId in app/app.json
-- [ ] Decide final content hosting home (repo may move to client org — video URLs
-      live in manifest.json and are cheap to change; the Pages base URL is not)
+## Phase 9 — Publishing (DECIDED 2026-09-25: publish under Obed Works, not Ben's accounts)
+Ben enrolled as an Individual on both stores; Kenya 2FA + time zones made
+delegated access impractical. The app ships on Jamison's Obed Works (org) Apple
+account and a new Obed Works Google Play account. Ben closes his accounts and
+requests refunds (PDF sent: ~/Downloads/Ben - Closing Your Developer Accounts.pdf).
+- [ ] Ben: refund + close Apple and Google developer accounts
+- [ ] Brand-authorization letter from Ben (Apple may ask for it at review)
+- [ ] Open an Obed Works Google Play Console account (org → needs D-U-N-S;
+      exempt from the 12-tester/14-day rule)
+- [ ] Replace placeholder bundle IDs + appleTeamId (Obed Works) in app/app.json
+- [ ] TestFlight first; then App Store with unlisted-distribution request
+- [ ] Decide final content hosting home (video URLs live in manifest.json and
+      are cheap to change; the Pages base URL is not)
 - [ ] EAS build + submit, store listings, privacy labels (checklist in README.md)
 
 ## Optional polish (not blocking)
