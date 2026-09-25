@@ -54,7 +54,11 @@ C. Store listing (while Ben tests)
 D. Android
 - [x] Obed Works LLC Play Console org account 7371887258743915726 (servant@obedworks.com):
       identity, website (Search Console DNS TXT on obedworks.com) and phones verified 2026-09-25
-- [ ] `eas build -p android` (AAB, Play App Signing); first upload manual to Internal testing
+- [x] Play Console app created 2026-09-25 (app 4974984723936912897, package
+      com.biblestoryingkenya.app, Free; policies, Play App Signing, US export accepted)
+- [x] Upload keystore generated and held on EAS
+- [ ] First AAB: manual upload to Internal testing (Google requires the first one by hand)
+- [ ] Service-account JSON key so later `eas submit -p android` runs unattended
 - [ ] App content: privacy URL, data safety, content rating, target audience,
       ads, foreground-service (media playback) declaration if prompted
 - [ ] Listing: icon 512², feature graphic 1024×500, phone screenshots
