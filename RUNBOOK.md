@@ -205,8 +205,21 @@ workflow. **App code:**
 2. `cd app && npm ci && npm run seed`
 3. Test build to a connected iPhone: see `.planning/RESUME.md` for the exact
    xcodebuild command; Android: `npx expo run:android`.
-4. Store releases: `eas build --platform all` then `eas submit` (blocked on client
-   accounts — README checklist).
+4. **iOS → TestFlight** (Obed Works LLC team `HFAWAP3F3Z`, App Store Connect app
+   `6816198255`, EAS project `@jamisonhill/bible-storying-kenya`):
+   ```bash
+   cd app && npx eas-cli build -p ios --profile production --no-wait
+   ```
+   Signing credentials live on EAS (distribution cert shared with other Obed
+   Works apps; profile `C72VFNB4GG`). To upload, `eas submit` needs the App Store
+   Connect API key, and `--non-interactive` refuses to take it from env vars — so
+   add it to `eas.json` → `submit.production.ios` for the run and revert after
+   (keeps a local path out of the public repo):
+   `"ascApiKeyPath": "/Users/jamisonhill/.appstoreconnect/private_keys/AuthKey_MJ2A5MH3KV.p8",
+   "ascApiKeyIssuerId": "ff442907-b72c-4ffa-a2d6-e526a6569aa1", "ascApiKeyId": "MJ2A5MH3KV"`, then
+   `npx eas-cli submit -p ios --profile production --latest --non-interactive`.
+   Build numbers auto-increment on EAS. TestFlight builds expire after 90 days.
+   Android store release: Phase 9D in `.planning/PROGRESS.md`.
 - **Rollback (content):** `git revert` the offending `content:` commit and re-run the
   workflow; phones reconcile to whatever the manifest says.
 
@@ -272,7 +285,8 @@ copies in `content/videos/delivery/`.
 | Account / service | Owner | Personal or org? | Transferable? |
 |---|---|---|---|
 | GitHub repo + Pages | Jamison (personal) | Personal | Yes — transfer to client org at publishing; app tolerates a hosting move (§2) |
-| Apple signing (dev builds only) | Jamison (personal) | Personal | Client's account takes over for the store |
+| Apple Developer / App Store Connect | Obed Works LLC (Jamison) | Org | App transfer to Ben possible later |
+| EAS (Expo) project | jamisonhill | Personal | Yes |
 | Website + audio hosting | The ministry | Org | Theirs already |
 
 ---
