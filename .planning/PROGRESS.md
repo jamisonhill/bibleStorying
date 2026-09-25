@@ -52,7 +52,8 @@ C. Store listing (while Ben tests)
       keywords, category, age rating, "Data Not Collected", content rights
 - [ ] Public vs unlisted final release decision
 D. Android
-- [ ] Obed Works Play Console org account (D-U-N-S, ID + org verification — slow, start now)
+- [x] Obed Works LLC Play Console org account 7371887258743915726 (servant@obedworks.com):
+      identity, website (Search Console DNS TXT on obedworks.com) and phones verified 2026-09-25
 - [ ] `eas build -p android` (AAB, Play App Signing); first upload manual to Internal testing
 - [ ] App content: privacy URL, data safety, content rating, target audience,
       ads, foreground-service (media playback) declaration if prompted
