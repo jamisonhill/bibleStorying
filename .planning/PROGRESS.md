@@ -33,15 +33,16 @@ Apple TestFlight first (Ben tests), Android prepared in parallel, then a joint
 final release. Ben closes his accounts (PDFs sent 2026-09-25).
 
 A. Prereqs
-- [ ] Confirm Apple membership entity: the Developer ID cert reads
-      "Jamison Hill (HFAWAP3F3Z)", which is what an Individual account shows
+- [x] Apple team HFAWAP3F3Z = Obed Works LLC (confirmed 2026-09-25)
 - [ ] Accept current agreements in App Store Connect; declare EU trader status
-- [ ] Lock bundle ID `com.biblestoryingkenya.app` (permanent after first upload)
-- [ ] Privacy policy page on GitHub Pages + in-app link (More/About)
-- [ ] app.json: `ITSAppUsesNonExemptEncryption: false`; `eas init` (projectId)
+- [x] Bundle ID `com.biblestoryingkenya.app` registered on the Obed Works team
+- [x] Privacy policy live (jamisonhill.github.io/bibleStorying/privacy.html) + More-tab link
+- [x] app.json: `ITSAppUsesNonExemptEncryption: false`
+- [ ] `eas init` (projectId) — after Jamison's `eas login`
 - [ ] Decide iPad support before the first public release (can't drop it later)
 B. iOS build → TestFlight
-- [ ] Expo account + `eas login`; App Store Connect app record
+- [x] App Store Connect app record: Apple ID 6816198255, SKU biblestoryingkenya-ios
+- [ ] Expo account + `eas login`
 - [ ] `eas build -p ios --profile production` → `eas submit -p ios`
 - [ ] ASC API key (Admin) so submits skip 2FA
 - [ ] TestFlight test info; external group + public link → Beta App Review → Ben
