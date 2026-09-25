@@ -57,7 +57,8 @@ D. Android
 - [x] Play Console app created 2026-09-25 (app 4974984723936912897, package
       com.biblestoryingkenya.app, Free; policies, Play App Signing, US export accepted)
 - [x] Upload keystore generated and held on EAS
-- [ ] First AAB: manual upload to Internal testing (Google requires the first one by hand)
+- [x] First AAB (1.0.0, versionCode 2) live on Internal testing 2026-09-25; list "Obed Works"
+      (servant@obedworks.com, megvlliams@gmail.com); join: https://play.google.com/apps/internaltest/4701005011928697777
 - [ ] Service-account JSON key so later `eas submit -p android` runs unattended
 - [ ] App content: privacy URL, data safety, content rating, target audience,
       ads, foreground-service (media playback) declaration if prompted

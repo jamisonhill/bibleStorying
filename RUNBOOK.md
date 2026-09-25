@@ -219,7 +219,12 @@ workflow. **App code:**
    "ascApiKeyIssuerId": "ff442907-b72c-4ffa-a2d6-e526a6569aa1", "ascApiKeyId": "MJ2A5MH3KV"`, then
    `npx eas-cli submit -p ios --profile production --latest --non-interactive`.
    Build numbers auto-increment on EAS. TestFlight builds expire after 90 days.
-   Android store release: Phase 9D in `.planning/PROGRESS.md`.
+5. **Android → Play internal testing** (Obed Works LLC Play account, app
+   `4974984723936912897`): `cd app && npx eas-cli build -p android --profile production`
+   (upload keystore lives on EAS; Google holds the app signing key). Until a
+   service-account key is set up for `eas submit -p android`, upload the `.aab`
+   in Play Console → Testing → Internal testing → Create new release. The AAB is
+   ~84 MB; phones download ~32 MB.
 - **Rollback (content):** `git revert` the offending `content:` commit and re-run the
   workflow; phones reconcile to whatever the manifest says.
 
