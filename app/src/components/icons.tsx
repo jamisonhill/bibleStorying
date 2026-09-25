@@ -141,6 +141,16 @@ export function EllipsisIcon(p: IconProps) {
   );
 }
 
+// SF Symbols "lock": privacy policy row.
+export function LockIcon(p: IconProps) {
+  return (
+    <Svg {...base(p)}>
+      <Rect x="5" y="10.5" width="14" height="10" rx="2" {...strokeProps(p.color, p.strokeWidth)} />
+      <Path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3" {...strokeProps(p.color, p.strokeWidth)} />
+    </Svg>
+  );
+}
+
 export function InfoCircleIcon(p: IconProps) {
   return (
     <Svg {...base(p)}>

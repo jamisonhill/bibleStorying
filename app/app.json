@@ -15,7 +15,8 @@
         "UIBackgroundModes": [
           "audio"
         ],
-        "CFBundleDisplayName": "CBS Kenya"
+        "CFBundleDisplayName": "CBS Kenya",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {

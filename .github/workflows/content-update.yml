@@ -103,6 +103,10 @@ jobs:
         with:
           ref: main
       - uses: actions/configure-pages@v5
+      # Hand-written pages (privacy policy) ride along with the generated
+      # bundle. Copied in the runner only, so content/ in git stays generated.
+      - name: Add static site pages
+        run: cp -R site/. content/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: content

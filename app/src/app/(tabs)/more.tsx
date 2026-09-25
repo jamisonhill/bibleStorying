@@ -5,9 +5,9 @@
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ChevronRightIcon, EnvelopeIcon, GearIcon, InfoCircleIcon } from '@/components/icons';
+import { ChevronRightIcon, EnvelopeIcon, GearIcon, InfoCircleIcon, LockIcon } from '@/components/icons';
 import { MINI_PLAYER_SPACE, TAB_BAR_HEIGHT } from '@/constants/layout';
-import { CONTACT_FORM_URL } from '@/constants/links';
+import { CONTACT_FORM_URL, PRIVACY_POLICY_URL } from '@/constants/links';
 import { radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { getMetaNumber } from '@/lib/db';
@@ -42,6 +42,15 @@ export default function MoreScreen() {
       subtitle: 'Appearance, mobile data, storage, and content updates',
       icon: <GearIcon size={20} color={theme.textSecondary} />,
       onPress: () => router.push('/settings'),
+    },
+    {
+      key: 'privacy',
+      title: 'Privacy Policy',
+      subtitle: 'This app collects no personal information',
+      icon: <LockIcon size={20} color={theme.textSecondary} />,
+      // App Store guideline 5.1.1 wants the policy reachable inside the app,
+      // not only from the store listing.
+      onPress: () => void openInAppBrowser(PRIVACY_POLICY_URL),
     },
   ];
 
