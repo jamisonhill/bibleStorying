@@ -47,6 +47,10 @@ async function ensureAudioMode() {
   await setAudioModeAsync({
     playsInSilentMode: true,       // a storyteller's phone may be on silent
     shouldPlayInBackground: true,  // keep playing with the screen off
+    // Required for lock-screen controls: on Android, without 'doNotMix' the
+    // media-playback foreground service never starts, so there is no
+    // notification and the OS may stop the audio after a few minutes.
+    interruptionMode: 'doNotMix',
   });
   audioModeReady = true;
 }
@@ -86,11 +90,21 @@ export async function playStory(story: Story, uri: string, artworkUrl?: string):
   });
 
   // Lock-screen / notification controls with the story's artwork.
-  p.setActiveForLockScreen(true, {
-    title: story.title,
-    artist: 'Bible Storying Kenya',
-    ...(artworkUrl ? { artworkUrl } : {}),
-  });
+  // Android's native side parses artworkUrl as a java.net.URL; a bundled image
+  // in a release build resolves to a bare resource name, which throws — and a
+  // throw here used to skip play() below and leave Android with no media
+  // notification. So pass only real URLs, and never let this block playback.
+  const isUrl = !!artworkUrl && /^(https?|file):\/\//.test(artworkUrl);
+  try {
+    p.setActiveForLockScreen(true, {
+      title: story.title,
+      artist: 'Bible Storying Kenya',
+      ...(isUrl ? { artworkUrl } : {}),
+    });
+  } catch (err) {
+    // Playback still works without lock-screen controls.
+    console.warn('Lock-screen controls unavailable:', err);
+  }
 
   p.loop = state.loop;
   p.setPlaybackRate(state.rate, 'high'); // pitch-corrected so voices stay natural
