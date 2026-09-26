@@ -48,8 +48,8 @@ B. iOS build → TestFlight
 - [x] TestFlight test info; external group "Kenya Testers", build 2 in Beta App Review
 - [ ] Send Ben the public link https://testflight.apple.com/join/bc63E4Nq once review passes
 C. Store listing (while Ben tests)
-- [ ] Screenshots (6.9" iPhone; 13" iPad if tablet stays), description,
-      keywords, category, age rating, "Data Not Collected", content rights
+- [x] App Store listing complete 2026-09-25 (store/listing.md): 5 iPhone + 3 iPad
+      screenshots, text, Reference/Education, 13+, Data Not Collected, Free, 174 regions
 - [ ] Public vs unlisted final release decision
 D. Android
 - [x] Obed Works LLC Play Console org account 7371887258743915726 (servant@obedworks.com):
@@ -60,9 +60,13 @@ D. Android
 - [x] First AAB (1.0.0, versionCode 2) live on Internal testing 2026-09-25; list "Obed Works"
       (servant@obedworks.com, megvlliams@gmail.com); join: https://play.google.com/apps/internaltest/4701005011928697777
 - [ ] Service-account JSON key so later `eas submit -p android` runs unattended
-- [ ] App content: privacy URL, data safety, content rating, target audience,
-      ads, foreground-service (media playback) declaration if prompted
-- [ ] Listing: icon 512², feature graphic 1024×500, phone screenshots
+- [x] Play listing saved (not sent for review): text, icon, feature graphic, 5 phone +
+      3+3 tablet screenshots, Books & Reference, contact servant@obedworks.com
+- [x] App content: privacy policy, sign-in (none), ads (no), ad ID (no), government/
+      financial/health (no), target audience 13+, data safety (nothing collected)
+- [ ] Content rating questionnaire — needs Jamison's OK on the IARC terms checkbox
+- [ ] Foreground service (media playback) declaration — needs a short video link of
+      background audio on an Android phone
 - [ ] Internal testing + pre-launch report (covers the missing Android device)
 E. Release
 - [ ] Apple App Review (or unlisted request) + Play production, same week
