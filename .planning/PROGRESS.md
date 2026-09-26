@@ -68,8 +68,12 @@ D. Android
 - [x] App content: privacy policy, sign-in (none), ads (no), ad ID (no), government/
       financial/health (no), target audience 13+, data safety (nothing collected)
 - [x] Content rating (IARC terms accepted 2026-09-25): ESRB Teen, PEGI 3, USK 6+, 3+ elsewhere
-- [ ] Foreground service (media playback) declaration — needs a short video link of
-      background audio on an Android phone
+- [x] Foreground service (media playback) declaration — demo video (Android 15 emulator)
+      on servant@obedworks.com Drive, anyone-with-link: https://drive.google.com/file/d/1CK6JloHhKctrP5FfG5KSpPZ3ABD5fAKf/view
+      All App content declarations complete 2026-09-25.
+- [x] Android emulator on this Mac (AVD bsk_pixel, SDK at /opt/homebrew/share/android-commandlinetools,
+      JDK /opt/homebrew/opt/openjdk@17) — found + fixed the Android lock-screen bug (9c12b98)
+- [ ] versionCode 3 (with the fix) → Play internal via eas submit
 - [ ] Internal testing + pre-launch report (covers the missing Android device)
 E. Release
 - [ ] Apple App Review (or unlisted request) + Play production, same week
