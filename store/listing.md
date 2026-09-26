@@ -78,5 +78,7 @@ Bible Storying Kenya exists to see God's people and their leaders in East Africa
 - **Apple:** content rights = has rights to third-party content (Ben's authorization
   letter); App Privacy = Data Not Collected; Free; 174 regions (China mainland removed:
   needs an ICP filing and religious apps are not permitted there).
+- **Play content rating (IARC):** narrated violence in a realistic setting, mild blood,
+  referred to rather than shown → ESRB Teen, PEGI 3, USK 6+, 3+ rest of world.
 - **Play:** target audience 13+; no ads; no advertising ID; not a government,
   financial, or health app; no sign-in; Data safety = nothing collected or shared.

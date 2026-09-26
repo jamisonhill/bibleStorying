@@ -59,12 +59,14 @@ D. Android
 - [x] Upload keystore generated and held on EAS
 - [x] First AAB (1.0.0, versionCode 2) live on Internal testing 2026-09-25; list "Obed Works"
       (servant@obedworks.com, megvlliams@gmail.com); join: https://play.google.com/apps/internaltest/4701005011928697777
-- [ ] Service-account JSON key so later `eas submit -p android` runs unattended
+- [x] Google Cloud project obed-works-play-publishing + service account eas-play-upload;
+      JSON key at /Users/jamisonhill/.google-play/ (RUNBOOK §7)
+- [ ] Jamison: invite the service account in Play Console → Users and permissions (app-level release permissions)
 - [x] Play listing saved (not sent for review): text, icon, feature graphic, 5 phone +
       3+3 tablet screenshots, Books & Reference, contact servant@obedworks.com
 - [x] App content: privacy policy, sign-in (none), ads (no), ad ID (no), government/
       financial/health (no), target audience 13+, data safety (nothing collected)
-- [ ] Content rating questionnaire — needs Jamison's OK on the IARC terms checkbox
+- [x] Content rating (IARC terms accepted 2026-09-25): ESRB Teen, PEGI 3, USK 6+, 3+ elsewhere
 - [ ] Foreground service (media playback) declaration — needs a short video link of
       background audio on an Android phone
 - [ ] Internal testing + pre-launch report (covers the missing Android device)

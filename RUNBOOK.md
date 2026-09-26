@@ -221,10 +221,15 @@ workflow. **App code:**
    Build numbers auto-increment on EAS. TestFlight builds expire after 90 days.
 5. **Android → Play internal testing** (Obed Works LLC Play account, app
    `4974984723936912897`): `cd app && npx eas-cli build -p android --profile production`
-   (upload keystore lives on EAS; Google holds the app signing key). Until a
-   service-account key is set up for `eas submit -p android`, upload the `.aab`
-   in Play Console → Testing → Internal testing → Create new release. The AAB is
+   (upload keystore lives on EAS; Google holds the app signing key). The AAB is
    ~84 MB; phones download ~32 MB.
+   Upload with the Google service account (Cloud project `obed-works-play-publishing`,
+   account `eas-play-upload@obed-works-play-publishing.iam.gserviceaccount.com`, key at
+   `/Users/jamisonhill/.google-play/obed-works-play-publishing.json`, mode 600, never
+   commit it). As with iOS, add it to `eas.json` → `submit.production.android` for the
+   run and revert: `"serviceAccountKeyPath": "<that path>", "track": "internal"`, then
+   `npx eas-cli submit -p android --profile production --latest --non-interactive`.
+   Fallback: upload the `.aab` in Play Console → Testing → Internal testing.
 - **Rollback (content):** `git revert` the offending `content:` commit and re-run the
   workflow; phones reconcile to whatever the manifest says.
 
