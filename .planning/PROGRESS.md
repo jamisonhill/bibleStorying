@@ -61,7 +61,8 @@ D. Android
       (servant@obedworks.com, megvlliams@gmail.com); join: https://play.google.com/apps/internaltest/4701005011928697777
 - [x] Google Cloud project obed-works-play-publishing + service account eas-play-upload;
       JSON key at /Users/jamisonhill/.google-play/ (RUNBOOK §7)
-- [ ] Jamison: invite the service account in Play Console → Users and permissions (app-level release permissions)
+- [x] Service account invited with app-level release permissions; API access verified 2026-09-25
+      (opened + discarded an edit; internal track shows versionCode 2)
 - [x] Play listing saved (not sent for review): text, icon, feature graphic, 5 phone +
       3+3 tablet screenshots, Books & Reference, contact servant@obedworks.com
 - [x] App content: privacy policy, sign-in (none), ads (no), ad ID (no), government/
