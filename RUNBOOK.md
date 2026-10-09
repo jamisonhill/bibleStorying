@@ -330,6 +330,20 @@ copies in `content/videos/delivery/`.
   curl -s https://jamisonhill.github.io/bibleStorying/manifest.json \
     | python3 -c "import json,sys; print(json.load(sys.stdin)['contentVersion'])"
   ```
+- EAS's Android submit failure "The service account is missing the necessary
+  permissions" is generic — it covers *any* 403 from the Play API. The real cause
+  here (2026-10-09) was the `eas-play-upload` service account having **"Release to
+  production"** but not **"Release apps to testing tracks"**, so it could create an
+  edit, upload the .aab and set the track, but `edits:commit` returned 403. The two
+  release permissions are independent; production does not imply testing tracks.
+  Fixed in Play Console → Users and permissions → eas-play-upload → app permissions
+  → Releases.
+
+  To find which API call is actually denied, mint a token from the key and walk the
+  steps yourself (create edit → upload → tracks → `:validate`). Pass `curl -g` for
+  the `:commit` / `:validate` URLs — without it curl treats `:` as a glob and you
+  get a misleading HTML 404 instead of the API's real error.
+
 - The crawl commits every single day even when the website has not changed, because
   `build.ts` always writes a fresh `generatedAt`. That makes the `publish` job's
   `changed == 'true'` gate effectively always true, so the deploy really does run
