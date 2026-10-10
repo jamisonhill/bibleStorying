@@ -6,7 +6,7 @@
 
 ## State
 - **iOS 1.0.0 (build 3)** submitted to App Review 2026-10-10 19:03 UTC → WAITING_FOR_REVIEW. Release type **Manual**, so approval does NOT publish it. Review Notes start with "intended for Unlisted App Distribution". iPad support kept (permanent).
-- **Unlisted request:** Jamison files it at developer.apple.com/support/unlisted-app-distribution as Account Holder (draft text was given in chat 2026-10-10). Apple declines it if the app isn't already in review — it is.
+- **Unlisted request:** filed by Jamison (Account Holder) on 2026-10-10, after the app entered review. Apple's reply comes by email to the Account Holder.
 - **Android 1.0.0 (vc 3)** sent to Google review 2026-10-10 as the first production launch, all countries, full rollout. Managed publishing is **off**, so it goes public as soon as Google approves (Google says up to 7 days).
 - Obed Works LLC Apple agreements unblocked once the bank account was added (Jamison, 2026-10-10). Play account is an Organization account, so no 12-tester closed-test rule.
 - TestFlight build 2 is still live via https://testflight.apple.com/join/bc63E4Nq (expires ~26 Dec 2026); Android internal track is on vc 3.
