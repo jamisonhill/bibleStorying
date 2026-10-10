@@ -1,31 +1,26 @@
 # Resume — Bible Storying Kenya app
 
-**Paused:** 2026-10-10 · **Reason:** BLOCKED on Apple — Obed Works LLC agreements are Pending (New Legal Entity), which 403s the entire App Store Connect API
-**Phase/Task:** Phase 9D — Android internal testing DONE; iOS build 3 built but cannot be uploaded
-**Tree:** clean · **Last commit:** see `git log -1` (pause commit)
+**Paused:** 2026-10-10 · **Reason:** Both stores submitted for review; waiting on Apple App Review, the unlisted request, and Google review
+**Phase/Task:** Phase 9E — first store release (iOS unlisted, Android public)
+**Tree:** clean · **Last commit:** see `git log -1`
 
 ## State
-- Publishing moved to Obed Works LLC (Apple team HFAWAP3F3Z, Play account 7371887258743915726). Ben sent exit + authorization-letter PDFs.
-- iOS 1.0.0 (2) **passed** Beta App Review — status Testing, expires ~26 Dec 2026. Public link: https://testflight.apple.com/join/bc63E4Nq (only tester so far is jamison.hill@me.com).
-- iOS 1.0.0 (3) IS BUILT (EAS bc321ee2-7b03-4f31-8722-5dbcd206548d, from 4a7e092, carries the audio fix) but **every upload path is blocked** — see below.
-- ⚠️ **Apple account blocker:** App Store Connect → Business → Obed Works LLC shows Paid Apps + Free Apps agreements both "Pending (New Legal Entity)" and no bank account on file (W-9 is Active, submitted Oct 4). Because of this the ASC API returns 403 REQUIRED_AGREEMENTS_MISSING_OR_EXPIRED on every endpoint, so `eas submit` fails with no log and altool says "Cannot determine the Apple ID from Bundle ID". This will block the final App Store submission too, not just build 3.
-- Both store listings, ratings, privacy and declarations complete but NOT submitted (answers in store/listing.md).
-- Android: internal track now live with **vc 3** (the lock-screen + first-tap fix, 9c12b98). Testers servant@obedworks.com, megvlliams@gmail.com.
-- The submit failure was NOT propagation: the service account lacked "Release apps to testing tracks" (it only had "Release to production"), so `edits:commit` 403'd. Granted 2026-10-09; `eas submit` then succeeded. Written up in RUNBOOK §13.
+- **iOS 1.0.0 (build 3)** submitted to App Review 2026-10-10 19:03 UTC → WAITING_FOR_REVIEW. Release type **Manual**, so approval does NOT publish it. Review Notes start with "intended for Unlisted App Distribution". iPad support kept (permanent).
+- **Unlisted request:** Jamison files it at developer.apple.com/support/unlisted-app-distribution as Account Holder (draft text was given in chat 2026-10-10). Apple declines it if the app isn't already in review — it is.
+- **Android 1.0.0 (vc 3)** sent to Google review 2026-10-10 as the first production launch, all countries, full rollout. Managed publishing is **off**, so it goes public as soon as Google approves (Google says up to 7 days).
+- Obed Works LLC Apple agreements unblocked once the bank account was added (Jamison, 2026-10-10). Play account is an Organization account, so no 12-tester closed-test rule.
+- TestFlight build 2 is still live via https://testflight.apple.com/join/bc63E4Nq (expires ~26 Dec 2026); Android internal track is on vc 3.
 
 ## Next action
-1. **Needs Jamison (blocking, legal/financial — not for Claude):** get the Obed Works LLC agreements out of "Pending (New Legal Entity)". Add a bank account for the entity, and if it stays pending, contact Apple Developer Support about the new-legal-entity verification. Nothing iOS ships until this clears.
-2. Once the API answers (`curl` the ASC API or just retry `eas submit -p ios`), upload build 3 — the ipa is already built, no rebuild needed.
-3. Decide iPad support and public/unlisted for both stores.
-4. Then the final store submissions (listings/ratings/declarations are already complete but unsubmitted; answers in store/listing.md).
-
-Not blocked by any of the above: Ben's testers can start on iOS build 2 today via the public link, and on Android internal vc 3.
+1. Check status: iOS via the ASC API (`/v1/appStoreVersions/4c7fabb3-38d8-4099-ac2d-f98b4451c59f` → appStoreState) and the unlisted request reply (email to the Account Holder); Android via Play Console → Publishing overview.
+2. If Apple rejects or asks questions, answer in Resolution Center. If the unlisted request is declined, decide: release publicly, or appeal.
+3. When **both** App Review and unlisted are approved, Jamison presses Release in App Store Connect; then grab the unlisted App Store link plus the Play Store link and send both to Ben.
+4. After launch: point the app's content base URL / bundle placeholders at their real values if still pending (see CLAUDE.md), and update README/RUNBOOK with the store links.
 
 ## Gotchas
 - Use `/opt/homebrew/bin/brew` (native); `/usr/local/bin/brew` runs under Rosetta. Emulator: `export JAVA_HOME=/opt/homebrew/opt/openjdk@17 ANDROID_HOME=/opt/homebrew/share/android-commandlinetools; $ANDROID_HOME/emulator/emulator -avd bsk_pixel`.
+- EAS submits need key paths in eas.json temporarily (never commit them). Android: `"android": {"serviceAccountKeyPath": "/Users/jamisonhill/.google-play/obed-works-play-publishing.json", "track": "internal"}`. iOS: `ascApiKeyPath` ~/.appstoreconnect/private_keys/AuthKey_MJ2A5MH3KV.p8, `ascApiKeyIssuerId` ff442907-b72c-4ffa-a2d6-e526a6569aa1, `ascApiKeyId` MJ2A5MH3KV (Admin).
+- python.org Python here has no CA bundle: urllib over HTTPS fails. Mint JWTs in Python, do HTTP with curl. In zsh use `${VAR}:commit`, never `$VAR:commit`.
 - Store builds are .aab; to install on the emulator convert with `bundletool build-apks --mode=universal` (debug keystore ~/.android/debug.keystore).
 - Browser tool uploads max 10 MB; larger files go through the macOS file picker (osascript Cmd-Shift-G + path).
-- EAS credential setup and submits refuse `--non-interactive` from env vars — key paths go in eas.json temporarily (never commit them).
-- App Store Connect session in Chrome logged out; Jamison signs back in when needed.
-- To submit Android without EAS: `npx eas-cli build:view <id> --json` gives the .aab URL; the Play API steps are create edit → upload bundle → PUT tracks/internal → commit.
-- iOS submits need ASC API key creds in eas.json (`ascApiKeyPath`/`ascApiKeyIssuerId`/`ascApiKeyId`); the working key is MJ2A5MH3KV (Admin) at ~/.appstoreconnect/private_keys/, issuer ff442907-b72c-4ffa-a2d6-e526a6569aa1. Never commit those lines.
+- RUNBOOK §13 has the Play-permission, Apple-agreement, and first-Play-launch write-ups.

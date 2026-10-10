@@ -337,8 +337,9 @@ copies in `content/videos/delivery/`.
   reports the misleading "Cannot determine the Apple ID from Bundle ID". Auth is
   fine in that state — a bad key gives 401, not 403 — so check
   App Store Connect → Business → the legal entity → Agreements before debugging
-  EAS or credentials. As of 2026-10-10 both Obed Works LLC agreements (Paid Apps,
-  Free Apps) are **Pending (New Legal Entity)** and no bank account is on file.
+  EAS or credentials. On 2026-10-10 the cause was both Obed Works LLC agreements sitting
+  at "Pending (New Legal Entity)" with no bank account on file; adding the bank
+  account cleared it the same day.
 
   To test the API directly, mint an ES256 JWT from the .p8: openssl emits a DER
   signature, so parse out r and s and left-pad each to 32 bytes for JWS.
@@ -353,9 +354,17 @@ copies in `content/videos/delivery/`.
   → Releases.
 
   To find which API call is actually denied, mint a token from the key and walk the
-  steps yourself (create edit → upload → tracks → `:validate`). Pass `curl -g` for
-  the `:commit` / `:validate` URLs — without it curl treats `:` as a glob and you
-  get a misleading HTML 404 instead of the API's real error.
+  steps yourself (create edit → upload → tracks → `:validate`). In zsh write
+  `"${EDIT}:commit"` with braces: `$EDIT:commit` is parsed as the `:c` history
+  modifier, which mangles the URL into `…/<id>ommit` and gets an HTML 404. Don't
+  percent-encode the colon either (`%3A` also 404s).
+- **The first Play production launch can't be done through the API.** While the
+  app has never been published Play calls it a "draft app", and a production
+  release with status `completed` fails validation with "Only releases with status
+  draft may be created on draft app". Commit it as `status: "draft"`, then in Play
+  Console: Production → Countries/regions (pick them), Releases → Edit release →
+  Next → Save, then Publishing overview → "Submit N changes for review". After that
+  first launch the API can roll out releases normally.
 
 - The crawl commits every single day even when the website has not changed, because
   `build.ts` always writes a fresh `generatedAt`. That makes the `publish` job's
