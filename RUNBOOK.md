@@ -330,6 +330,19 @@ copies in `content/videos/delivery/`.
   curl -s https://jamisonhill.github.io/bibleStorying/manifest.json \
     | python3 -c "import json,sys; print(json.load(sys.stdin)['contentVersion'])"
   ```
+- An iOS submit that fails with no EAS log and no error detail is probably not
+  EAS. Apple's whole API can be shut off account-wide by a pending agreement:
+  `GET /v1/apps` (and `/v1/users`, `/v1/builds`) returns
+  `403 FORBIDDEN.REQUIRED_AGREEMENTS_MISSING_OR_EXPIRED`, and `xcrun altool` then
+  reports the misleading "Cannot determine the Apple ID from Bundle ID". Auth is
+  fine in that state — a bad key gives 401, not 403 — so check
+  App Store Connect → Business → the legal entity → Agreements before debugging
+  EAS or credentials. As of 2026-10-10 both Obed Works LLC agreements (Paid Apps,
+  Free Apps) are **Pending (New Legal Entity)** and no bank account is on file.
+
+  To test the API directly, mint an ES256 JWT from the .p8: openssl emits a DER
+  signature, so parse out r and s and left-pad each to 32 bytes for JWS.
+
 - EAS's Android submit failure "The service account is missing the necessary
   permissions" is generic — it covers *any* 403 from the Play API. The real cause
   here (2026-10-09) was the `eas-play-upload` service account having **"Release to
