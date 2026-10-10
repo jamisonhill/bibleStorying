@@ -16,7 +16,7 @@
       audio download, dark mode, booklets, About links, Contact Us — all verified
 - [ ] Collect tester feedback; verify offline, lock-screen audio, language switch
 - [x] Android 15 emulator pass 2026-09-25 (found + fixed lock-screen bug, 9c12b98)
-- [ ] Testers on the pre-2026-09-18 build need a new build — now via TestFlight (Phase 9B)
+- [x] Testers on the pre-2026-09-18 build: new build available via TestFlight (Phase 9B)
 
 ## Waiting on Ben / the client
 - [x] Contact Us (resource 6) published — live with iframe (checked 2026-09-25)
@@ -28,31 +28,26 @@
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
 
-## Phase 9 — Publishing under Obed Works [PLANNED 2026-09-25]
-Apple TestFlight first (Ben tests), Android prepared in parallel, then a joint
-final release. Ben closes his accounts (PDFs sent 2026-09-25).
-
+## Phase 9 — Publishing under Obed Works [IN PROGRESS — both stores in review]
 A. Prereqs
-- [x] Obed Works LLC team HFAWAP3F3Z; bundle ID registered; privacy policy + More-tab link;
-      encryption flag; EAS project @jamisonhill/bible-storying-kenya
-- [ ] Accept current agreements in App Store Connect; EU trader status (currently non-trader)
-- [ ] Decide iPad support before the first public release (can't drop it later)
-B. iOS → TestFlight
-- [x] ASC app 6816198255; build 1.0.0 (2) uploaded; group "Kenya Testers" in Beta App Review
-- [ ] Send Ben https://testflight.apple.com/join/bc63E4Nq once review passes
-- [ ] Next iOS build picks up the player.ts fix (iOS was not affected)
-C. Store listings — [x] both complete, not submitted (store/listing.md has every answer)
-- [ ] Public vs unlisted final release decision
+- [x] Team, bundle ID, privacy policy, encryption flag, EAS project
+- [x] Apple agreements in effect (bank account added 2026-10-10 cleared "Pending (New Legal Entity)")
+- [ ] EU trader status (currently non-trader)
+- [x] iPad support kept (2026-10-10)
+B. iOS
+- [x] TestFlight 1.0.0 (2) passed Beta App Review; public link https://testflight.apple.com/join/bc63E4Nq
+- [ ] Send Ben the TestFlight link
+- [x] Build 1.0.0 (3) with the player.ts fix, uploaded 2026-10-10
+- [x] Submitted 1.0.0 (3) to App Review, manual release, unlisted note in Review Notes
+- [x] Unlisted distribution request filed by Jamison 2026-10-10
+- [ ] App Review approved + unlisted approved → Jamison presses Release ← PAUSED HERE
 D. Android
-- [x] Play org account 7371887258743915726 verified; app 4974984723936912897 created;
-      all App content declarations done; listing saved; internal track live with vc 2
-- [x] Upload service account eas-play-upload (key /Users/jamisonhill/.google-play/,
-      5 app permissions granted 2026-09-25) — RUNBOOK §7
-- [ ] versionCode 3 (EAS build 7e9878f9, has the fix) → internal via eas submit ← PAUSED HERE
-      (first attempt 2026-09-25 22:40: "missing permissions" — likely propagation delay)
-- [ ] Internal testing + pre-launch report
+- [x] Upload service account fixed (needed "Release apps to testing tracks"); vc 3 on internal
+- [x] 1.0.0 (vc 3) sent to Google review as first production launch, all countries,
+      managed publishing off (goes public on approval)
+- [ ] Google review approved
 E. Release
-- [ ] Apple App Review (or unlisted request) + Play production, same week
+- [ ] Send Ben the unlisted App Store link + Play link
 
 ## Optional polish (not blocking)
 - [ ] Hide the mini-player on the story screen that is already playing (it
