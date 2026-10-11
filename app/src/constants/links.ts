@@ -6,7 +6,7 @@
  * Contact Us page. Submissions are emailed to the ministry; no address is
  * ever shown to the public.
  */
-export const CONTACT_FORM_URL = 'https://forms.duski.org/f/cbs-kenya-contact';
+export const CONTACT_FORM_URL = 'https://forms.obedworks.com/f/cbs-kenya-contact';
 
 /**
  * The app's privacy policy — a hand-written page in site/ that the content

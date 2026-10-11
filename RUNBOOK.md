@@ -147,10 +147,10 @@ Larger files already on the server were placed some other way (FTP).
 
 The **Contact Us** page (resource **6**, template `contacts_tpl (11)`) posts no
 email address. It embeds a form hosted on Obed Forms — Jamison's self-hosted
-form builder at `https://forms.duski.org` (repo
+form builder at `https://forms.obedworks.com` (repo
 `/Users/jamisonhill/Ai/Personal/apps/obed-forms`, its RUNBOOK §10 covers keys).
 
-- Form slug **`cbs-kenya-contact`** → `https://forms.duski.org/f/cbs-kenya-contact`.
+- Form slug **`cbs-kenya-contact`** → `https://forms.obedworks.com/f/cbs-kenya-contact`.
   The app's More → Contact Us opens the same URL (`app/src/constants/links.ts`).
 - Definition of record: `website/contact-form.json` (Name, Email, Phone,
   Message). What the CMS page holds: `website/contact-us.html`. The template
@@ -169,7 +169,7 @@ form builder at `https://forms.duski.org` (repo
   in its `tv3` — set before this work, left as found.
 - Submissions are emailed to **hello@biblestoryingkenya.com** — that address
   lives only in the form's notification settings. To change it: sign in to
-  forms.duski.org, open the form, Settings → Notifications; or with an API key,
+  forms.obedworks.com, open the form, Settings → Notifications; or with an API key,
   `node scripts/forms.mjs forms patch <id> --json '{"settings":{"notifications":[…]}}'`
   then `forms publish <id>` (settings apply on publish).
 - The iframe only renders on origins listed in the form's
