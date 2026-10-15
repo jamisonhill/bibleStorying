@@ -25,7 +25,7 @@
 - [ ] (Waiting, client side) A master for the 360p "Chronological Bible Storying 2025" film
       (RUNBOOK §7 has the transcode recipe)
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art (Jamison telling Ben)
-- [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
+- [ ] Extractor (extract-pdf.ts, draft tool only) needs a CBS Swahili marker set — low priority
 
 ## Phase 9 — Publishing under Obed Works [IN PROGRESS — both stores in review]
 A. Prereqs
@@ -43,7 +43,7 @@ B. iOS
 - [x] 2026-10-12 REJECTED 4.3 Spam + 4.2.6 App Generation (client app under our account).
       Replied 2026-10-14 in App Review (did NOT resubmit, per Apple): 9 answers + signed
       authorization letter attached (reply text lives in ASC → App Review → Messages).
-- [ ] Apple's response to the reply ← WAITING
+- [ ] Apple's response to the reply ← PAUSED HERE (waiting)
 - [ ] App Review approved + unlisted approved → Jamison presses Release
 D. Android
 - [x] Upload service account fixed (needed "Release apps to testing tracks"); vc 3 on internal
@@ -53,10 +53,9 @@ D. Android
 E. Release
 - [ ] Send Ben the unlisted App Store link + Play link
 
-## Branch `post-review` — merge to main and ship as 1.0.1 AFTER both stores approve 1.0.0
+## 1.0.1 — branch `post-review` (merge + build only AFTER both stores approve 1.0.0)
+- [x] Story numbers on cards, mini-player hidden on its own story, Android artwork, lint 0 errors
+- [ ] Verify Android lock-screen artwork + mini-player hide on a device
 
 ## Optional polish (not blocking)
-- [x] Hide the mini-player on its own story screen (post-review branch)
-- [x] Lint errors fixed (post-review branch)
-- [x] Android media notification artwork (post-review branch; verify on a device)
 - [ ] RUNBOOK §13 references a React.xcframework recovery that is not in the file
