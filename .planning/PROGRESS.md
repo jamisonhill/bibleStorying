@@ -20,12 +20,11 @@
 
 ## Waiting on Ben / the client
 - [x] Contact Us (resource 6) published — live with iframe (checked 2026-09-25)
-- [ ] Confirm the live test message reached hello@biblestoryingkenya.com
-- [ ] Item 2 — story numbering on the preview pictures (app cards, website
-      grid, or burned into the artwork: undecided)
-- [ ] A master for the 360p "Chronological Bible Storying 2025" film
+- [x] Contact form: address changed by the client and confirmed working (2026-10-14)
+- [x] Item 2 — story numbering: decided app cards (2026-10-14); built on branch post-review
+- [ ] (Waiting, client side) A master for the 360p "Chronological Bible Storying 2025" film
       (RUNBOOK §7 has the transcode recipe)
-- [ ] Story 25 has no scripture reference; story 31 has no cloth art
+- [ ] Story 25 has no scripture reference; story 31 has no cloth art (Jamison telling Ben)
 - [ ] Extractor needs a CBS Swahili marker set ("UTANGULIZI:" collides with Sonship)
 
 ## Phase 9 — Publishing under Obed Works [IN PROGRESS — both stores in review]
@@ -36,7 +35,7 @@ A. Prereqs
 - [x] iPad support kept (2026-10-10)
 B. iOS
 - [x] TestFlight 1.0.0 (2) passed Beta App Review; public link https://testflight.apple.com/join/bc63E4Nq
-- [ ] Send Ben the TestFlight link
+- [x] Ben has the TestFlight link; testing soon
 - [x] Build 1.0.0 (3) with the player.ts fix, uploaded 2026-10-10
 - [x] Submitted 1.0.0 (3) to App Review, manual release, unlisted note in Review Notes
 - [x] Unlisted distribution request filed by Jamison 2026-10-10
@@ -54,10 +53,10 @@ D. Android
 E. Release
 - [ ] Send Ben the unlisted App Store link + Play link
 
+## Branch `post-review` — merge to main and ship as 1.0.1 AFTER both stores approve 1.0.0
+
 ## Optional polish (not blocking)
-- [ ] Hide the mini-player on the story screen that is already playing (it
-      covers the "Download for offline" row until you scroll)
-- [ ] Pre-existing lint errors: `splash-overlay.tsx` refs-during-render,
-      `use-color-scheme.web.ts` setState-in-effect
-- [ ] Android media notification has no artwork (bundled images are resource names, not URLs)
+- [x] Hide the mini-player on its own story screen (post-review branch)
+- [x] Lint errors fixed (post-review branch)
+- [x] Android media notification artwork (post-review branch; verify on a device)
 - [ ] RUNBOOK §13 references a React.xcframework recovery that is not in the file
