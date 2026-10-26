@@ -27,7 +27,7 @@
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art (Jamison telling Ben)
 - [ ] Extractor (extract-pdf.ts, draft tool only) needs a CBS Swahili marker set — low priority
 
-## Phase 9 — Publishing under Obed Works [IN PROGRESS — both stores in review]
+## Phase 9 — Publishing under Obed Works [IN PROGRESS — Android live, iOS in review]
 A. Prereqs
 - [x] Team, bundle ID, privacy policy, encryption flag, EAS project
 - [x] Apple agreements in effect (bank account added 2026-10-10 cleared "Pending (New Legal Entity)")
@@ -45,8 +45,8 @@ B. iOS
       Replied 2026-10-14 in App Review (did NOT resubmit, per Apple): 9 answers + signed
       authorization letter attached (reply text lives in ASC → App Review → Messages).
 - [x] Apple's response 2026-10-19: "We will continue the review" — back In Review
-- [ ] App Review decision on 1.0.0 (3) ← WAITING (checked 2026-10-26: still In Review)
-- [ ] App Review approved + unlisted approved → Jamison presses Release
+- [ ] App Review decision on 1.0.0 (3) ← PAUSED HERE (waiting; still In Review 2026-10-26)
+- [ ] Approved → Jamison presses Release (unlisted already approved)
 D. Android
 - [x] Upload service account fixed (needed "Release apps to testing tracks"); vc 3 on internal
 - [x] 1.0.0 (vc 3) sent to Google review as first production launch, all countries,
