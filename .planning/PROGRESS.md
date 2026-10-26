@@ -39,6 +39,7 @@ B. iOS
 - [x] Build 1.0.0 (3) with the player.ts fix, uploaded 2026-10-10
 - [x] Submitted 1.0.0 (3) to App Review, manual release, unlisted note in Review Notes
 - [x] Unlisted distribution request filed by Jamison 2026-10-10
+- [x] Unlisted distribution APPROVED 2026-10-20 (Developer Support case 102992599634); link is in ASC → Pricing and Availability once App Review approves
 - [x] Developer Program License Agreement update accepted by Jamison (2026-10-14)
 - [x] 2026-10-12 REJECTED 4.3 Spam + 4.2.6 App Generation (client app under our account).
       Replied 2026-10-14 in App Review (did NOT resubmit, per Apple): 9 answers + signed
@@ -52,7 +53,8 @@ D. Android
       managed publishing off (goes public on approval)
 - [x] Google review approved — live on Play (verified 2026-10-26): https://play.google.com/store/apps/details?id=com.biblestoryingkenya.app
 E. Release
-- [ ] Send Ben the unlisted App Store link + Play link
+- [x] Ben has the Play link (2026-10-26); Android install confirmed by a real user
+- [ ] Send Ben the unlisted App Store link (after iOS release)
 
 ## 1.0.1 — branch `post-review` (merge + build only AFTER both stores approve 1.0.0)
 - [x] Story numbers on cards, mini-player hidden on its own story, Android artwork, lint 0 errors
