@@ -43,13 +43,14 @@ B. iOS
 - [x] 2026-10-12 REJECTED 4.3 Spam + 4.2.6 App Generation (client app under our account).
       Replied 2026-10-14 in App Review (did NOT resubmit, per Apple): 9 answers + signed
       authorization letter attached (reply text lives in ASC → App Review → Messages).
-- [ ] Apple's response to the reply ← PAUSED HERE (waiting)
+- [x] Apple's response 2026-10-19: "We will continue the review" — back In Review
+- [ ] App Review decision on 1.0.0 (3) ← WAITING (checked 2026-10-26: still In Review)
 - [ ] App Review approved + unlisted approved → Jamison presses Release
 D. Android
 - [x] Upload service account fixed (needed "Release apps to testing tracks"); vc 3 on internal
 - [x] 1.0.0 (vc 3) sent to Google review as first production launch, all countries,
       managed publishing off (goes public on approval)
-- [ ] Google review approved
+- [x] Google review approved — live on Play (verified 2026-10-26): https://play.google.com/store/apps/details?id=com.biblestoryingkenya.app
 E. Release
 - [ ] Send Ben the unlisted App Store link + Play link
 
