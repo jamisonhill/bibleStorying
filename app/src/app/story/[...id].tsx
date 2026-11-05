@@ -146,10 +146,17 @@ export default function StoryScreen() {
     <ScrollView
       style={{ backgroundColor: theme.background }}
       contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 110 }]}
+      // Keep the cloth artwork pinned at the top while the reader scrolls
+      // through the text (Ben's request), so the picture is always in view.
+      stickyHeaderIndices={artwork ? [0] : undefined}
     >
       {artwork && (
-        <View style={[styles.artWrap, { backgroundColor: theme.surfaceAlt }]}>
-          <Image source={artwork} style={styles.art} contentFit="cover" transition={200} />
+        // The outer view is the sticky header. Its solid background hides
+        // the text as it scrolls up underneath the picture.
+        <View style={[styles.artHeader, { backgroundColor: theme.background }]}>
+          <View style={[styles.artWrap, { backgroundColor: theme.surfaceAlt }]}>
+            <Image source={artwork} style={styles.art} contentFit="cover" transition={200} />
+          </View>
         </View>
       )}
 
@@ -342,10 +349,11 @@ export default function StoryScreen() {
 
 const styles = StyleSheet.create({
   missing: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  content: { paddingHorizontal: 20, paddingTop: 4 },
+  content: { paddingHorizontal: 20 },
+  artHeader: { paddingTop: 4, paddingBottom: 10 },
   artWrap: { borderRadius: radius.card, overflow: 'hidden', aspectRatio: 3 / 2 },
   art: { width: '100%', height: '100%' },
-  title: { fontSize: 24, fontWeight: '700', marginTop: 18, lineHeight: 30 },
+  title: { fontSize: 24, fontWeight: '700', marginTop: 8, lineHeight: 30 },
   ref: { fontSize: 15, marginTop: 4 },
   chips: { marginTop: 14 },
   playerCard: {
