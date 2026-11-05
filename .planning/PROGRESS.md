@@ -27,38 +27,17 @@
 - [ ] Story 25 has no scripture reference; story 31 has no cloth art (Jamison telling Ben)
 - [ ] Extractor (extract-pdf.ts, draft tool only) needs a CBS Swahili marker set — low priority
 
-## Phase 9 — Publishing under Obed Works [IN PROGRESS — Android live, iOS in review]
-A. Prereqs
-- [x] Team, bundle ID, privacy policy, encryption flag, EAS project
-- [x] Apple agreements in effect (bank account added 2026-10-10 cleared "Pending (New Legal Entity)")
+## Phase 9 — 1.0.0 store launch [COMPLETE — iOS unlisted + Android live; Ben has both links]
 - [ ] EU trader status (currently non-trader)
-- [x] iPad support kept (2026-10-10)
-B. iOS
-- [x] TestFlight 1.0.0 (2) passed Beta App Review; public link https://testflight.apple.com/join/bc63E4Nq
-- [x] Ben has the TestFlight link; testing soon
-- [x] Build 1.0.0 (3) with the player.ts fix, uploaded 2026-10-10
-- [x] Submitted 1.0.0 (3) to App Review, manual release, unlisted note in Review Notes
-- [x] Unlisted distribution request filed by Jamison 2026-10-10
-- [x] Unlisted distribution APPROVED 2026-10-20 (Developer Support case 102992599634); link is in ASC → Pricing and Availability once App Review approves
-- [x] Developer Program License Agreement update accepted by Jamison (2026-10-14)
-- [x] 2026-10-12 REJECTED 4.3 Spam + 4.2.6 App Generation (client app under our account).
-      Replied 2026-10-14 in App Review (did NOT resubmit, per Apple): 9 answers + signed
-      authorization letter attached (reply text lives in ASC → App Review → Messages).
-- [x] Apple's response 2026-10-19: "We will continue the review" — back In Review
-- [ ] App Review decision on 1.0.0 (3) ← PAUSED HERE (waiting; still In Review 2026-10-26)
-- [ ] Approved → Jamison presses Release (unlisted already approved)
-D. Android
-- [x] Upload service account fixed (needed "Release apps to testing tracks"); vc 3 on internal
-- [x] 1.0.0 (vc 3) sent to Google review as first production launch, all countries,
-      managed publishing off (goes public on approval)
-- [x] Google review approved — live on Play (verified 2026-10-26): https://play.google.com/store/apps/details?id=com.biblestoryingkenya.app
-E. Release
-- [x] Ben has the Play link (2026-10-26); Android install confirmed by a real user
-- [ ] Send Ben the unlisted App Store link (after iOS release)
 
-## 1.0.1 — branch `post-review` (merge + build only AFTER both stores approve 1.0.0)
-- [x] Story numbers on cards, mini-player hidden on its own story, Android artwork, lint 0 errors
-- [ ] Verify Android lock-screen artwork + mini-player hide on a device
+## Phase 11 — 1.0.1 release [IN PROGRESS]
+- [x] Merged `post-review` (story numbers, mini-player hide, Android artwork, lint clean)
+- [x] Ben's request: story image pinned at top while scrolling
+- [x] Wire in-app feedback (More → Send Feedback → feedback.obedworks.com)
+- [x] Version 1.0.1; iOS build 4 + Android vc 4 built and submitted (2026-11-05)
+- [ ] Device check of preview APK: lock-screen artwork, mini-player hide, pinned image, feedback
+- [ ] Apple + Google approval ← PAUSED HERE
+- [ ] Confirm both stores show 1.0.1, tell Ben
 
 ## Optional polish (not blocking)
 - [ ] RUNBOOK §13 references a React.xcframework recovery that is not in the file
