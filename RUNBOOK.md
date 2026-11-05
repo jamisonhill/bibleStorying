@@ -305,6 +305,12 @@ copies in `content/videos/delivery/`.
 
 - The app collects and transmits **no** personal data — no accounts, no analytics.
   Everything is stored on-device. Privacy label: "Data Not Collected."
+- Exception, user-initiated only: More → **Send Feedback** posts what the user types
+  plus app version, OS version and device model to feedback.obedworks.com, which files
+  it in this repo's `REPORTS.md`. There's no email field, so the label stays "Data Not Collected"
+  (diagnostic data the user sends on purpose). If an email field is ever added, declare
+  Contact Info → Email Address (App Functionality, not tracking). The app key in
+  `app/src/lib/feedback.ts` is in source on purpose; it isn't a secret.
 
 ---
 

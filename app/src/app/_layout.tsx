@@ -15,6 +15,7 @@ import { MiniPlayer } from '@/components/mini-player';
 import { NATIVE_FADE_MS, SplashOverlay } from '@/components/splash-overlay';
 import { useResolvedScheme, useTheme } from '@/hooks/use-theme';
 import { initDatabase } from '@/lib/db';
+import { flushFeedbackOutbox } from '@/lib/feedback';
 import { LanguageProvider } from '@/lib/language-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { checkForUpdatesIfDue } from '@/lib/updater';
@@ -43,6 +44,8 @@ export default function RootLayout() {
   // Quiet daily content check; failures are ignored (offline is normal).
   useEffect(() => {
     void checkForUpdatesIfDue();
+    // Retry any feedback reports saved while offline. Also quiet on failure.
+    void flushFeedbackOutbox();
   }, []);
 
   if (!ready) return null;
@@ -83,6 +86,7 @@ function RootStack() {
         <Stack.Screen name="video/[id]" options={{ title: '', headerBackTitle: 'Videos' }} />
         <Stack.Screen name="settings" options={{ title: 'Settings', headerBackTitle: 'More' }} />
         <Stack.Screen name="about" options={{ title: 'About CBS', headerBackTitle: 'More' }} />
+        <Stack.Screen name="feedback" options={{ title: 'Send Feedback', headerBackTitle: 'More' }} />
       </Stack>
     </>
   );

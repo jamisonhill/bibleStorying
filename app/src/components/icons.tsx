@@ -196,3 +196,17 @@ export function XIcon(p: IconProps) {
     </Svg>
   );
 }
+
+/** Speech bubble with an exclamation mark (SF Symbol exclamationmark.bubble). */
+export function FeedbackBubbleIcon(p: IconProps) {
+  return (
+    <Svg {...base(p)}>
+      <Path
+        d="M6.5 4.5h11a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H11l-4.5 3.5v-3.5a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"
+        {...strokeProps(p.color, p.strokeWidth)}
+      />
+      <Path d="M12 8v3.5" {...strokeProps(p.color, p.strokeWidth)} />
+      <Circle cx="12" cy="14" r="0.9" fill={p.color} />
+    </Svg>
+  );
+}

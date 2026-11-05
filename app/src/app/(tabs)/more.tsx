@@ -5,7 +5,9 @@
 import { useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ChevronRightIcon, EnvelopeIcon, GearIcon, InfoCircleIcon, LockIcon } from '@/components/icons';
+import {
+  ChevronRightIcon, EnvelopeIcon, FeedbackBubbleIcon, GearIcon, InfoCircleIcon, LockIcon,
+} from '@/components/icons';
 import { MINI_PLAYER_SPACE, TAB_BAR_HEIGHT } from '@/constants/layout';
 import { CONTACT_FORM_URL, PRIVACY_POLICY_URL } from '@/constants/links';
 import { radius } from '@/constants/theme';
@@ -35,6 +37,15 @@ export default function MoreScreen() {
       // The form lives on the web, not in the bundle: an offline contact
       // form could not deliver anything anyway.
       onPress: () => void openInAppBrowser(CONTACT_FORM_URL),
+    },
+    {
+      key: 'feedback',
+      title: 'Send Feedback',
+      subtitle: 'Report a problem with the app or suggest an idea',
+      icon: <FeedbackBubbleIcon size={20} color={theme.textSecondary} />,
+      // Goes to the app's developer via feedback.obedworks.com; works
+      // offline (reports are saved and sent on a later launch).
+      onPress: () => router.push('/feedback'),
     },
     {
       key: 'settings',
