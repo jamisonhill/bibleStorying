@@ -98,9 +98,18 @@ export default function StoryScreen() {
       uri = story.audio.url;
     }
     // Lock-screen artwork needs a URI; resolve the bundled asset if needed.
+    // In an Android release build a bundled image's `uri` is a bare resource
+    // name, which the media notification cannot load. downloadAsync() copies
+    // it to the cache and gives a real file:// URI (on iOS it is already one).
     let artworkUrl: string | undefined;
     if (typeof artwork === 'number') {
-      artworkUrl = Asset.fromModule(artwork).uri;
+      try {
+        const asset = await Asset.fromModule(artwork).downloadAsync();
+        artworkUrl = asset.localUri ?? asset.uri;
+      } catch (err) {
+        // Missing artwork must never stop the story from playing.
+        console.warn('Could not resolve lock-screen artwork:', err);
+      }
     } else if (artwork) {
       artworkUrl = artwork.uri;
     }

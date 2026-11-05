@@ -4,7 +4,7 @@
 // Text and images update silently (they are small); downloaded audio is
 // never re-fetched automatically — it is marked stale and the user chooses.
 
-import { Directory, File } from 'expo-file-system';
+import { File } from 'expo-file-system';
 import * as Network from 'expo-network';
 import {
   db, deletePage, deleteVideoRow, getMeta, getMetaNumber, pageShaKey, setMeta,

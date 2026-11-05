@@ -1,8 +1,9 @@
 // Persistent mini-player bar: appears above the bottom edge whenever audio
 // is loaded, so a story keeps playing while browsing and is always one tap
 // away. Tapping the bar returns to the story; the X stops playback.
+// It hides on the playing story's own screen, which has the full controls.
 
-import { useRouter, useSegments } from 'expo-router';
+import { usePathname, useRouter, useSegments } from 'expo-router';
 import { useSyncExternalStore } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -19,6 +20,7 @@ export function MiniPlayer() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const segments = useSegments();
+  const pathname = usePathname();
   const state = useSyncExternalStore(subscribePlayer, playerState);
 
   // This bar is rendered outside the tab navigator so it survives screens
@@ -30,6 +32,17 @@ export function MiniPlayer() {
   const bottom = insets.bottom + 12 + (onTabScreen ? TAB_BAR_HEIGHT : 0);
 
   if (!state.storyId) return null;
+
+  // On the playing story's own screen the bar would only repeat its controls,
+  // and it covered the "Download for offline" row. Story ids can contain
+  // characters the router percent-encodes, so compare the decoded path.
+  let currentPath = pathname;
+  try {
+    currentPath = decodeURIComponent(pathname);
+  } catch {
+    // A malformed escape sequence: fall back to the raw path (the bar shows).
+  }
+  if (currentPath === `/story/${state.storyId}`) return null;
 
   const progress = state.duration > 0 ? state.currentTime / state.duration : 0;
 

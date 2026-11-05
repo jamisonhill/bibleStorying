@@ -14,7 +14,7 @@
 // told to go, so the book is still on screen as the wordmark arrives — without
 // that overlap there is a beat of empty slate between the two marks.
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AccessibilityInfo, Animated, Easing, StyleSheet, useWindowDimensions,
 } from 'react-native';
@@ -64,9 +64,11 @@ export function SplashOverlay() {
   const [painted, setPainted] = useState(false);
 
   // Two values: the logo's own entrance, and the whole stage fading away.
-  const logoOpacity = useRef(new Animated.Value(0)).current;
-  const logoRise = useRef(new Animated.Value(RISE_DISTANCE)).current;
-  const stageOpacity = useRef(new Animated.Value(1)).current;
+  // Held in lazy state rather than refs: each Animated.Value is created once
+  // and is safe to read during render (refs are not, per the React rules).
+  const [logoOpacity] = useState(() => new Animated.Value(0));
+  const [logoRise] = useState(() => new Animated.Value(RISE_DISTANCE));
+  const [stageOpacity] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
     // Nothing may happen until this stage has actually painted: hiding the

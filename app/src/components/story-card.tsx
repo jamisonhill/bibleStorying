@@ -1,5 +1,6 @@
 // A story in the collection grid: cloth artwork with the title below,
-// plus a small badge when its audio is downloaded.
+// the story's number in the top-left corner, and a small badge when its
+// audio is downloaded.
 
 import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -18,12 +19,15 @@ interface Props {
 export function StoryCard({ story, downloaded, onPress }: Props) {
   const theme = useTheme();
   const source = imageSource(story.imagePath);
+  // `order` is the 0-based position in the website's list, so story 1 is the
+  // first one shown there. That keeps the app's numbers matching the site's.
+  const storyNumber = story.order + 1;
 
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={`${story.title}. ${story.scriptureRef}`}
+      accessibilityLabel={`Story ${storyNumber}. ${story.title}. ${story.scriptureRef}`}
       style={({ pressed }) => [styles.card, { opacity: pressed ? 0.8 : 1 }]}
     >
       <View style={[styles.artWrap, { backgroundColor: theme.surfaceAlt }]}>
@@ -36,6 +40,9 @@ export function StoryCard({ story, downloaded, onPress }: Props) {
             </Text>
           </View>
         )}
+        <View style={[styles.number, { backgroundColor: theme.surface }]}>
+          <Text style={[styles.numberText, { color: theme.text }]}>{storyNumber}</Text>
+        </View>
         {downloaded && (
           <View style={[styles.badge, { backgroundColor: theme.surface }]}>
             <CheckCircleIcon size={16} color={theme.success} />
@@ -62,6 +69,18 @@ const styles = StyleSheet.create({
   art: { width: '100%', height: '100%' },
   artFallback: { alignItems: 'center', justifyContent: 'center' },
   artFallbackText: { fontSize: 40, fontWeight: '300' },
+  number: {
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    minWidth: 24,
+    height: 24,
+    paddingHorizontal: 7,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  numberText: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   badge: {
     position: 'absolute',
     top: 8,
